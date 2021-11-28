@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TopPageComponent } from './top-page/top-page.component';
+import { CompteModule } from './compte/compte.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { TopPageComponent } from './top-page/top-page.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    CompteModule
   ],
   providers: [],
   bootstrap: [AppComponent]
