@@ -2,15 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListeFilmsComponent } from './liste-films/liste-films.component';
 import { RouterModule, Routes } from '@angular/router';
+import { FilterComponent } from './filter/filter.component';
+import { VueFilmComponent } from './vue-film/vue-film.component';
 
 export const FilmsRouteList: Routes = [
-  { path: '', redirectTo: 'listeFilms', pathMatch: 'full' },
-  { path: 'listeFilms', component: ListeFilmsComponent }
+  { path: '', component: ListeFilmsComponent },
+  { path: 'voirFilm/:id', component: VueFilmComponent },
 ]
 
 @NgModule({
   declarations: [
-    ListeFilmsComponent
+    ListeFilmsComponent,
+    FilterComponent,
+    VueFilmComponent
   ],
   imports: [
     CommonModule,

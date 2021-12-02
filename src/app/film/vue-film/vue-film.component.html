@@ -1,0 +1,61 @@
+<div class="container container-vue">
+    <div class="row">
+        <div class="col-3">
+            <img [src]="film.image" class="img-thumbnail" />
+        </div>
+        <div class="col-1"></div>
+        <div class="col">
+            <div class="row h-100">
+                <div class="col">
+                    <div class="row">
+                        <div class="col-7">
+                            <div class="row">
+                                <p>{{film.titre}}</p>
+                            </div>
+                            <div class="row">
+                                <p>Durée: {{film.duree}}</p>
+                            </div>
+                            <div class="row">
+                                <p>Date de sortie: {{film.dateSortie}}</p>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p>Catégorie: {{this.getContentValue(film.categories)}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p>De: {{this.getContentValue(film.realisateurs)}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p>Acteurs: {{this.getContentValue(film.acteurs)}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row h-50"></div>
+                            <div class="row">
+                                <div class="col-2"></div>
+                                <div class="col">
+                                    <button type="button" class="btn btn-secondary btn-lg">Bande-annonce</button>
+                                </div>
+                                <div class="col-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <button type="button" class="btn btn-secondary btn-lg">Louer</button>
+                    </div>
+                    <div class="col-5"></div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-secondary btn-lg">Disponibilités</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
