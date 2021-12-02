@@ -2,7 +2,7 @@
     <h1 class="text-center" (click)="goMenu()">Jean Guy Loc</h1>
     <p class="lead text-center">Phrase d'accroche</p>
 </div>
-<div *ngIf="printMenu">
+<div *ngIf="printMenu()">
     <nav class="nav nav-pills nav-justified">
         <a routerLink="/films"  routerLinkActive="active" class="nav-item nav-link">Nos films</a>
         <a routerLink="/liste-films/films-a-venir" class="nav-item nav-link">Films à venir</a>
@@ -11,6 +11,6 @@
         <!-- Les liens ne fonctionne pas car les routes ne sont pas créer -->
     </nav>
 </div>
-<div *ngIf="!printMenu">
+<div *ngIf="!printMenu()">
     <hr>
 </div>

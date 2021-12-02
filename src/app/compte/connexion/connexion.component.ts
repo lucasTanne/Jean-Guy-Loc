@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PrintMenuService } from 'src/app/services/print-menu.service';
 
 @Component({
   selector: 'app-connexion',
@@ -8,7 +9,9 @@ import { Router } from '@angular/router';
 })
 export class ConnexionComponent implements OnInit {
 
-  constructor() { }
+  constructor(private printMenuService: PrintMenuService) {
+    this.printMenuService.setPrintMenu(false)
+  }
 
   ngOnInit(): void {
   }

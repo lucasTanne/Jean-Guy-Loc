@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PrintMenuService } from '../services/print-menu.service';
 
 @Component({
   selector: 'app-accueil',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccueilComponent implements OnInit {
 
-  constructor() { }
+  constructor(private printMenuService: PrintMenuService) {
+    this.printMenuService.setPrintMenu(true)
+  }
 
   ngOnInit(): void {
   }
