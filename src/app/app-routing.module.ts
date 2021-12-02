@@ -5,6 +5,7 @@ import { AccueilComponent } from './accueil/accueil.component';
 const routes: Routes = [
   { path: '', redirectTo: 'compte', pathMatch: 'full'},
   { path: 'compte', loadChildren: () => import('src/app/compte/compte.module').then((m) => m.CompteModule)},
+  { path: 'acceuil', component: AccueilComponent}
 ]
 
 @NgModule({

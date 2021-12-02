@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-top-page',
@@ -8,5 +9,9 @@ import { Component } from '@angular/core';
 export class TopPageComponent {
   printMenu: boolean = false
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
+
+  goMenu(): void {
+    this.router.navigate(['/acceuil']);
+  }
 }
