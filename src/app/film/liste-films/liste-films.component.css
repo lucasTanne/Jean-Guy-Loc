@@ -1,0 +1,73 @@
+@font-face {
+    font-family: "Aladin";
+    src: url("src/fonts/Aladin-Regular.ttf");
+}
+
+@font-face {
+    font-family: "BalooTamma";
+    src: url("src/fonts/BalooTamma2.ttf");
+}
+
+* {
+    font-family: "BalooTamma" ;
+}
+
+#top-block {
+    margin-top: 2%;
+}
+
+.titre {
+    font-family: "BalooTamma" ;
+    font-size : 3rem;
+    margin-bottom: 0rem;
+}
+
+.menuItem{
+    color:black !important;
+    font-size: 1.25rem;
+    font-weight: bold;
+    background-color: white !important
+}
+
+.menuItem:hover{
+    color:rgb(121, 121, 121) !important;
+    background-color: white ;
+}
+
+.menuItem::after {
+    content: "";
+    display: flex;
+    padding-bottom: 10px;
+    border-top: 3px solid #888;
+    display: flex;
+    justify-content: center;
+    width: 30%;
+    left: 35%;
+    right: 35%;
+    position: relative;
+}
+
+img {
+    border: none !important;
+}
+
+div.stars-block {
+    padding-left: 10% !important;
+}
+
+img.star_img {
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.btnco {
+    border-radius:25px;
+    width: 40%;
+}
+
+hr {
+    width:60%;
+    border-width: 1px;
+    border-style: solid;
+    margin-bottom: 4%;
+}
