@@ -4,7 +4,6 @@ import { ListeFilmsComponent } from './liste-films/liste-films.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FilterComponent } from './filter/filter.component';
 import { VueFilmComponent } from './vue-film/vue-film.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 export const FilmsRouteList: Routes = [
   { path: '', component: ListeFilmsComponent },
@@ -19,8 +18,7 @@ export const FilmsRouteList: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(FilmsRouteList),
-    FontAwesomeModule
+    RouterModule.forChild(FilmsRouteList)
   ]
 })
 export class FilmModule { }
