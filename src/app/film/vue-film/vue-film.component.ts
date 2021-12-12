@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PrintMenuService } from 'src/app/services/print-menu.service';
 import { FilmInfo } from 'src/types/film-info';
 
+
 @Component({
   selector: 'app-vue-film',
   templateUrl: './vue-film.component.html',
