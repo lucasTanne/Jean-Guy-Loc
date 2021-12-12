@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PrintMenuService } from 'src/app/services/print-menu.service';
 import { FilmInfo } from 'src/types/film-info';
+import { faStarHalf } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-vue-film',
@@ -10,6 +12,8 @@ import { FilmInfo } from 'src/types/film-info';
 })
 export class VueFilmComponent implements OnInit {
   private idFilm: string | null = ""
+  faStarHalf = faStarHalf;
+  faStar = faStar;
   public film: FilmInfo = {
     id: 0,
     image: "../../../assets/johnWick.jpg",

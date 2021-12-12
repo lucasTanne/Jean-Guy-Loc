@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TopPageComponent } from './top-page/top-page.component';
 import { CompteModule } from './compte/compte.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @NgModule({
   declarations: [
@@ -16,9 +18,13 @@ import { CompteModule } from './compte/compte.module';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    CompteModule
+    CompteModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+
+
+}
