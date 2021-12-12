@@ -4,6 +4,9 @@ import { ListeFilmsComponent } from './liste-films/liste-films.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FilterComponent } from './filter/filter.component';
 import { VueFilmComponent } from './vue-film/vue-film.component';
+import { FilterGenreComponent } from './filter/filter-genre/filter-genre.component';
+import { FilterNoteComponent } from './filter/filter-note/filter-note.component';
+import { FilterDateComponent } from './filter/filter-date/filter-date.component';
 
 export const FilmsRouteList: Routes = [
   { path: '', component: ListeFilmsComponent },
@@ -14,7 +17,10 @@ export const FilmsRouteList: Routes = [
   declarations: [
     ListeFilmsComponent,
     FilterComponent,
-    VueFilmComponent
+    VueFilmComponent,
+    FilterGenreComponent,
+    FilterNoteComponent,
+    FilterDateComponent
   ],
   imports: [
     CommonModule,
