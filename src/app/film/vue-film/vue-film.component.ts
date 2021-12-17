@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PrintMenuService } from 'src/app/services/print-menu.service';
-import { FilmInfo } from 'src/types/film-info';
+import { FilmItem } from 'src/types/film-item';
+import { FetchFilmService } from '../services/fetch-film.service';
 
 
 @Component({
@@ -10,34 +11,18 @@ import { FilmInfo } from 'src/types/film-info';
   styleUrls: ['./vue-film.component.css']
 })
 export class VueFilmComponent implements OnInit {
+  public filmInfo!: FilmItem
   private idFilm: string | null = ""
-  public film: FilmInfo = {
-    id: 0,
-    image: "../../../assets/johnWick.jpg",
-    titre: "John Wick",
-    synopsys: "ceci est un synopsys du film John wick",
-    duree: "1,41",
-    dateSortie: new Date(2014, 10, 29),
-    categories: [
-      "Action",
-      "Thriller"
-    ],
-    realisateurs: [
-      "David Leitch",
-      "Chad Stahelski"
-    ],
-    acteurs: [
-      "Keanu Reeves",
-      "Michael Nyqvist",
-      "Alfie Allen"
-    ],
-    note: 4 
-  }
 
-  constructor(private printMenuService: PrintMenuService, private activatedRoute: ActivatedRoute) {
+  constructor(private printMenuService: PrintMenuService, private activatedRoute: ActivatedRoute, private fetchFilmService: FetchFilmService) {
     this.printMenuService.setPrintMenu(true)
     this.activatedRoute.paramMap.subscribe(param => {
       this.idFilm = param.get('id')
+      if(this.idFilm != null){
+        this.fetchFilmService.getFilm(this.idFilm).then((res: FilmItem) => {
+          this.filmInfo = res
+        })
+      }
     })
   }
 

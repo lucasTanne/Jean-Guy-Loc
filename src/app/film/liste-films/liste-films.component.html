@@ -14,11 +14,11 @@
             <div class="col-2">
                 <div class="row">
                     <div class="col">
-                        <img [src]="film.image" class="img-thumbnail" />
+                        <img [src]="film.lienImage" class="img-thumbnail" />
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-2 stars-block" *ngFor="let n of [].constructor(film.note)">
+                    <div class="col-2 stars-block" *ngFor="let n of [].constructor(film.notes)">
                         <img class="star_img" src="../../../assets/star.png" />
                     </div>
                 </div>
@@ -29,11 +29,11 @@
                 </div>
                 <div class="row h-75">
                     <div class="col">
-                        <p>{{film.synopsys}}</p>
+                        <p>{{film.synopsis}}</p>
                     </div>
                     <div class="col">
                         <div class="row h-50">
-                            <a routerLink="/films/voirFilm/{{film.id}}">
+                            <a routerLink="/films/voirFilm/{{film.idFilm}}">
                                 <button type="button" class="btn btn-outline-dark btn-lg btnco">Voir</button> 
                             </a>
                         </div>
