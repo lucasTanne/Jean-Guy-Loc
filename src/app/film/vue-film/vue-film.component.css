@@ -8,6 +8,15 @@ button.btn {
     width: 100%;
 }
 
+div.stars-block {
+  padding-left: 10% !important;
+}
+
+img.star_img {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
 @font-face {
   font-family: "font-icon";
   src: url("src/fonts/font-icon.woff2");
