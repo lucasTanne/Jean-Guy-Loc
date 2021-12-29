@@ -7,45 +7,51 @@
         <a routerLink="#" class="menuItem nav-item nav-link">Films en téléchargement</a>
     </nav>
 </div>
-<app-filter></app-filter>
-<div class="container">
-    <div *ngFor="let film of listeFilms">
-        <div class="row">
-            <div class="col-2">
+<div class="row">
+    <div class="col-2">
+        <app-filter></app-filter>
+    </div>
+    <div class="col">
+        <div class="container">
+            <div *ngFor="let film of listeFilms">
                 <div class="row">
-                    <div class="col">
-                        <img [src]="film.image" class="img-thumbnail" />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-2 stars-block" *ngFor="let n of [].constructor(film.note)">
-                        <img class="star_img" src="../../../assets/star.png" />
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="row h-25">
-                    <p>{{film.titre}}</p>
-                </div>
-                <div class="row h-75">
-                    <div class="col">
-                        <p>{{film.synopsys}}</p>
-                    </div>
-                    <div class="col">
-                        <div class="row h-50">
-                            <a routerLink="/films/voirFilm/{{film.id}}">
-                                <button type="button" class="btn btn-outline-dark btn-lg btnco">Voir</button> 
-                            </a>
+                    <div class="col-2">
+                        <div class="row">
+                            <div class="col">
+                                <img [src]="film.lienImage" class="img-thumbnail" />
+                            </div>
                         </div>
-                        <div class="row h-50">
-                            <a routerLink="#">
-                                <button type="button" class="btn btn-outline-dark btn-lg btnco">Louer</button>
-                            </a>
+                        <div class="row">
+                            <div class="col-2 stars-block" *ngFor="let n of [].constructor(film.notes)">
+                                <img class="star_img" src="../../../assets/star.png" />
+                            </div>
                         </div>
                     </div>
+                    <div class="col">
+                        <div class="row h-25">
+                            <p>{{film.titre}}</p>
+                        </div>
+                        <div class="row h-75">
+                            <div class="col">
+                                <p>{{film.synopsis}}</p>
+                            </div>
+                            <div class="col">
+                                <div class="row h-50">
+                                    <a routerLink="/films/voirFilm/{{film.idFilm}}">
+                                        <button type="button" class="btn btn-outline-dark btn-lg btnco">Voir</button> 
+                                    </a>
+                                </div>
+                                <div class="row h-50">
+                                    <a routerLink="#">
+                                        <button type="button" class="btn btn-outline-dark btn-lg btnco">Louer</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <hr>
             </div>
         </div>
-        <hr>
     </div>
 </div>

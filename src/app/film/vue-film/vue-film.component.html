@@ -1,7 +1,7 @@
 <div class="container container-vue">
     <div class="row">
         <div class="col-3">
-            <img [src]="film.image" class="img-thumbnail" />
+            <img [src]="filmInfo.lienImage" class="img-thumbnail" />
         </div>
         <div class="col-1"></div>
         <div class="col">
@@ -10,27 +10,27 @@
                     <div class="row">
                         <div class="col-7">
                             <div class="row">
-                                <h3>{{film.titre}}</h3>
+                                <p>{{filmInfo.titre}}</p>
                             </div>
                             <div class="row">
-                                <p>Durée: {{film.duree}}</p>
+                                <p>Durée: {{filmInfo.duree}}</p>
                             </div>
                             <div class="row">
-                                <p>Date de sortie: {{film.dateSortie}}</p>
+                                <p>Date de sortie: {{filmInfo.dateSortie}}</p>
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <p>Catégorie: {{this.getContentValue(film.categories)}}</p>
+                                    <p>Catégorie: {{this.getContentValue(filmInfo.categories)}}</p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <p>De: {{this.getContentValue(film.realisateurs)}}</p>
+                                    <p>De: {{this.getContentValue(filmInfo.realisateurs)}}</p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <p>Acteurs: {{this.getContentValue(film.acteurs)}}</p>
+                                    <p>Acteurs: {{this.getContentValue(filmInfo.acteurs)}}</p>
                                 </div>
                             </div>
                         </div>
