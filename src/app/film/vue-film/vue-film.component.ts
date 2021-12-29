@@ -13,6 +13,8 @@ import { FetchFilmService } from '../services/fetch-film.service';
 export class VueFilmComponent implements OnInit {
   public film!: FilmItem
   private idFilm: string | null = ""
+  public nbStarGold: number = 2
+  public nbStarBlack: number = 3
 
   constructor(private printMenuService: PrintMenuService, private activatedRoute: ActivatedRoute, private fetchFilmService: FetchFilmService) {
     this.printMenuService.setPrintMenu(true)
