@@ -11,7 +11,7 @@ import { FetchFilmService } from '../services/fetch-film.service';
   styleUrls: ['./vue-film.component.css']
 })
 export class VueFilmComponent implements OnInit {
-  public filmInfo!: FilmItem
+  public film!: FilmItem
   private idFilm: string | null = ""
 
   constructor(private printMenuService: PrintMenuService, private activatedRoute: ActivatedRoute, private fetchFilmService: FetchFilmService) {
@@ -20,7 +20,8 @@ export class VueFilmComponent implements OnInit {
       this.idFilm = param.get('id')
       if(this.idFilm != null){
         this.fetchFilmService.getFilm(this.idFilm).then((res: FilmItem) => {
-          this.filmInfo = res
+          this.film = res
+          // console.log(this.filmInfo.synopsis)
         })
       }
     })

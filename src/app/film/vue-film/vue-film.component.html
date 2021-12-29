@@ -1,7 +1,7 @@
 <div class="container container-vue">
     <div class="row">
         <div class="col-3">
-            <img [src]="filmInfo.lienImage" class="img-thumbnail" />
+            <img [src]="this.film.lienImage" class="img-thumbnail" />
         </div>
         <div class="col-1"></div>
         <div class="col">
@@ -10,27 +10,27 @@
                     <div class="row">
                         <div class="col-7">
                             <div class="row">
-                                <p>{{filmInfo.titre}}</p>
+                                <p>{{film.titre}}</p>
                             </div>
                             <div class="row">
-                                <p>Durée: {{filmInfo.duree}}</p>
+                                <p>Durée: {{film.duree}}</p>
                             </div>
                             <div class="row">
-                                <p>Date de sortie: {{filmInfo.dateSortie}}</p>
+                                <p>Date de sortie: {{film.dateSortie}}</p>
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <p>Catégorie: {{this.getContentValue(filmInfo.categories)}}</p>
+                                    <!-- <p>Catégorie: {{this.getContentValue(film.categories)}}</p> -->
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <p>De: {{this.getContentValue(filmInfo.realisateurs)}}</p>
+                                    <!-- <p>De: {{this.getContentValue(film.realisateurs)}}</p> -->
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <p>Acteurs: {{this.getContentValue(filmInfo.acteurs)}}</p>
+                                    <!-- <p>Acteurs: {{this.getContentValue(film.acteurs)}}</p> -->
                                 </div>
                             </div>
                         </div>
@@ -39,7 +39,9 @@
                             <div class="row">
                                 <div class="col-2"></div>
                                 <div class="col">
-                                    <button type="button" class="btn btn-secondary btn-lg">Bande-annonce</button>
+                                    <a [href]="film.lienBandeAnnonce">
+                                        <button type="button" class="btn btn-secondary btn-lg">Bande-annonce</button>
+                                    </a>
                                 </div>
                                 <div class="col-3"></div>
                             </div>
@@ -60,38 +62,57 @@
     </div>
     <div class="row">
         <div class="col">
-            <div id="half-stars-example">
-                <div class="rating-group">
-                    
-                    <input class="rating__input rating__input--none" checked name="rating2" id="rating2-0" value="0" type="radio">
-                    <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
-                    <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                    <input class="rating__input" name="rating2" id="rating2-05" value="0.5" type="radio">
-                    <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                    <input class="rating__input" name="rating2" id="rating2-10" value="1" type="radio">
-                    <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                    <input class="rating__input" name="rating2" id="rating2-15" value="1.5" type="radio">
-                    <label aria-label="2 stars" class="rating__label" for="rating2-20"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                    <input class="rating__input" name="rating2" id="rating2-20" value="2" type="radio">
-                    <label aria-label="2.5 stars" class="rating__label rating__label--half" for="rating2-25"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                    <input class="rating__input" name="rating2" id="rating2-25" value="2.5" type="radio">
-                    <label aria-label="3 stars" class="rating__label" for="rating2-30"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                    <input class="rating__input" name="rating2" id="rating2-30" value="3" type="radio">
-                    <label aria-label="3.5 stars" class="rating__label rating__label--half" for="rating2-35"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                    <input class="rating__input" name="rating2" id="rating2-35" value="3.5" type="radio">
-                    <label aria-label="4 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                    <input class="rating__input" name="rating2" id="rating2-40" value="4" type="radio">
-                    <label aria-label="4.5 stars" class="rating__label rating__label--half" for="rating2-45"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                    <input class="rating__input" name="rating2" id="rating2-45" value="4.5" type="radio">
-                    <label aria-label="5 stars" class="rating__label" for="rating2-50"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                    <input class="rating__input" name="rating2" id="rating2-50" value="5" type="radio">
-                </div>
-            </div>
+            <img class="star_img" src="assets/star.png" />
+            <img class="star_img" src="assets/star.png" />
+            <img class="star_img" src="assets/star.png" />
+            <img class="star_img" src="assets/star.png" />
+            <img class="star_img" src="assets/star.png" />
             <p>xxx vote dont xxx critiques</p>
         </div>
     </div>
-    <div class="row">
-        <!-- commentaire / note -->
+    <div class="row option">
+        <div class="col block">
+            <div class="row">
+                <div class="col-4">
+                    <h4>Noter</h4>
+                </div>
+                <div class="col">
+                    <div id="half-stars-example">
+                        <div class="rating-group">
+                            
+                            <input class="rating__input rating__input--none" checked name="rating2" id="rating2-0" value="0" type="radio">
+                            <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                            <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                            <input class="rating__input" name="rating2" id="rating2-05" value="0.5" type="radio">
+                            <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                            <input class="rating__input" name="rating2" id="rating2-10" value="1" type="radio">
+                            <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                            <input class="rating__input" name="rating2" id="rating2-15" value="1.5" type="radio">
+                            <label aria-label="2 stars" class="rating__label" for="rating2-20"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                            <input class="rating__input" name="rating2" id="rating2-20" value="2" type="radio">
+                            <label aria-label="2.5 stars" class="rating__label rating__label--half" for="rating2-25"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                            <input class="rating__input" name="rating2" id="rating2-25" value="2.5" type="radio">
+                            <label aria-label="3 stars" class="rating__label" for="rating2-30"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                            <input class="rating__input" name="rating2" id="rating2-30" value="3" type="radio">
+                            <label aria-label="3.5 stars" class="rating__label rating__label--half" for="rating2-35"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                            <input class="rating__input" name="rating2" id="rating2-35" value="3.5" type="radio">
+                            <label aria-label="4 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                            <input class="rating__input" name="rating2" id="rating2-40" value="4" type="radio">
+                            <label aria-label="4.5 stars" class="rating__label rating__label--half" for="rating2-45"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                            <input class="rating__input" name="rating2" id="rating2-45" value="4.5" type="radio">
+                            <label aria-label="5 stars" class="rating__label" for="rating2-50"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                            <input class="rating__input" name="rating2" id="rating2-50" value="5" type="radio">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col block center">
+            <h4>Rédiger un commentaire</h4>
+        </div>
+        <div class="col block">
+            <h4>Partager</h4>
+        </div>
     </div>
     <div class="row">
         <div class="col">
@@ -99,22 +120,13 @@
                 <h3>Synopsis</h3>
             </div>
             <div class="row">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec finibus diam eleifend felis viverra tincidunt. 
-                    Nullam scelerisque in erat nec fringilla. Curabitur scelerisque enim pharetra fermentum placerat. Sed nec pulvinar velit, a semper mauris. 
-                    Ut dui diam, condimentum quis dignissim in, lacinia eget turpis. Sed scelerisque lacinia nunc sed euismod.
-                    Aenean vel sapien et mi varius malesuada ut eu libero. Pellentesque nibh dui, volutpat et est id, condimentum viverra arcu.
-                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                    Ut sodales diam at suscipit eleifend. Ut mattis nunc in mi ultricies, a bibendum diam faucibus.
-                    In hac habitasse platea dictumst. Suspendisse et sapien in arcu faucibus eleifend et vel tortor.
-                    Praesent finibus in tortor tincidunt elementum.
-                </p>
+                <p>{{film.synopsis}}</p>
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row comment">
         <div class="col">
-            <div class="row">
+            <div class="row comment-title">
                 <h3>Commentaires</h3>
             </div>
             <div class="row">
