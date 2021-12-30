@@ -1,0 +1,10 @@
+button {
+    font-family: "BalooTamma";
+    font-size : 1.5rem;
+    margin-bottom: 0rem;
+    font-weight: bold;
+}
+
+input#scales {
+    margin-right: 5%;
+}

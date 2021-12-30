@@ -1,7 +1,14 @@
 export interface FilmItem {
-    id: number,
-    image: string,
+    idFilm: number,
+    idTypeFilm: number,
     titre: string,
-    synopsys: string,
-    note: number
+    lienImage: string,
+    lienBandeAnnonce: string,
+    synopsis: string,
+    duree: number,
+    dateSortie: Date,
+    notes: number[],
+    categories: string[],
+    realisateurs: string[],
+    acteurs: string[]
 }

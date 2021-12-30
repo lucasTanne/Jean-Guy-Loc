@@ -8,6 +8,36 @@ button.btn {
     width: 100%;
 }
 
+img.star_img {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+div.option {
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  margin-top: 1%;
+  margin-bottom: 3%;
+}
+
+div.block {
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+div.block.center {
+  border-right: 1px solid;
+  border-left: 1px solid;
+}
+
+div.comment {
+  margin-top: 1%;
+}
+
+div.comment-title {
+  margin-bottom: 1%;
+}
+
 @font-face {
   font-family: "font-icon";
   src: url("src/fonts/font-icon.woff2");
