@@ -7,12 +7,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TopPageComponent } from './top-page/top-page.component';
 import { CompteModule } from './compte/compte.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BottomPageComponent } from './bottom-page/bottom-page.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TopPageComponent
+    TopPageComponent,
+    BottomPageComponent
   ],
   imports: [
     BrowserModule,
