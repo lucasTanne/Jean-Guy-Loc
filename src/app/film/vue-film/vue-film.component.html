@@ -20,17 +20,17 @@
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <!-- <p>Catégorie: {{this.getContentValue(film.categories)}}</p> -->
+                                    <p>Catégories: {{this.getContentValue(film.categories)}}</p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <!-- <p>De: {{this.getContentValue(film.realisateurs)}}</p> -->
+                                    <p>De: {{this.getContentValue(film.realisateurs)}}</p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <!-- <p>Acteurs: {{this.getContentValue(film.acteurs)}}</p> -->
+                                    <p>Acteurs: {{this.getContentValue(film.acteurs)}}</p>
                                 </div>
                             </div>
                         </div>
@@ -154,27 +154,21 @@
                 <div class="col">
                     <div class="row">
                         <div class="col">
-                            <!-- Adapt with comment's loop -->
-                            <img class="star_img" *ngFor="let n of [].constructor(nbStarGold); let i = index" src="assets/star.png" />
-                            <img class="star_img" *ngFor="let n of [].constructor(nbStarBlack); let i = index" src="assets/star_black.png" />
-                        </div>
-                        <div class="col">
                             <div class="row">
-                                <div class="col"></div>
-                                <div class="col">
+                                <div class="col-4">
+                                    <!-- Adapt with comment's loop -->
+                                    <img class="star_img" *ngFor="let n of [].constructor(nbStarGold); let i = index" src="assets/star.png" />
+                                    <img class="star_img" *ngFor="let n of [].constructor(nbStarBlack); let i = index" src="assets/star_black.png" />
+                                </div>
+                                <div class="col-2">
                                     <p>3.0</p>
                                 </div>
-                                <div class="col"></div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="row">
-                                <div class="col"></div>
                                 <div class="col">
                                     <p>Publié le xx/xx/xxxx</p>
                                 </div>
                             </div>
                         </div>
+                        <div class="col"></div>
                     </div>
                     <div class="row">
                         <p>
