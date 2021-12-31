@@ -12,7 +12,7 @@ export class TopPageComponent {
   constructor(private route: ActivatedRoute, private router: Router, private printMenuService: PrintMenuService) { }
 
   goMenu(): void {
-    this.router.navigate(['/acceuil']);
+    this.router.navigate(['/accueil']);
   }
 
   printMenu(): boolean {

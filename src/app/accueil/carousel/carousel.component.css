@@ -1,0 +1,9 @@
+div.carousel {
+    background-color: gray;
+    margin-top: 2%;
+}
+
+img {
+    margin: auto;
+    width: 400px !important;
+}

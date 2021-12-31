@@ -8,6 +8,7 @@ import { TopPageComponent } from './top-page/top-page.component';
 import { CompteModule } from './compte/compte.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BottomPageComponent } from './bottom-page/bottom-page.component';
+import { AccueilModule } from './accueil/accueil.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { BottomPageComponent } from './bottom-page/bottom-page.component';
     AppRoutingModule,
     NgbModule,
     CompteModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    AccueilModule
   ],
   providers: [],
   bootstrap: [AppComponent]
