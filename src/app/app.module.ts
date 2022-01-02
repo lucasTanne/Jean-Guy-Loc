@@ -9,6 +9,7 @@ import { CompteModule } from './compte/compte.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BottomPageComponent } from './bottom-page/bottom-page.component';
 import { AccueilModule } from './accueil/accueil.module';
+import { LocationsModule } from './locations/locations.module';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { AccueilModule } from './accueil/accueil.module';
     NgbModule,
     CompteModule,
     FontAwesomeModule,
-    AccueilModule
+    AccueilModule,
+    LocationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

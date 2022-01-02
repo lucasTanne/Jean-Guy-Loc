@@ -1,0 +1,21 @@
+@font-face {
+    font-family: "Aladin";
+    src: url("src/fonts/Aladin-Regular.ttf");
+}
+
+@font-face {
+    font-family: "BalooTamma";
+    src: url("src/fonts/BalooTamma2.ttf");
+}
+
+* {
+    font-family: "BalooTamma" ;
+}
+
+.titre {
+    font-family: "BalooTamma" ;
+    font-size : 3rem;
+    margin-bottom: 0rem;
+    margin-top: 2%;
+    margin-bottom: 4%;
+}

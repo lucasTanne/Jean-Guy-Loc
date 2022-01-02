@@ -7,7 +7,8 @@ const routes: Routes = [
   { path: 'compte', loadChildren: () => import('src/app/compte/compte.module').then((m) => m.CompteModule)},
   { path: 'films', loadChildren: () => import('src/app/film/film.module').then((m) => m.FilmModule)},
   // { path: 'acceuil', component: AccueilComponent}
-  { path: 'accueil', loadChildren: () => import('src/app/accueil/accueil.module').then((m) => m.AccueilModule)}
+  { path: 'accueil', loadChildren: () => import('src/app/accueil/accueil.module').then((m) => m.AccueilModule)},
+  { path: 'location', loadChildren: () => import('src/app/locations/locations.module').then((m) => m.LocationsModule)}
 ]
 
 @NgModule({
