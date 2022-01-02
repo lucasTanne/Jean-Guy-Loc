@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PrintMenuService } from 'src/app/services/print-menu.service';
 import { FilmItem } from 'src/types/film-item';
+import { Note, Notes } from 'src/types/note';
 import { FetchFilmService } from '../services/fetch-film.service';
 
 @Component({
@@ -21,15 +22,33 @@ export class ListeFilmsComponent implements OnInit {
   getFilmList(){
     this.fetchFilmService.getListFilms().then((res: FilmItem[]) => {
       this.listeFilms = res
-      console.log(res[0].notes.length)
+      this.listeFilms.forEach((film) => {
+        this.fetchFilmService.getFilmNotes(film.idFilm).then((notes) => {
+          film.notes = notes
+          console.log(film.notes)
+        })
+      })
     }).catch((e) => {
       console.log("catch component")
       console.log(e)
     })
   }
 
-}
-function sizeof(notes: any): any {
-  throw new Error('Function not implemented.');
+  getNbStarGold(notes: Note[]): number {
+    console.log(notes)
+    if(notes === undefined || notes.length === 0) {
+      return 0
+    } else if (notes.length === 1) {
+      return notes[0].valeur
+    } else {
+      let moyenne: number = 0
+      let nbNotes: number = 0
+      notes.forEach((note: Note, i: number) => {
+        nbNotes++
+        moyenne += note.valeur
+      })
+      return Math.round(moyenne / nbNotes)
+    }
+  }
 }
 

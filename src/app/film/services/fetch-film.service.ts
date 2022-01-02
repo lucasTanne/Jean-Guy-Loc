@@ -38,7 +38,7 @@ export class FetchFilmService {
   }
 
   getFilmNotes(idFilm: number): Promise<any> {
-    let url = "http://localhost:3000/notes/{idFilm}"
+    let url = "http://localhost:3000/note/{idFilm}"
     url = url.replace("{idFilm}", idFilm.toString())
     return this.http.get<Notes>(url)
     .toPromise()
