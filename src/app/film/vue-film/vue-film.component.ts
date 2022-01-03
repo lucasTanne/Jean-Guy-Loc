@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PrintMenuService } from 'src/app/services/print-menu.service';
 import { FilmItem } from 'src/types/film-item';
+import { Note } from 'src/types/note';
 import { FetchFilmService } from '../services/fetch-film.service';
 
 
@@ -20,7 +21,11 @@ export class VueFilmComponent implements OnInit {
     synopsis: "vide",
     duree: 0.0,
     dateSortie: new Date(1970, 1, 1),
-    notes: [0],
+    notes: [{
+      idNote: -1,
+      idFilm: -1,
+      valeur: 0
+    }],
     categories: ["aucune"],
     realisateurs: ["aucun"],
     acteurs: ["aucun"]
@@ -36,7 +41,10 @@ export class VueFilmComponent implements OnInit {
       if(this.idFilm != null){
         this.fetchFilmService.getFilm(this.idFilm).then((res: FilmItem) => {
           this.film = res
-          this.setStarNumber()
+          this.fetchFilmService.getFilmNotes(this.film.idFilm).then((notes: Note[]) => {
+            this.film.notes = notes
+            this.setStarNumber()
+          })
         })
       }
     })
@@ -59,19 +67,19 @@ export class VueFilmComponent implements OnInit {
 
   // Calculate number of gold and black stars using film.notes
   private setStarNumber(): void {
-    let notes: number[] = this.film.notes
+    let notes: Note[] = this.film.notes
     if(notes.length === undefined || notes.length === 0) {
       this.nbStarGold = 0
       this.nbStarBlack = 5
     } else if (notes.length === 1) {
-      this.nbStarGold = notes[0]
-      this.nbStarBlack = 5 - notes[0]
+      this.nbStarGold = notes[0].valeur
+      this.nbStarBlack = 5 - notes[0].valeur
     } else {
       let moyenne: number = 0
       let nbNotes: number = 0
-      notes.forEach((note: number, i: number) => {
+      notes.forEach((note: Note, i: number) => {
         nbNotes++
-        moyenne += note
+        moyenne += note.valeur
       })
       moyenne = Math.round(moyenne / nbNotes)
       this.nbStarGold = moyenne

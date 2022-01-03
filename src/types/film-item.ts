@@ -1,3 +1,5 @@
+import { Note } from "./note";
+
 export interface FilmItem {
     idFilm: number,
     idTypeFilm: number,
@@ -7,7 +9,7 @@ export interface FilmItem {
     synopsis: string,
     duree: number,
     dateSortie: Date,
-    notes: number[],
+    notes: Note[],
     categories: string[],
     realisateurs: string[],
     acteurs: string[]

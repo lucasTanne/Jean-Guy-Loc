@@ -26,7 +26,11 @@ export class AccueilComponent implements OnInit {
         synopsis: "vide",
         duree: 0.0,
         dateSortie: new Date(1970, 1, 1),
-        notes: [0],
+        notes: [{
+          idNote: -1,
+          idFilm: -1,
+          valeur: 0
+        }],
         categories: ["aucune"],
         realisateurs: ["aucun"],
         acteurs: ["aucun"]
