@@ -2,6 +2,7 @@
     margin-top: 3%;
     padding-left: 35%;
     padding-right: 35%;
+    height: calc(100vh - 22.7rem) !important;
 }
 
 #title-form {
