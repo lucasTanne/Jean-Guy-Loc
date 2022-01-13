@@ -50,4 +50,18 @@ export class FetchFilmService {
       return undefined
     })
   }
+
+  getFilmCommentaires(idFilm: number): Promise<any> {
+    let url = "http://localhost:3000/commentaire/{idFilm}"
+    url = url.replace("{idFilm}", idFilm.toString())
+    return this.http.get<Notes>(url)
+    .toPromise()
+    .then((res) => {
+      return res
+    }).catch((e) => {
+      console.log("catch")
+      console.log(e)
+      return undefined
+    })
+  }
 }

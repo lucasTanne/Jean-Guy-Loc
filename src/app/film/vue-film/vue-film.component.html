@@ -137,7 +137,7 @@
             <div class="row comment-title">
                 <h3>Commentaires</h3>
             </div>
-            <div class="row">
+            <div class="row" *ngFor="let commentaire of commentaires">
                 <div class="col-3">
                     <div class="row">
                         <div class="col-6">
@@ -145,7 +145,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <p>username</p>
+                        <p>{{commentaire.username}}</p>
                     </div>
                     <div class="row">
                         <a href="#">Voir les autres commentaires</a>
@@ -157,28 +157,21 @@
                             <div class="row">
                                 <div class="col-4">
                                     <!-- Adapt with comment's loop -->
-                                    <img class="star_img" *ngFor="let n of [].constructor(nbStarGold); let i = index" src="assets/star.png" />
-                                    <img class="star_img" *ngFor="let n of [].constructor(nbStarBlack); let i = index" src="assets/star_black.png" />
+                                    <img class="star_img" *ngFor="let n of [].constructor(commentaire.nbStarGold); let i = index" src="assets/star.png" />
+                                    <img class="star_img" *ngFor="let n of [].constructor(commentaire.nbStarBlack); let i = index" src="assets/star_black.png" />
                                 </div>
                                 <div class="col-2">
                                     <p>3.0</p>
                                 </div>
                                 <div class="col">
-                                    <p>Publié le xx/xx/xxxx</p>
+                                    <p>Publié le {{commentaire.dateCommentaire}}</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col"></div>
                     </div>
                     <div class="row">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Donec finibus diam eleifend felis viverra tincidunt. Nullam scelerisque in erat nec fringilla.
-                            Curabitur scelerisque enim pharetra fermentum placerat. Sed nec pulvinar velit, a semper mauris.
-                            Ut dui diam, condimentum quis dignissim in, lacinia eget turpis. Sed scelerisque lacinia nunc sed euismod.
-                            Aenean vel sapien et mi varius malesuada ut eu libero. Pellentesque nibh dui, volutpat et est id, condimentum viverra arcu.
-                            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut sodales diam at suscipit eleifend. 
-                        </p>
+                        <p>{{commentaire.contenu}}</p>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PrintMenuService } from 'src/app/services/print-menu.service';
+import { CommentaireInfo } from 'src/types/commentaire';
 import { FilmItem } from 'src/types/film-item';
 import { Note } from 'src/types/note';
 import { FetchFilmService } from '../services/fetch-film.service';
@@ -30,9 +31,20 @@ export class VueFilmComponent implements OnInit {
     realisateurs: ["aucun"],
     acteurs: ["aucun"]
   }
+  public commentaires: CommentaireInfo[] = [{
+    username: "username",
+    idUtilisateur: -1,
+    valeurNote: 0,
+    dateCommentaire: new Date(1970, 1, 1),
+    contenu: "nothing",
+    idCommentaire: -1,
+    nbStarBlack: 5,
+    nbStarGold: 0,
+  }]
   private idFilm: string | null = ""
   public nbStarGold: number = 0
   public nbStarBlack: number = 5
+
 
   constructor(private printMenuService: PrintMenuService, private activatedRoute: ActivatedRoute, private fetchFilmService: FetchFilmService) {
     this.printMenuService.setPrintMenu(true)
@@ -45,6 +57,9 @@ export class VueFilmComponent implements OnInit {
             this.film.notes = notes
             this.setStarNumber()
           })
+          // this.fetchFilmService.getFilmCommentaires(this.film.idFilm).then((commentaires: Commentaire[]) => {
+          //   this.commentaires = commentaires
+          // })
         })
       }
     })
