@@ -1,0 +1,91 @@
+<div class="container container-vue">
+    <div class="row">
+        <h2 class="text-center titre">Récapitulatif</h2>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-3">
+            <img [src]="this.film.lienImage" class="img-thumbnail" />
+        </div>
+        <div class="col-2"></div>
+        <div class="col">
+            <div class="row h-100">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <p>{{film.titre}}</p>
+                            </div>
+                            <div class="row">
+                                <p>Durée: {{film.duree}}</p>
+                            </div>
+                            <div class="row">
+                                <p>Date de sortie: {{film.dateSortie}}</p>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p>Catégories: {{this.getContentValue(film.categories)}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p>De: {{this.getContentValue(film.realisateurs)}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p>Acteurs: {{this.getContentValue(film.acteurs)}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-7"></div>
+        <div class="col-1">
+            <p>Notes: </p>
+        </div>
+        <div class="col">
+            <img class="star_img" *ngFor="let n of [].constructor(nbStarGold); let i = index" src="assets/star.png" />
+            <img class="star_img" *ngFor="let n of [].constructor(nbStarBlack); let i = index" src="assets/star_black.png" />
+        </div>
+    </div>
+    <div class="row">
+        <h2 class="text-center part">Location physique</h2>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col">
+            <div class="row">
+                <p>Nombre de jours envisagés: </p>
+            </div>
+            <!-- <div class="row">
+                <div class="col">
+                    <p>Date de location existante pour ce film: </p>
+                </div>
+            </div> -->
+            <div class="row">
+                <p>Date de début: </p>
+            </div>
+            <div class="row">
+                <p>Date de fin: </p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="row">
+                <div class="col-4">
+                    <button type="button" class="btn btn-outline-dark btn-lg">Valider</button>
+                </div>
+            </div>
+            <div class="row h-25"></div>
+            <div class="row">
+                <div class="col-4">
+                    <button type="button" class="btn btn-outline-dark btn-lg">Annuler</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

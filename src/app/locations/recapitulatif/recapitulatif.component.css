@@ -1,0 +1,37 @@
+@font-face {
+    font-family: "Aladin";
+    src: url("src/fonts/Aladin-Regular.ttf");
+}
+
+@font-face {
+    font-family: "BalooTamma";
+    src: url("src/fonts/BalooTamma2.ttf");
+}
+
+* {
+    font-family: "BalooTamma" ;
+}
+
+.titre {
+    font-family: "BalooTamma" ;
+    font-size : 3rem;
+    margin-bottom: 2rem;
+    margin-top: 2%;
+}
+
+.part {
+    font-family: "BalooTamma" ;
+    font-size : 2rem;
+    margin-bottom: 2rem;
+    margin-top: 2%;
+}
+
+button.btn {
+    width: 100%;
+    border-radius:25px;
+}
+
+img.star_img {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
