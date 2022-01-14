@@ -16,9 +16,9 @@ export class CompteService {
     .toPromise()
     .then((res) => {
       if(res == null) {
-        return false
+        return -1
       }
-      return true
+      return res.idUtilisateur
     }).catch((e) => {
       console.log("catch")
       console.log(e)

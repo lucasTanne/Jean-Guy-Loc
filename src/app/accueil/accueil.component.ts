@@ -3,6 +3,7 @@ import { FilmItem } from 'src/types/film-item';
 import { FetchFilmService } from '../film/services/fetch-film.service';
 import { PrintMenuService } from '../services/print-menu.service';
 import { CarouselComponent } from './carousel/carousel.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-accueil',
@@ -12,7 +13,7 @@ import { CarouselComponent } from './carousel/carousel.component';
 export class AccueilComponent implements OnInit {
   public listeFilms: FilmItem[] = []
 
-  constructor(private printMenuService: PrintMenuService, private fetchFilmService: FetchFilmService) {
+  constructor(private printMenuService: PrintMenuService, private fetchFilmService: FetchFilmService, private cookieService: CookieService) {
     this.printMenuService.setPrintMenu(true)
     this.fetchFilmService.getListFilms().then((list: FilmItem[]) => {
       this.listeFilms = list
@@ -36,6 +37,7 @@ export class AccueilComponent implements OnInit {
         acteurs: ["aucun"]
       }
     })
+    console.log(this.cookieService.get('UserID'))
   }
 
   ngOnInit(): void {
