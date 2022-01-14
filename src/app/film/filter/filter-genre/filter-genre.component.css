@@ -5,6 +5,6 @@ button {
     font-weight: bold;
 }
 
-input#scales {
+input[id^="Genre"] {
     margin-right: 5%;
 }

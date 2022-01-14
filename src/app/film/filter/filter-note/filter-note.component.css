@@ -5,7 +5,7 @@ button {
     font-weight: bold;
 }
 
-input#scales {
+input[id^="scale"] {
     margin-right: 5%;
 }
 
@@ -22,9 +22,7 @@ input#scales {
     }
   
     /* make hover effect work properly in IE */
-    .rating__icon {
-      pointer-events: none;
-    }
+   
   
     /* set icon padding and size */
     .rating__label {
