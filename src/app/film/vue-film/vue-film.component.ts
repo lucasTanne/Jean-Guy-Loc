@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { PrintMenuService } from 'src/app/services/print-menu.service';
-import { CommentaireInfo } from 'src/types/commentaire';
+import { CommentaireInfo, CommentToSend } from 'src/types/commentaire';
 import { FilmItem } from 'src/types/film-item';
-import { Note } from 'src/types/note';
+import { Note, NoteToSend } from 'src/types/note';
 import { FetchFilmService } from '../services/fetch-film.service';
 
 
@@ -25,6 +26,7 @@ export class VueFilmComponent implements OnInit {
     notes: [{
       idNote: -1,
       idFilm: -1,
+      idUtilisateur: -1,
       valeur: 0
     }],
     categories: ["aucune"],
@@ -44,9 +46,10 @@ export class VueFilmComponent implements OnInit {
   private idFilm: string | null = ""
   public nbStarGold: number = 0
   public nbStarBlack: number = 5
+  public noteComment: number = -1  
+  public cannotSend: boolean = false
 
-
-  constructor(private printMenuService: PrintMenuService, private activatedRoute: ActivatedRoute, private fetchFilmService: FetchFilmService) {
+  constructor(private printMenuService: PrintMenuService, private router: Router, private activatedRoute: ActivatedRoute, private fetchFilmService: FetchFilmService, private cookieService: CookieService) {
     this.printMenuService.setPrintMenu(true)
     this.activatedRoute.paramMap.subscribe(param => {
       this.idFilm = param.get('id')
@@ -99,6 +102,42 @@ export class VueFilmComponent implements OnInit {
       moyenne = Math.round(moyenne / nbNotes)
       this.nbStarGold = moyenne
       this.nbStarBlack = 5 - moyenne
+    }
+  }
+
+  public setNote(note: number){
+    this.noteComment = note
+  }
+
+  public sendComment(comment: string){
+    if(this.noteComment != -1 && comment != "" && this.idFilm != null) {
+      this.cannotSend = false;
+      let userID = this.cookieService.get('UserID')
+      let noteToSend: NoteToSend = {
+        idFilm: parseInt(this.idFilm),
+        valeur: this.noteComment,
+        idUtilisateur: parseInt(userID)
+      }
+
+      this.fetchFilmService.createNote(noteToSend).then((idNote: number) => {
+        console.log(idNote)
+        let date = new Date()
+        let dateCom = date.getFullYear() + "-" + date.getMonth()+1 + "-" + date.getDate()
+        let commentToSend: CommentToSend = {
+          idNote: idNote,
+          dateCommentaire: dateCom,
+          contenu: comment
+        }
+        this.fetchFilmService.createComment(commentToSend).then((res: any) => {
+          this.router.navigate([this.router.url])
+        }).catch((e) => {
+          console.log("Cannot create comment")
+        })
+      }).catch((e) => {
+        console.log("Cannot create note")
+      })
+    } else {
+      this.cannotSend = true
     }
   }
 

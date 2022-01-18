@@ -4,8 +4,9 @@ div.container-vue {
     margin-top: 4%;
 }
 
-button.btn {
+button.btnShow {
     width: 100%;
+    border-radius:25px;
 }
 
 img.star_img {
@@ -37,6 +38,32 @@ div.comment {
 div.comment-title {
   margin-bottom: 1%;
 }
+
+textarea {
+  margin-top: 1%;
+  resize: none;
+  height: 200px;
+}
+
+.btnCom {
+  margin-top: 1%;
+  width: 15%;
+  border-radius:25px;
+  margin-bottom: 2%;
+}
+
+.collapse {
+  margin-bottom: 3%;
+}
+
+.card {
+  border: none;
+}
+
+.linkCom {
+  text-decoration: none;
+}
+
 
 @font-face {
   font-family: "font-icon";

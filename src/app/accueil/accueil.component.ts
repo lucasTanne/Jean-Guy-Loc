@@ -30,6 +30,7 @@ export class AccueilComponent implements OnInit {
         notes: [{
           idNote: -1,
           idFilm: -1,
+          idUtilisateur: -1,
           valeur: 0
         }],
         categories: ["aucune"],

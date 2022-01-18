@@ -40,7 +40,7 @@
                                 <div class="col-2"></div>
                                 <div class="col">
                                     <a [href]="film.lienBandeAnnonce" target="_blank">
-                                        <button type="button" class="btn btn-secondary btn-lg">Bande-annonce</button>
+                                        <button type="button" class="btn btn-secondary btn-lg btnShow">Bande-annonce</button>
                                     </a>
                                 </div>
                                 <div class="col-3"></div>
@@ -50,11 +50,11 @@
                 </div>
                 <div class="row">
                     <div class="col-3">
-                        <button type="button" class="btn btn-secondary btn-lg">Louer</button>
+                        <button type="button" class="btn btn-secondary btn-lg btnShow">Louer</button>
                     </div>
                     <div class="col-5"></div>
                     <div class="col-3">
-                        <button type="button" class="btn btn-secondary btn-lg">Disponibilités</button>
+                        <button type="button" class="btn btn-secondary btn-lg btnShow">Disponibilités</button>
                     </div>
                 </div>
             </div>
@@ -77,28 +77,28 @@
                     <div id="half-stars-example">
                         <div class="rating-group">
                             
-                            <input class="rating__input rating__input--none" checked name="rating2" id="rating2-0" value="0" type="radio">
+                            <input class="rating__input rating__input--none" checked name="rating2" id="rating2-0" value="0" type="radio" (click)="setNote(0)">
                             <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
                             <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                            <input class="rating__input" name="rating2" id="rating2-05" value="0.5" type="radio">
+                            <input class="rating__input" name="rating2" id="rating2-05" value="0.5" type="radio" (click)="setNote(0.5)">
                             <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                            <input class="rating__input" name="rating2" id="rating2-10" value="1" type="radio">
+                            <input class="rating__input" name="rating2" id="rating2-10" value="1" type="radio" (click)="setNote(1)">
                             <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                            <input class="rating__input" name="rating2" id="rating2-15" value="1.5" type="radio">
+                            <input class="rating__input" name="rating2" id="rating2-15" value="1.5" type="radio" (click)="setNote(1.5)">
                             <label aria-label="2 stars" class="rating__label" for="rating2-20"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                            <input class="rating__input" name="rating2" id="rating2-20" value="2" type="radio">
+                            <input class="rating__input" name="rating2" id="rating2-20" value="2" type="radio" (click)="setNote(2)">
                             <label aria-label="2.5 stars" class="rating__label rating__label--half" for="rating2-25"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                            <input class="rating__input" name="rating2" id="rating2-25" value="2.5" type="radio">
+                            <input class="rating__input" name="rating2" id="rating2-25" value="2.5" type="radio" (click)="setNote(2.5)">
                             <label aria-label="3 stars" class="rating__label" for="rating2-30"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                            <input class="rating__input" name="rating2" id="rating2-30" value="3" type="radio">
+                            <input class="rating__input" name="rating2" id="rating2-30" value="3" type="radio" (click)="setNote(3)">
                             <label aria-label="3.5 stars" class="rating__label rating__label--half" for="rating2-35"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                            <input class="rating__input" name="rating2" id="rating2-35" value="3.5" type="radio">
+                            <input class="rating__input" name="rating2" id="rating2-35" value="3.5" type="radio" (click)="setNote(3.5)">
                             <label aria-label="4 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                            <input class="rating__input" name="rating2" id="rating2-40" value="4" type="radio">
+                            <input class="rating__input" name="rating2" id="rating2-40" value="4" type="radio" (click)="setNote(4)">
                             <label aria-label="4.5 stars" class="rating__label rating__label--half" for="rating2-45"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                            <input class="rating__input" name="rating2" id="rating2-45" value="4.5" type="radio">
+                            <input class="rating__input" name="rating2" id="rating2-45" value="4.5" type="radio" (click)="setNote(4.5)">
                             <label aria-label="5 stars" class="rating__label" for="rating2-50"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                            <input class="rating__input" name="rating2" id="rating2-50" value="5" type="radio">
+                            <input class="rating__input" name="rating2" id="rating2-50" value="5" type="radio" (click)="setNote(5)">
                         </div>
                     </div>
                 </div>
@@ -108,7 +108,9 @@
             <div class="row">
                 <div class="col-2"></div>
                 <div class="col">
-                    <h4>Rédiger un commentaire</h4>
+                    <a class="linkCom" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseCommentaire" href="#collapseCommentaire">
+                        <h4>Rédiger un commentaire</h4>
+                    </a>
                 </div>
             </div>
         </div>
@@ -119,6 +121,21 @@
                     <h4>Partager</h4>
                 </div>
                 <div class="col"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="collapse" id="collapseCommentaire">
+            <div class="card card-body">
+                <h3 class="section">Votre Commentaire: </h3>
+                <textarea #comment></textarea>
+                <button type="button" class="btn btn-outline-dark btn-lg btnCom" (click)="sendComment(comment.value)">Valider</button>
+                <div *ngIf="cannotSend;then error"></div>
+                <ng-template #error>
+                    <div class="alert alert-danger alert-dismissible fade show">
+                        <strong>Error!</strong> Pour envoyer votre commentaire, vous devez écrire un message et selectionner une note !
+                    </div>
+                </ng-template>
             </div>
         </div>
     </div>

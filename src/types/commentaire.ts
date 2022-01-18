@@ -15,3 +15,9 @@ export interface CommentaireInfo {
     nbStarBlack: number,
     nbStarGold: number,
 }
+
+export interface CommentToSend {
+    idNote: number,
+    dateCommentaire: string,
+    contenu: string
+}

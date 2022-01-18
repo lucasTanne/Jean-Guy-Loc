@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CommentToSend } from 'src/types/commentaire';
 import { FilmItem } from 'src/types/film-item';
-import { Notes } from 'src/types/note';
+import { Note, Notes, NoteToSend } from 'src/types/note';
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +58,32 @@ export class FetchFilmService {
     return this.http.get<Notes>(url)
     .toPromise()
     .then((res) => {
+      return res
+    }).catch((e) => {
+      console.log("catch")
+      console.log(e)
+      return undefined
+    })
+  }
+
+  createNote(note: NoteToSend): Promise<any> {
+    let url = "http://localhost:3000/note"
+    return this.http.post<Note>(url, note)
+    .toPromise()
+    .then((res: Note) => {
+      return res.idNote
+    }).catch((e) => {
+      console.log("catch")
+      console.log(e)
+      return -1
+    })
+  }
+
+  createComment(comment: CommentToSend): Promise<any> {
+    let url = "http://localhost:3000/commentaire"
+    return this.http.post<any>(url, comment)
+    .toPromise()
+    .then((res: any) => {
       return res
     }).catch((e) => {
       console.log("catch")

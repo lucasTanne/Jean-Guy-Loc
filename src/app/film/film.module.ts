@@ -12,7 +12,7 @@ import { FilterDateComponent } from './filter/filter-date/filter-date.component'
 
 export const FilmsRouteList: Routes = [
   { path: '', component: ListeFilmsComponent },
-  { path: 'voirFilm/:id', component: VueFilmComponent },
+  { path: 'voirFilm/:id', component: VueFilmComponent }
 ]
 
 @NgModule({
