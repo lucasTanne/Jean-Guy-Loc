@@ -64,6 +64,10 @@ textarea {
   text-decoration: none;
 }
 
+.commentaire {
+  margin-bottom: 3%;
+}
+
 
 @font-face {
   font-family: "font-icon";
