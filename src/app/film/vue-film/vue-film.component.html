@@ -133,7 +133,7 @@
                 <div *ngIf="cannotSend;then error"></div>
                 <ng-template #error>
                     <div class="alert alert-danger alert-dismissible fade show">
-                        <strong>Error!</strong> Pour envoyer votre commentaire, vous devez écrire un message et selectionner une note !
+                        <strong>Error!</strong> {{this.errorMessage}}
                     </div>
                 </ng-template>
             </div>
@@ -154,7 +154,7 @@
             <div class="row comment-title">
                 <h3>Commentaires</h3>
             </div>
-            <div class="row" *ngFor="let commentaire of commentaires">
+            <div class="row commentaire" *ngFor="let commentaire of commentaires">
                 <div class="col-3">
                     <div class="row">
                         <div class="col-6">
@@ -178,17 +178,17 @@
                                     <img class="star_img" *ngFor="let n of [].constructor(commentaire.nbStarBlack); let i = index" src="assets/star_black.png" />
                                 </div>
                                 <div class="col-2">
-                                    <p>3.0</p>
+                                    <p>{{commentaire.valeurNote}}</p>
                                 </div>
                                 <div class="col">
-                                    <p>Publié le {{commentaire.dateCommentaire}}</p>
+                                    <p>Publié le {{commentaire.dateCom}}</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col"></div>
                     </div>
                     <div class="row">
-                        <p>{{commentaire.contenu}}</p>
+                        <p>{{commentaire.textCom}}</p>
                     </div>
                 </div>
             </div>

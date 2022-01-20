@@ -7,11 +7,11 @@ export interface Commentaire {
 
 export interface CommentaireInfo {
     username: string,
-    idUtilisateur: number,
+    idUtil: number,
     valeurNote: number,
-    dateCommentaire: Date,
-    contenu: string,
-    idCommentaire: number,
+    dateCom: Date,
+    textCom: string,
+    idCom: number,
     nbStarBlack: number,
     nbStarGold: number,
 }

@@ -6,6 +6,7 @@ import { CommentaireInfo, CommentToSend } from 'src/types/commentaire';
 import { FilmItem } from 'src/types/film-item';
 import { Note, NoteToSend } from 'src/types/note';
 import { FetchFilmService } from '../services/fetch-film.service';
+import { StarsService } from '../services/stars.service';
 
 
 @Component({
@@ -35,11 +36,11 @@ export class VueFilmComponent implements OnInit {
   }
   public commentaires: CommentaireInfo[] = [{
     username: "username",
-    idUtilisateur: -1,
+    idUtil: -1,
     valeurNote: 0,
-    dateCommentaire: new Date(1970, 1, 1),
-    contenu: "nothing",
-    idCommentaire: -1,
+    dateCom: new Date(1970, 1, 1),
+    textCom: "nothing",
+    idCom: -1,
     nbStarBlack: 5,
     nbStarGold: 0,
   }]
@@ -48,8 +49,15 @@ export class VueFilmComponent implements OnInit {
   public nbStarBlack: number = 5
   public noteComment: number = -1  
   public cannotSend: boolean = false
+  public errorMessage: string = ""
 
-  constructor(private printMenuService: PrintMenuService, private router: Router, private activatedRoute: ActivatedRoute, private fetchFilmService: FetchFilmService, private cookieService: CookieService) {
+  constructor(private printMenuService: PrintMenuService,
+      private router: Router,
+      private activatedRoute: ActivatedRoute,
+      private fetchFilmService: FetchFilmService,
+      private cookieService: CookieService,
+      private starsService: StarsService) {
+
     this.printMenuService.setPrintMenu(true)
     this.activatedRoute.paramMap.subscribe(param => {
       this.idFilm = param.get('id')
@@ -58,11 +66,19 @@ export class VueFilmComponent implements OnInit {
           this.film = res
           this.fetchFilmService.getFilmNotes(this.film.idFilm).then((notes: Note[]) => {
             this.film.notes = notes
-            this.setStarNumber()
+            let res = this.starsService.starsNumberFromArray(this.film.notes)
+            this.nbStarBlack = res[0]
+            this.nbStarGold = res[1]
           })
-          // this.fetchFilmService.getFilmCommentaires(this.film.idFilm).then((commentaires: Commentaire[]) => {
-          //   this.commentaires = commentaires
-          // })
+          this.fetchFilmService.getFilmCommentaires(this.film.idFilm).then((commentaires: CommentaireInfo[]) => {
+            commentaires.forEach((com) => {
+              let res = this.starsService.starsNumber(com.valeurNote)
+              com.nbStarBlack = res[0]
+              com.nbStarGold = res[1]
+            })
+            this.commentaires = commentaires
+            console.log(this.commentaires)
+          })
         })
       }
     })
@@ -83,36 +99,21 @@ export class VueFilmComponent implements OnInit {
     return res
   }
 
-  // Calculate number of gold and black stars using film.notes
-  private setStarNumber(): void {
-    let notes: Note[] = this.film.notes
-    if(notes.length === undefined || notes.length === 0) {
-      this.nbStarGold = 0
-      this.nbStarBlack = 5
-    } else if (notes.length === 1) {
-      this.nbStarGold = notes[0].valeur
-      this.nbStarBlack = 5 - notes[0].valeur
-    } else {
-      let moyenne: number = 0
-      let nbNotes: number = 0
-      notes.forEach((note: Note, i: number) => {
-        nbNotes++
-        moyenne += note.valeur
-      })
-      moyenne = Math.round(moyenne / nbNotes)
-      this.nbStarGold = moyenne
-      this.nbStarBlack = 5 - moyenne
-    }
-  }
-
   public setNote(note: number){
     this.noteComment = note
   }
 
   public sendComment(comment: string){
+    let idUtilisateur = this.cookieService.get('UserID')
+    console.log(idUtilisateur)
+    if(idUtilisateur == undefined || idUtilisateur == "") {
+      this.errorMessage = "Pour envoyer un commentaire vous devez être connecté !"
+      this.cannotSend = true
+      return
+    }
     if(this.noteComment != -1 && comment != "" && this.idFilm != null) {
       this.cannotSend = false;
-      let userID = this.cookieService.get('UserID')
+      let userID = idUtilisateur
       let noteToSend: NoteToSend = {
         idFilm: parseInt(this.idFilm),
         valeur: this.noteComment,
@@ -137,6 +138,7 @@ export class VueFilmComponent implements OnInit {
         console.log("Cannot create note")
       })
     } else {
+      this.errorMessage = "Pour envoyer votre commentaire, vous devez écrire un message et selectionner une note !"
       this.cannotSend = true
     }
   }
