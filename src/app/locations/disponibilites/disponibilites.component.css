@@ -17,5 +17,16 @@
     font-size : 3rem;
     margin-bottom: 0rem;
     margin-top: 2%;
-    margin-bottom: 4%;
+    margin-bottom: 1%;
+}
+
+.phrase {
+    font-family: "BalooTamma" ;
+    font-size : 2rem;
+    margin-bottom: 5%;
+}
+
+td{
+    text-align: center;
+    font-size: 1.2rem;
 }

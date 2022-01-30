@@ -50,11 +50,16 @@
                 </div>
                 <div class="row">
                     <div class="col-3">
-                        <button type="button" class="btn btn-secondary btn-lg btnShow">Louer</button>
+                        <!-- Check if physical or streaming -->
+                        <a routerLink="/location/{{this.idFilm}}"  routerLinkActive="active">
+                            <button type="button" class="btn btn-secondary btn-lg btnShow">Louer</button>
+                        </a>
                     </div>
                     <div class="col-5"></div>
                     <div class="col-3">
-                        <button type="button" class="btn btn-secondary btn-lg btnShow">Disponibilités</button>
+                        <a routerLink="/location/{{this.idFilm}}"  routerLinkActive="active">
+                            <button type="button" class="btn btn-secondary btn-lg btnShow">Disponibilités</button>
+                        </a>
                     </div>
                 </div>
             </div>
