@@ -45,4 +45,21 @@ export class StarsService {
     nbGold = 5 - nbBlack
     return [nbBlack, nbGold]
   }
+
+  // Calculate number of gold stars using array of notes
+  starsNumberGoldFromArray(notes: Note[]): number {
+    if(notes === undefined || notes.length === 0) {
+      return 0
+    } else if (notes.length === 1) {
+      return notes[0].valeur
+    } else {
+      let moyenne: number = 0
+      let nbNotes: number = 0
+      notes.forEach((note: Note, i: number) => {
+        nbNotes++
+        moyenne += note.valeur
+      })
+      return Math.round(moyenne / nbNotes)
+    }
+  }
 }

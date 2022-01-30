@@ -3,6 +3,7 @@ import { PrintMenuService } from 'src/app/services/print-menu.service';
 import { FilmItem } from 'src/types/film-item';
 import { Note, Notes } from 'src/types/note';
 import { FetchFilmService } from '../services/fetch-film.service';
+import { StarsService } from '../services/stars.service';
 
 @Component({
   selector: 'app-liste-films',
@@ -11,7 +12,7 @@ import { FetchFilmService } from '../services/fetch-film.service';
 })
 export class ListeFilmsComponent implements OnInit {
   public listeFilms: FilmItem[] = []
-  constructor(private printMenuService: PrintMenuService, private fetchFilmService: FetchFilmService) {
+  constructor(private printMenuService: PrintMenuService, private fetchFilmService: FetchFilmService, private starsService: StarsService) {
     this.printMenuService.setPrintMenu(true)
     this.getFilmList()
   }
@@ -35,20 +36,7 @@ export class ListeFilmsComponent implements OnInit {
   }
 
   getNbStarGold(notes: Note[]): number {
-    console.log(notes)
-    if(notes === undefined || notes.length === 0) {
-      return 0
-    } else if (notes.length === 1) {
-      return notes[0].valeur
-    } else {
-      let moyenne: number = 0
-      let nbNotes: number = 0
-      notes.forEach((note: Note, i: number) => {
-        nbNotes++
-        moyenne += note.valeur
-      })
-      return Math.round(moyenne / nbNotes)
-    }
+    return this.starsService.starsNumberGoldFromArray(notes)
   }
 }
 
