@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CommentaireInfo, CommentToSend } from 'src/types/commentaire';
-import { FilmItem } from 'src/types/film-item';
+import { FilmItem, FilmToList } from 'src/types/film-item';
 import { Note, Notes, NoteToSend } from 'src/types/note';
 
 @Injectable({
@@ -19,6 +19,19 @@ export class FetchFilmService {
       return res
     }).catch((e) => {
       console.log("catch")
+      console.log(e)
+      return undefined
+    })
+  }
+
+  getListFilmsWithAverage(): Promise<any> {
+    let url = "http://localhost:3000/film/listeFilms/getFilmsWithNote"
+    return this.http.get<FilmToList[]>(url)
+    .toPromise()
+    .then((res: FilmToList[]) => {
+      return res
+    }).catch((e) => {
+      console.log("catch get films with average")
       console.log(e)
       return undefined
     })

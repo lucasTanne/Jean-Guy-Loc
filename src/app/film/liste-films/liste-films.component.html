@@ -22,10 +22,10 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-2 stars-block" *ngFor="let n of [].constructor(this.getNbStarGold(film.notes))">
+                            <div class="col-2 stars-block" *ngFor="let n of [].constructor(film.moyenne)">
                                 <img class="star_img" src="../../../assets/star.png" />
                             </div>
-                            <div class="col-2 stars-block" *ngFor="let n of [].constructor(5 - this.getNbStarGold(film.notes))">
+                            <div class="col-2 stars-block" *ngFor="let n of [].constructor(5 - film.moyenne)">
                                 <img class="star_img" src="../../../assets/star_black.png" />
                             </div>
                         </div>

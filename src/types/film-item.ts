@@ -14,3 +14,11 @@ export interface FilmItem {
     realisateurs: string[],
     acteurs: string[]
 }
+
+export interface FilmToList {
+    idFilm: number,
+    titre: string,
+    lienImage: string,
+    synopsis: string,
+    moyenne: number
+}
