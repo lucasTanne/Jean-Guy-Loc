@@ -3,6 +3,7 @@ import { PrintMenuService } from 'src/app/services/print-menu.service';
 import { FilmItem, FilmToList } from 'src/types/film-item';
 import { Note, Notes } from 'src/types/note';
 import { FetchFilmService } from '../services/fetch-film.service';
+import { PrinterService } from '../services/printer.service';
 import { StarsService } from '../services/stars.service';
 
 @Component({
@@ -12,7 +13,7 @@ import { StarsService } from '../services/stars.service';
 })
 export class ListeFilmsComponent implements OnInit {
   public listeFilms: FilmToList[] = []
-  constructor(private printMenuService: PrintMenuService, private fetchFilmService: FetchFilmService, private starsService: StarsService) {
+  constructor(private printMenuService: PrintMenuService, private fetchFilmService: FetchFilmService, private starsService: StarsService, private printerService: PrinterService) {
     this.printMenuService.setPrintMenu(true)
     this.getFilmList()
   }
@@ -24,23 +25,17 @@ export class ListeFilmsComponent implements OnInit {
     this.fetchFilmService.getListFilmsWithAverage().then((res: FilmToList[]) => {
       res.forEach((film: FilmToList) => {
         film.moyenne = Math.round(film.moyenne)
+        if(film.synopsis != ""){
+          film.synopsis = this.printerService.formatSynopsis(film.synopsis)
+        }else{
+          film.synopsis = "Aucun résumé"
+        }
       })
       this.listeFilms = res
-
-      // this.listeFilms.forEach((film) => {
-      //   this.fetchFilmService.getFilmNotes(film.idFilm).then((notes) => {
-      //     film.notes = notes
-      //     console.log(film.notes)
-      //   })
-      // })
     }).catch((e) => {
       console.log("catch component")
       console.log(e)
     })
   }
-
-  // getNbStarGold(notes: Note[]): number {
-  //   return this.starsService.starsNumberGoldFromArray(notes)
-  // }
 }
 
