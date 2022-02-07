@@ -13,7 +13,7 @@ export class FetchFilmService {
   constructor(private readonly http: HttpClient) { }
 
   getListFilms(): Promise<any> {
-    let url = "http://localhost:3000/film"
+    let url = "http://localhost:3000/film/"
     return this.http.get<FilmItem[]>(url)
     .toPromise()
     .then((res) => {
@@ -91,6 +91,19 @@ export class FetchFilmService {
       console.log("catch")
       console.log(e)
       return -1
+    })
+  }
+
+  getFilmsRecent(): Promise<any> {
+    let url = "http://localhost:3000/film/carrousel/getFilmRecents"
+    return this.http.get<any>(url)
+    .toPromise()
+    .then((res: any) => {
+      return res
+    }).catch((e) => {
+      console.log("catch")
+      console.log(e)
+      return undefined
     })
   }
 

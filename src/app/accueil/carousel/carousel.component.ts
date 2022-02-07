@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FilmItem } from 'src/types/film-item';
+import { FilmCaroussel } from 'src/types/film-item';
 
 @Component({
   selector: 'app-carousel',
@@ -7,7 +7,7 @@ import { FilmItem } from 'src/types/film-item';
   styleUrls: ['./carousel.component.css']
 })
 export class CarouselComponent {
-  @Input() public films: FilmItem[] = []
+  @Input() public films: FilmCaroussel[] = []
 
   constructor() {
   }

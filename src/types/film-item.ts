@@ -22,3 +22,8 @@ export interface FilmToList {
     synopsis: string,
     moyenne: number
 }
+export interface FilmCaroussel {
+    idFilm: number,
+    titre: string,
+    lienImage: string
+}
