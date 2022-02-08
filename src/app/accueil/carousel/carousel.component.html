@@ -1,4 +1,4 @@
-<div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel">
+<!-- <div id="carouselIndicators" class="carousel slide " >
     <div class="carousel-indicators">
         <button type="button" *ngFor="let film of films; let j = index" data-bs-target="#carouselIndicators" [ngClass]="{'active' : j == 0}" [attr.aria-current]="j == 0 ? true : false" [attr.data-bs-slide-to]="j" [attr.aria-label]="j" ></button>
     </div>
@@ -15,4 +15,41 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
-  </div>
+  </div> -->
+
+  <div class="row mx-auto my-auto justify-content-center">
+    <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" *ngFor="let film of films; let j = index" data-bs-target="#recipeCarousel" [ngClass]="{'active' : j == 0}" [attr.aria-current]="j == 0 ? true : false" [attr.data-bs-slide-to]="j" [attr.aria-label]="j" ></button>
+      </div>
+        <div class="carousel-inner" role="listbox">
+
+
+          <div *ngFor="let film of films; let i = index" class="carousel-item" [ngClass]="{'active' : i == 0}">
+            <div class="col-md-3">
+              <div class="card">
+                  <div class="card-img">
+                      <img [src]="film.lienImage" class="img-fluid">
+                  </div>
+                  <div class="card-img-overlay">Slide 1</div>
+              </div>
+            </div>
+          </div>
+          
+
+
+        </div>
+        <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </a>
+        <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </a>
+    </div>
+</div>
+
+
+
+  
+
+  <script src="script.js"></script>
