@@ -1,12 +1,13 @@
 div.carousel {
-    background-color: gray;
     margin-top: 2%;
 }
 
 img {
     margin: auto;
     width: 400px !important;
-}
+    height: 400px;
+    object-fit: fill;
+} 
 
 @media (max-width: 767px) {
     .carousel-inner .carousel-item > div {
@@ -28,17 +29,82 @@ img {
     
     .carousel-inner .carousel-item-end.active,
     .carousel-inner .carousel-item-next {
-      transform: translateX(25%);
+      transform: translateX(16.67%);
+        
+      
     }
     
     .carousel-inner .carousel-item-start.active, 
     .carousel-inner .carousel-item-prev {
-      transform: translateX(-25%);
+      transform: translateX(-16.67%);
+      
     }
   }
   
   .carousel-inner .carousel-item-end,
   .carousel-inner .carousel-item-start { 
-  transform: translateX(0);
+    transform: translateX(0);
+    
   }
-  
+
+
+  .card {
+      border :none;
+  }
+
+  .card-img-overlay{
+    
+    text-align: center !important;
+    vertical-align: center !important;
+    padding: 0 5% 0 5% !important;
+    display :none;
+  }
+  .titreFilm{
+    top: 50% !important;
+    font-family: "BalooTamma";
+    font-weight: bold;
+    font-size: 1.25rem;
+    padding: 0 5% 0 5% !important;
+    width : 100%;
+    position: relative;
+   color: white;
+  }
+
+  .card:hover .card-img-overlay {
+    display: block; 
+    background-color: rgba(50,50,50,0.50);
+  }
+
+  .carousel-control-next, .carousel-control-prev {
+    width: 5rem !important;
+  }
+
+  .bg .prev {
+    width: 100% !important;
+    height: 100% !important;
+    background-repeat: no-repeat!important;
+    background-position: 35% !important;
+    background-size: 70% !important;
+  }
+
+  .bg .next {
+    width: 100% !important;
+    height: 100% !important;
+    background-repeat: no-repeat!important;
+    background-position: 65% !important;
+    background-size: 70% !important;
+  }
+
+.bg {
+    background-color: black;
+    opacity: 1 !important;
+    z-index: 2;
+    width: 3rem;
+    height: 3rem;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 25px;
+}
+
+
+
+
