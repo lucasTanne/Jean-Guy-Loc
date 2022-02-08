@@ -50,17 +50,28 @@
                 </div>
                 <div class="row">
                     <div class="col-3">
-                        <!-- Check if physical or streaming -->
-                        <a routerLink="/location/{{this.idFilm}}"  routerLinkActive="active">
-                            <button type="button" class="btn btn-secondary btn-lg btnShow">Louer</button>
-                        </a>
+                        <p class="txt-info">Location streaming :</p>
+                        <button type="button" class="btn btn-secondary btn-lg btnShow" (click)="streamingLocation()">Louer</button>
                     </div>
                     <div class="col-5"></div>
                     <div class="col-3">
+                        <p class="txt-info">Location physique :</p>
                         <a routerLink="/location/{{this.idFilm}}"  routerLinkActive="active">
                             <button type="button" class="btn btn-secondary btn-lg btnShow">Disponibilités</button>
                         </a>
                     </div>
+                    <div *ngIf="this.cannotLocate;then errorLoc"></div>
+                    <ng-template #errorLoc>
+                        <div class="alert alert-danger alert-dismissible fade show loc">
+                            <strong>Error!</strong> {{this.errorLocation}}
+                        </div>
+                    </ng-template>
+                    <div *ngIf="this.located;then successLoc"></div>
+                    <ng-template #successLoc>
+                        <div class="alert alert-success loc" role="alert">
+                            La location à bien été enregistrer.
+                        </div>
+                    </ng-template>
                 </div>
             </div>
         </div>

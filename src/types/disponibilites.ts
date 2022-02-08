@@ -10,3 +10,10 @@ export interface NewLocation {
     idUtilisateur: number,
     idFilm: number
 }
+
+export interface NewLocationStreaming {
+    dateDeLocation: string,
+    duree: number,
+    idUtilisateur: number,
+    idFilm: number
+}

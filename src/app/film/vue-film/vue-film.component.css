@@ -68,6 +68,14 @@ textarea {
   margin-bottom: 3%;
 }
 
+.txt-info {
+  text-align: center;
+}
+
+.loc {
+  margin-top: 2%;
+}
+
 
 @font-face {
   font-family: "font-icon";

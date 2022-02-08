@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CommentaireInfo, CommentToSend, ListCommentaireInfo } from 'src/types/commentaire';
+import { NewLocation, NewLocationStreaming } from 'src/types/disponibilites';
 import { FilmItem, FilmToList } from 'src/types/film-item';
 import { Note, Notes, NoteToSend } from 'src/types/note';
 
@@ -100,6 +101,20 @@ export class FetchFilmService {
     .then((res: any) => {
       return res
     }).catch((e) => {
+      console.log("catch")
+      console.log(e)
+      return undefined
+    })
+  }
+
+  createStreamingLocation(loc: NewLocationStreaming): Promise<any> {
+    let url = "http://localhost:3000/locationstreaming"
+    return this.http.post<NewLocationStreaming>(url, loc)
+    .toPromise()
+    .then((res: any) => {
+      console.log(res)
+      return res
+    }).catch((e: any) => {
       console.log("catch")
       console.log(e)
       return undefined

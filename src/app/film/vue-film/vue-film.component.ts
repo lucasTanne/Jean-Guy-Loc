@@ -7,6 +7,7 @@ import { FilmItem } from 'src/types/film-item';
 import { Note, NoteToSend } from 'src/types/note';
 import { FetchFilmService } from '../services/fetch-film.service';
 import { StarsService } from '../services/stars.service';
+import { NewLocation, NewLocationStreaming } from 'src/types/disponibilites';
 
 
 @Component({
@@ -54,6 +55,9 @@ export class VueFilmComponent implements OnInit {
   public noteComment: number = -1  
   public cannotSend: boolean = false
   public errorMessage: string = ""
+  public cannotLocate: boolean = false
+  public errorLocation: string = ""
+  public located: boolean = false
 
   constructor(private printMenuService: PrintMenuService,
       private router: Router,
@@ -144,6 +148,32 @@ export class VueFilmComponent implements OnInit {
     } else {
       this.errorMessage = "Pour envoyer votre commentaire, vous devez écrire un message et selectionner une note !"
       this.cannotSend = true
+    }
+  }
+
+  public streamingLocation(): void{
+    let idUtilisateur = this.cookieService.get('UserID')
+    if(idUtilisateur == undefined || idUtilisateur == "") {
+      this.errorLocation = "Pour Louer ce film vous devez être connecté !"
+      this.cannotLocate = true
+      return
+    }
+    this.cannotLocate = false
+    if(this.idFilm != null) {
+      let date = new Date()
+      let currentDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
+      let locationPayload : NewLocationStreaming = {
+        dateDeLocation: currentDate,
+        duree: 7,
+        idFilm: parseInt(this.idFilm),
+        idUtilisateur: parseInt(idUtilisateur)
+      }
+      this.fetchFilmService.createStreamingLocation(locationPayload).then((res) => {
+        this.located = true
+      }).catch((e) => {
+        this.errorLocation = "Erreur lors de la location en streaming de ce film."
+        this.cannotLocate = true
+      })
     }
   }
 
