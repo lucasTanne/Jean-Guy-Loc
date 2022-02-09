@@ -16,7 +16,7 @@ export class CarouselComponent {
 
   ngAfterContentChecked(): void {
     let items = document.querySelectorAll('.carousel .carousel-item')
-    let map;
+   
     items.forEach((el) => {
         const minPerSlide = 6
         let next = el.nextElementSibling

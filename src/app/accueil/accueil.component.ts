@@ -4,7 +4,7 @@ import { FetchFilmService } from '../film/services/fetch-film.service';
 import { PrintMenuService } from '../services/print-menu.service';
 import { CookieService } from 'ngx-cookie-service';
 import {} from 'googlemaps';
-import { ViewChild, ElementRef } from '@angular/core';
+
 
 @Component({
   selector: 'app-accueil',
@@ -14,8 +14,6 @@ import { ViewChild, ElementRef } from '@angular/core';
 export class AccueilComponent implements OnInit {
   public listeFilms: FilmCaroussel[] = []
 
-  lat = 28.704060;
-  lng = 77.102493;
 
   constructor(private printMenuService: PrintMenuService, private fetchFilmService: FetchFilmService, private cookieService: CookieService) {
     this.printMenuService.setPrintMenu(true)

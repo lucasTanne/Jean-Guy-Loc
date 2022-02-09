@@ -12,11 +12,12 @@ import { AccueilModule } from './accueil/accueil.module';
 import { LocationsModule } from './locations/locations.module';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     TopPageComponent,
-    BottomPageComponent
+    BottomPageComponent 
   ],
   imports: [
     BrowserModule,
