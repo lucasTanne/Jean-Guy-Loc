@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FilmCaroussel, FilmItem } from 'src/types/film-item';
 import { FetchFilmService } from '../film/services/fetch-film.service';
 import { PrintMenuService } from '../services/print-menu.service';
-import { CarouselComponent } from './carousel/carousel.component';
 import { CookieService } from 'ngx-cookie-service';
+import {} from 'googlemaps';
+import { ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-accueil',
@@ -12,6 +13,9 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class AccueilComponent implements OnInit {
   public listeFilms: FilmCaroussel[] = []
+
+  lat = 28.704060;
+  lng = 77.102493;
 
   constructor(private printMenuService: PrintMenuService, private fetchFilmService: FetchFilmService, private cookieService: CookieService) {
     this.printMenuService.setPrintMenu(true)
@@ -27,7 +31,11 @@ export class AccueilComponent implements OnInit {
     console.log(this.cookieService.get('UserID'))
   }
 
+
   ngOnInit(): void {
+ 
   }
+
+
 
 }
