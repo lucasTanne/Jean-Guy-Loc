@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CarouselComponent } from './carousel/carousel.component';
 import { AgmCoreModule } from '@agm/core';
 import { CompteurComponent } from './compteur/compteur.component';
+import { NewsletterComponent } from './newsletter/newsletter.component';
 
 export const AccueilRouteList: Routes = [
   { path: '', component: AccueilComponent }
@@ -14,7 +15,8 @@ export const AccueilRouteList: Routes = [
   declarations: [
     AccueilComponent,
     CarouselComponent,
-    CompteurComponent
+    CompteurComponent,
+    NewsletterComponent
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,7 @@
 .compteur {
   height : 15rem;
   background-color: #FABD4B;
+  opacity: 0.8;
 }
 
 .value {
@@ -13,7 +14,7 @@
 
 .valueAttr {
   font-family:  "BalooTamma";
-  font-weight: 400;
+  font-weight: 500;
   font-size : 1.5rem;
   color : white;
 }
