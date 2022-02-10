@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CommentaireInfo, CommentToSend } from 'src/types/commentaire';
+import { CommentaireInfo, CommentToSend, ListCommentaireInfo } from 'src/types/commentaire';
 import { FilmItem, FilmToList } from 'src/types/film-item';
 import { Note, Notes, NoteToSend } from 'src/types/note';
 
@@ -68,9 +68,9 @@ export class FetchFilmService {
   getFilmCommentaires(idFilm: number): Promise<any> {
     let url = "http://localhost:3000/film/commentaires/{idFilm}"
     url = url.replace("{idFilm}", idFilm.toString())
-    return this.http.get<CommentaireInfo[]>(url)
+    return this.http.get<ListCommentaireInfo>(url)
     .toPromise()
-    .then((res: CommentaireInfo[]) => {
+    .then((res: ListCommentaireInfo) => {
       console.log(res)
       return res
     }).catch((e) => {

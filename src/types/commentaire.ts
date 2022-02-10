@@ -5,6 +5,12 @@ export interface Commentaire {
     dateCommentaire: Date
 }
 
+export interface ListCommentaireInfo {
+    infosCommentaires: CommentaireInfo[],
+    nbNotes: number,
+    nbCommentaires: number
+}
+
 export interface CommentaireInfo {
     username: string,
     idUtil: number,

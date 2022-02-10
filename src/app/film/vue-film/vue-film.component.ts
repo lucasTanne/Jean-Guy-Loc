@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { PrintMenuService } from 'src/app/services/print-menu.service';
-import { CommentaireInfo, CommentToSend } from 'src/types/commentaire';
+import { CommentaireInfo, CommentToSend, ListCommentaireInfo } from 'src/types/commentaire';
 import { FilmItem } from 'src/types/film-item';
 import { Note, NoteToSend } from 'src/types/note';
 import { FetchFilmService } from '../services/fetch-film.service';
@@ -34,16 +34,20 @@ export class VueFilmComponent implements OnInit {
     realisateurs: ["aucun"],
     acteurs: ["aucun"]
   }
-  public commentaires: CommentaireInfo[] = [{
-    username: "username",
-    idUtil: -1,
-    valeurNote: 0,
-    dateCom: new Date(1970, 1, 1),
-    textCom: "nothing",
-    idCom: -1,
-    nbStarBlack: 5,
-    nbStarGold: 0,
-  }]
+  public commentaires: ListCommentaireInfo = {
+    infosCommentaires: [{
+      username: "username",
+      idUtil: -1,
+      valeurNote: 0,
+      dateCom: new Date(1970, 1, 1),
+      textCom: "nothing",
+      idCom: -1,
+      nbStarBlack: 5,
+      nbStarGold: 0
+    }],
+    nbCommentaires: -1,
+    nbNotes: -1
+  }
   private idFilm: string | null = ""
   public nbStarGold: number = 0
   public nbStarBlack: number = 5
@@ -70,8 +74,8 @@ export class VueFilmComponent implements OnInit {
             this.nbStarBlack = res[0]
             this.nbStarGold = res[1]
           })
-          this.fetchFilmService.getFilmCommentaires(this.film.idFilm).then((commentaires: CommentaireInfo[]) => {
-            commentaires.forEach((com) => {
+          this.fetchFilmService.getFilmCommentaires(this.film.idFilm).then((commentaires: ListCommentaireInfo) => {
+            commentaires.infosCommentaires.forEach((com) => {
               let res = this.starsService.starsNumber(com.valeurNote)
               com.nbStarBlack = res[0]
               com.nbStarGold = res[1]
