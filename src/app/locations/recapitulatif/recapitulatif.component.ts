@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { FetchFilmService } from 'src/app/film/services/fetch-film.service';
 import { PrintMenuService } from 'src/app/services/print-menu.service';
 import { NewLocation, NewLocationStreaming } from 'src/types/disponibilites';
 import { FilmItem } from 'src/types/film-item';
 import { Note } from 'src/types/note';
+import { FetchDisponibilitesService } from '../services/fetch-disponibilites.service';
 
 @Component({
   selector: 'app-recapitulatif',
@@ -42,8 +43,12 @@ export class RecapitulatifComponent implements OnInit {
   private idFilm: string | null = "-1"
   public nbStarGold: number = 0
   public nbStarBlack: number = 5
+  public errorMessage: string = ""
+  public cannotLocated: boolean = false
+  public locationSuccess: boolean = false
+  public timeLeft: number = 3
 
-  constructor(private printMenuService: PrintMenuService, private activatedRoute: ActivatedRoute, private fetchFilmService: FetchFilmService, private cookieService: CookieService) { 
+  constructor(private printMenuService: PrintMenuService, private activatedRoute: ActivatedRoute, private fetchFilmService: FetchFilmService, private cookieService: CookieService, private disponibiliteService: FetchDisponibilitesService, private router: Router) { 
     this.printMenuService.setPrintMenu(true)
     this.activatedRoute.paramMap.subscribe(param => {
       this.idFilm = param.get('idFilm')
@@ -103,6 +108,20 @@ export class RecapitulatifComponent implements OnInit {
       res += (", " + list[i])
     }
     return res
+  }
+
+  public createLocation(): void{
+    this.disponibiliteService.createPhysicalLocation(this.locationPayload).then((res) => {
+      this.locationSuccess = true
+      console.log(this.cannotLocated)
+      console.log(this.locationSuccess)
+      setTimeout(() => {
+        this.router.navigate(['films'])
+      }, this.timeLeft * 1000)
+    }).catch((e) => {
+      this.cannotLocated = true
+      this.errorMessage = "An error was occured when creating the location, retry later..."
+    })
   }
 
   ngOnInit(): void {

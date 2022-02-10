@@ -62,11 +62,6 @@
             <div class="row">
                 <p>Nombre de jours envisagés: {{this.locationPayload.duree}}</p>
             </div>
-            <!-- <div class="row">
-                <div class="col">
-                    <p>Date de location existante pour ce film: </p>
-                </div>
-            </div> -->
             <div class="row">
                 <p>Date de début: {{this.locationPayload.dateDeLocation}}</p>
             </div>
@@ -77,7 +72,7 @@
         <div class="col">
             <div class="row">
                 <div class="col-4">
-                    <button type="button" class="btn btn-outline-dark btn-lg">Valider</button>
+                    <button type="button" class="btn btn-outline-dark btn-lg" (click)="createLocation()">Valider</button>
                 </div>
             </div>
             <div class="row h-25"></div>
@@ -88,4 +83,25 @@
             </div>
         </div>
     </div>
+    <div *ngIf="this.cannotLocated || this.locationSuccess;then messageBlock"></div>
+    <ng-template #messageBlock>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col">
+                <div *ngIf="this.cannotLocated;then error"></div>
+                <ng-template #error>
+                    <div class="alert alert-danger alert-dismissible fade show message">
+                        <strong>Error!</strong> {{this.errorMessage}}
+                    </div>
+                </ng-template>
+                <div *ngIf="this.locationSuccess;then success"></div>
+                <ng-template #success>
+                    <div class="alert alert-success mossage" role="alert">
+                        La location à bien été enregistrer. Retour au menu dans {{this.timeLeft}} secondes.
+                    </div>
+                </ng-template>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </ng-template>
 </div>

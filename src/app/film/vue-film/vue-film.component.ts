@@ -49,7 +49,7 @@ export class VueFilmComponent implements OnInit {
     nbCommentaires: -1,
     nbNotes: -1
   }
-  private idFilm: string | null = ""
+  public idFilm: string | null = ""
   public nbStarGold: number = 0
   public nbStarBlack: number = 5
   public noteComment: number = -1  
