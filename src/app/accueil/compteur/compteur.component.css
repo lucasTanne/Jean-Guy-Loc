@@ -1,3 +1,19 @@
 .compteur {
   height : 15rem;
+  background-color: #FABD4B;
+}
+
+.value {
+  font-family:  "BalooTamma";
+  font-weight: 800;
+  font-size : 4.5rem;
+  color : white;
+}
+
+
+.valueAttr {
+  font-family:  "BalooTamma";
+  font-weight: 400;
+  font-size : 1.5rem;
+  color : white;
 }
