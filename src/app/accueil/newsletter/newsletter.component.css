@@ -23,13 +23,11 @@
     font-weight: 400;
     letter-spacing: 1px;
     color: #4e4e4d;
+    
 }
 
-.inputNews:focus{
-    border-color:none !important;
-    border : none !important;
-    box-shadow:none !important;
-    
+.inputNews:focus {
+    outline:2px solid #ebc47a !important;
 }
 
 .btn{
@@ -37,5 +35,11 @@
     font-weight: 600;
     font-size : 1.2rem;
     padding-top: 0.6rem;
-    border: 2px solid;
+    border: #ebc47a 2px solid;
+    color :#cea760
+}
+
+.btn:hover {
+    color: white;
+    background-color: #ebc47a;
 }
