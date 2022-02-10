@@ -9,6 +9,11 @@
     src: url("src/fonts/BalooTamma2.ttf");
 }
 
+@font-face {
+    font-family: "Quantum";
+    src: url("src/fonts/Quantum 400.otf");
+}
+
 * {
     font-family: "BalooTamma" ;
 }
@@ -89,3 +94,6 @@ hr {
     transition: 0.5s;
 }
 
+.Maj {
+    font-family: "Quantum";
+}
