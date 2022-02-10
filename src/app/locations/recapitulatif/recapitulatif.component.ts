@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { FetchFilmService } from 'src/app/film/services/fetch-film.service';
 import { PrintMenuService } from 'src/app/services/print-menu.service';
+import { NewLocation, NewLocationStreaming } from 'src/types/disponibilites';
 import { FilmItem } from 'src/types/film-item';
 import { Note } from 'src/types/note';
 
@@ -30,14 +32,21 @@ export class RecapitulatifComponent implements OnInit {
     realisateurs: ["aucun"],
     acteurs: ["aucun"]
   }
-  private idFilm: string | null = "9"
+  public locationPayload: NewLocation = {
+    dateDeLocation: new Date(1, 1, 1970),
+    duree: 0,
+    idFilm: -1,
+    idUtilisateur: -1
+  }
+  public dateFin: string = ""
+  private idFilm: string | null = "-1"
   public nbStarGold: number = 0
   public nbStarBlack: number = 5
 
-  constructor(private printMenuService: PrintMenuService, private activatedRoute: ActivatedRoute, private fetchFilmService: FetchFilmService) { 
+  constructor(private printMenuService: PrintMenuService, private activatedRoute: ActivatedRoute, private fetchFilmService: FetchFilmService, private cookieService: CookieService) { 
     this.printMenuService.setPrintMenu(true)
     this.activatedRoute.paramMap.subscribe(param => {
-      // this.idFilm = param.get('id')
+      this.idFilm = param.get('idFilm')
       if(this.idFilm != null){
         this.fetchFilmService.getFilm(this.idFilm).then((res: FilmItem) => {
           this.film = res
@@ -48,6 +57,15 @@ export class RecapitulatifComponent implements OnInit {
         })
       }
     })
+    let payload: string = this.cookieService.get('locationPayload')
+    if(payload != ""){
+      this.locationPayload = JSON.parse(payload)
+      let date: Date = new Date(this.locationPayload.dateDeLocation)
+      date.setDate(date.getDate() + this.locationPayload.duree)
+      let m: number = date.getMonth() + 1
+      let month: string = m.toString().length === 2 ? m.toString() : "0" + m
+      this.dateFin = date.getFullYear() + "-" + month + "-" + date.getDate()
+    }
   }
 
   // Calculate number of gold and black stars using film.notes

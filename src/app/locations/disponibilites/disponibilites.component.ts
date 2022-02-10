@@ -46,7 +46,7 @@ export class DisponibilitesComponent {
     this.alreadyReserved = false
     let idUtilisateur: string = this.cookieService.get('UserID')
     if(idUtilisateur === ""){
-      this.router.navigate(['/connexion']);
+      // error message with link to connexion
     }
     let newLocation: NewLocation = {
       dateDeLocation: disponibilite.start,
@@ -54,6 +54,7 @@ export class DisponibilitesComponent {
       idFilm: parseInt(this.idFilm || "-1"),
       idUtilisateur: parseInt(idUtilisateur)
     }
-    //Redirect to recap and send newLocation payload
+    this.cookieService.set('locationPayload', JSON.stringify(newLocation))
+    this.router.navigate(['recapitulatif/' + this.idFilm]);
   }
 }

@@ -6,7 +6,7 @@ import { RecapitulatifComponent } from './recapitulatif/recapitulatif.component'
 
 export const FilmsRouteList: Routes = [
   { path: '', component: DisponibilitesComponent },
-  { path: 'recapitulatif', component: RecapitulatifComponent }
+  { path: 'recapitulatif/:idFilm', component: RecapitulatifComponent }
 ]
 
 @NgModule({
