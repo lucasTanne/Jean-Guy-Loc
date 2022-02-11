@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { FetchFilmService } from 'src/app/film/services/fetch-film.service';
+import { StarsService } from 'src/app/film/services/stars.service';
 import { PrintMenuService } from 'src/app/services/print-menu.service';
 import { NewLocation, NewLocationStreaming } from 'src/types/disponibilites';
 import { FilmItem } from 'src/types/film-item';
@@ -48,7 +49,7 @@ export class RecapitulatifComponent implements OnInit {
   public locationSuccess: boolean = false
   public timeLeft: number = 3
 
-  constructor(private printMenuService: PrintMenuService, private activatedRoute: ActivatedRoute, private fetchFilmService: FetchFilmService, private cookieService: CookieService, private disponibiliteService: FetchDisponibilitesService, private router: Router) { 
+  constructor(private printMenuService: PrintMenuService, private activatedRoute: ActivatedRoute, private fetchFilmService: FetchFilmService, private cookieService: CookieService, private disponibiliteService: FetchDisponibilitesService, private router: Router, private starsService: StarsService) { 
     this.printMenuService.setPrintMenu(true)
     this.activatedRoute.paramMap.subscribe(param => {
       this.idFilm = param.get('idFilm')
@@ -57,7 +58,9 @@ export class RecapitulatifComponent implements OnInit {
           this.film = res
           this.fetchFilmService.getFilmNotes(this.film.idFilm).then((notes: Note[]) => {
             this.film.notes = notes
-            this.setStarNumber()
+            let starsNumber: [number, number] = this.starsService.starsNumberFromArray(this.film.notes)
+            this.nbStarBlack = starsNumber[0]
+            this.nbStarGold = starsNumber[1]
           })
         })
       }
@@ -70,28 +73,6 @@ export class RecapitulatifComponent implements OnInit {
       let m: number = date.getMonth() + 1
       let month: string = m.toString().length === 2 ? m.toString() : "0" + m
       this.dateFin = date.getFullYear() + "-" + month + "-" + date.getDate()
-    }
-  }
-
-  // Calculate number of gold and black stars using film.notes
-  private setStarNumber(): void {
-    let notes: Note[] = this.film.notes
-    if(notes.length === undefined || notes.length === 0) {
-      this.nbStarGold = 0
-      this.nbStarBlack = 5
-    } else if (notes.length === 1) {
-      this.nbStarGold = notes[0].valeur
-      this.nbStarBlack = 5 - notes[0].valeur
-    } else {
-      let moyenne: number = 0
-      let nbNotes: number = 0
-      notes.forEach((note: Note, i: number) => {
-        nbNotes++
-        moyenne += note.valeur
-      })
-      moyenne = Math.round(moyenne / nbNotes)
-      this.nbStarGold = moyenne
-      this.nbStarBlack = 5 - moyenne
     }
   }
 
