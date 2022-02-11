@@ -14,3 +14,19 @@
     margin-top: 1.25rem;
   }
   
+  .subheader {
+    height : 3rem;
+    font-weight: bold;
+    font-family: "BalooTamma";
+    font-size : 1.5rem;
+    margin-top: 1.25rem;
+    text-align : center;
+  }
+
+  .hrSubPerso {
+    width: 100px;
+    margin: -0.8rem auto 1.5rem auto;
+    color: #e6ae44;
+    height: 3px;
+    opacity: 1;
+  }
