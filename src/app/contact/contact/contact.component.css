@@ -1,0 +1,64 @@
+.hrPerso {
+    width: 100px;
+    margin: 0 auto 1.5rem auto;
+    color: #e6ae44;
+    height: 3px;
+    opacity: 1;
+  }
+
+  .header {
+    height : 3rem;
+    font-weight: bold;
+    font-family: "BalooTamma";
+    font-size : 2rem;
+    margin-top: 1.25rem;
+  }
+  
+  .subheader {
+    height : 3rem;
+    font-weight: bold;
+    font-family: "BalooTamma";
+    font-size : 1.5rem;
+    margin-top: 1.25rem;
+    text-align : center;
+  }
+
+  .hrSubPerso {
+    width: 100px;
+    margin: -0.8rem auto 1.5rem auto;
+    color: #e6ae44;
+    height: 3px;
+    opacity: 1;
+  }
+
+
+  .formFont{
+    font-weight: bold;
+    font-family: "BalooTamma";
+    font-size : 1.25rem;
+    margin-top: 1.25rem;
+    
+  }
+
+  button:hover{
+    color: white;
+    background-color: #ebc47a;
+    border: #ebc47a 2px solid;
+  }
+
+  button{
+    font-family:  "BalooTamma";
+    font-weight: 600;
+    font-size : 1.2rem;
+    padding-top: 0.6rem;
+    border: #ebc47a 2px solid;
+    color :#cea760
+  }
+
+  button:focus {
+    outline:2px solid #ebc47a !important;
+  }
+
+iframe{
+  width: 100%;
+}

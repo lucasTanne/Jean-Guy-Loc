@@ -10,6 +10,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BottomPageComponent } from './bottom-page/bottom-page.component';
 import { AccueilModule } from './accueil/accueil.module';
 import { LocationsModule } from './locations/locations.module';
+import { ContactComponent } from './contact/contact/contact.component';
+import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 
 
 
@@ -17,7 +19,9 @@ import { LocationsModule } from './locations/locations.module';
   declarations: [
     AppComponent,
     TopPageComponent,
-    BottomPageComponent 
+    BottomPageComponent,
+    ContactComponent,
+    UtilisateurComponent 
   ],
   imports: [
     BrowserModule,
