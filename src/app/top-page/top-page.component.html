@@ -7,8 +7,13 @@
         <a routerLink="/films"  routerLinkActive="active" class=" menuItem nav-item nav-link">Nos films</a>
         <a routerLink="/liste-films/films-a-venir" class="menuItem nav-item nav-link">Films à venir</a>
         <a routerLink="/nous/renseignements" class="menuItem nav-item nav-link">Renseignements</a>
-        <a routerLink="/connexion" class="menuItem nav-item nav-link">Se connecter</a>
-        <!-- Les liens ne fonctionne pas car les routes ne sont pas créer -->
+        <div *ngIf="this.connected;then deconnexion; else connexion"></div>
+        <ng-template #connexion>
+            <a routerLink="/connexion" class="menuItem nav-item nav-link">Se connecter</a>
+        </ng-template>
+        <ng-template #deconnexion>
+            <a routerLink="#" class="menuItem nav-item nav-link" (click)="userDeconnexion()">Se déconnecter</a>
+        </ng-template>
     </nav>
 </div>
 <div *ngIf="!printMenu()">

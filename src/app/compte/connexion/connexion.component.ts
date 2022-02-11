@@ -30,8 +30,10 @@ export class ConnexionComponent implements OnInit {
     }
     this.compteService.connexion(comptePayload).then((result: any) => {
       if(result != undefined) {
+        this.printMenuService.setConnected(true)
         this.router.navigate(['/accueil'])
       } else {
+        this.printMenuService.setConnected(false)
         //error message
       }
     })

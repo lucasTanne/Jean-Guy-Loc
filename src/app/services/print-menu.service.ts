@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class PrintMenuService {
   printMenu: boolean = false
+  connected: boolean = false
 
   constructor() { }
 
@@ -14,5 +15,13 @@ export class PrintMenuService {
 
   getPrintMenu(): boolean {
     return this.printMenu
+  }
+
+  setConnected(value: boolean): void {
+    this.connected = value
+  }
+
+  getConnected(): boolean {
+    return this.connected
   }
 }
