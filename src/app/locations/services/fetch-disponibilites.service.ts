@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { Disponibilite, NewLocation } from 'src/types/disponibilites';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { Disponibilite, NewLocation } from 'src/types/disponibilites';
 })
 export class FetchDisponibilitesService {
 
-  constructor(private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient, private cookieService: CookieService) { }
 
   getDispoOfFilm(idFilm: number): Promise<any> {
     let url = "http://localhost:3000/locationphysique/dispo/{idFilm}"
@@ -26,7 +27,12 @@ export class FetchDisponibilitesService {
 
   createPhysicalLocation(loc: NewLocation): Promise<any> {
     let url = "http://localhost:3000/locationphysique"
-    return this.http.post<NewLocation>(url, loc)
+    let token = this.cookieService.get("token")
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    })
+    return this.http.post<NewLocation>(url, loc, {headers: headers})
     .toPromise()
     .then((res: any) => {
       console.log(res)
@@ -34,7 +40,7 @@ export class FetchDisponibilitesService {
     }).catch((e: any) => {
       console.log("catch")
       console.log(e)
-      return undefined
+      throw new Error('Uncaught Exception!')
     })
   }
 }

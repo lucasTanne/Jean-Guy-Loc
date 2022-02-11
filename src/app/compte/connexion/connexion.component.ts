@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PrintMenuService } from 'src/app/services/print-menu.service';
 import { CompteService } from '../services/compte.service';
 import { CookieService } from 'ngx-cookie-service';
+import { ComptePayload } from 'src/types/compte';
 
 @Component({
   selector: 'app-connexion',
@@ -23,12 +24,15 @@ export class ConnexionComponent implements OnInit {
   }
 
   connexion(login: string, password: string): void {
-    this.compteService.connexion(login, password).then((result: any) => {
-      if(result) {
-        this.cookieService.set('UserID', result)
+    let comptePayload: ComptePayload = {
+      username: login,
+      password: login
+    }
+    this.compteService.connexion(comptePayload).then((result: any) => {
+      if(result != undefined) {
         this.router.navigate(['/accueil'])
       } else {
-        alert('CONNECTION FAILED')
+        //error message
       }
     })
   }

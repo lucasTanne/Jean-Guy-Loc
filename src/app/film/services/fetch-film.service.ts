@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { CommentaireInfo, CommentToSend, ListCommentaireInfo } from 'src/types/commentaire';
 import { NewLocation, NewLocationStreaming } from 'src/types/disponibilites';
 import { FilmItem, FilmToList } from 'src/types/film-item';
@@ -10,7 +11,7 @@ import { Note, Notes, NoteToSend } from 'src/types/note';
 })
 export class FetchFilmService {
 
-  constructor(private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient, private cookieService: CookieService) { }
 
   getListFilms(): Promise<any> {
     let url = "http://localhost:3000/film/"
@@ -83,6 +84,12 @@ export class FetchFilmService {
 
   createNote(note: NoteToSend): Promise<any> {
     let url = "http://localhost:3000/note"
+    // let token = this.cookieService.get("token")
+    // const headers = new HttpHeaders({
+    //   'Content-Type': 'application/json',
+    //   'Authorization': `Bearer ${token}`
+    // })
+    // return this.http.post<Note>(url, note, {headers: headers})
     return this.http.post<Note>(url, note)
     .toPromise()
     .then((res: Note) => {
@@ -109,6 +116,12 @@ export class FetchFilmService {
 
   createComment(comment: CommentToSend): Promise<any> {
     let url = "http://localhost:3000/commentaire"
+    // let token = this.cookieService.get("token")
+    // const headers = new HttpHeaders({
+    //   'Content-Type': 'application/json',
+    //   'Authorization': `Bearer ${token}`
+    // })
+    // return this.http.post<any>(url, comment, {headers: headers})
     return this.http.post<any>(url, comment)
     .toPromise()
     .then((res: any) => {
@@ -122,7 +135,12 @@ export class FetchFilmService {
 
   createStreamingLocation(loc: NewLocationStreaming): Promise<any> {
     let url = "http://localhost:3000/locationstreaming"
-    return this.http.post<NewLocationStreaming>(url, loc)
+    let token = this.cookieService.get("token")
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    })
+    return this.http.post<NewLocationStreaming>(url, loc, {headers: headers})
     .toPromise()
     .then((res: any) => {
       console.log(res)

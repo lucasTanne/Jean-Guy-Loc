@@ -1,23 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
+import { ComptePayload, UserPayload } from 'src/types/compte';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompteService {
 
-  constructor(private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient, private cookieService: CookieService) { }
 
-  connexion(login: string, password: string): Promise<any> {
-    let url = "http://localhost:3000/utilisateur/{login}/{password}"
-    url = url.replace("{login}", login)
-    url = url.replace("{password}", password)
-    return this.http.get<any>(url)
+  connexion(payload: ComptePayload): Promise<any> {
+    let url = "http://localhost:3000/auth/login"
+    return this.http.post<UserPayload>(url, payload)
     .toPromise()
-    .then((res) => {
-      if(res == null) {
-        return -1
-      }
+    .then((res: UserPayload) => {
+      this.cookieService.set('UserID', res.idUtilisateur)
+      this.cookieService.set('token', res.access_token)
       return res.idUtilisateur
     }).catch((e) => {
       console.log("catch")
