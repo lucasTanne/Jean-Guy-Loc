@@ -9,53 +9,126 @@
             <div class="col-12 subheader"> Mes Informations </div>
             <hr class="hrSubPerso">
         <div class="row mt-4 mb-5 border rounded-3">
-            <form class="my-3 ">
+            <form *ngIf="modifInfo ; else unModifInfo" class="my-3 ">
                 <div class="form-group row my-2">
                 <label for="Nom" class="col-sm-3 text-center col-form-label">Nom</label>
                 <div class="col-lg-8">
-                    <input type="text"  class="form-control" id="Nom" value="">
+                    <input type="text"  class="form-control"  id="Nom" value="{{this.user.nom}}">
                 </div>
                 </div>
                 <div class="form-group row my-2">
                 <label for="Prenom" class="col-sm-3 text-center col-form-label">Prenom</label>
                 <div class="col-lg-8">
-                    <input type="text"  class="form-control" id="Prenom" value="">
+                    <input type="text"  class="form-control"  id="Prenom" value="{{this.user.prenom}}">
                 </div>
                 </div>
                 <div class="form-group row my-2">
                     <label for="Adresse" class="col-sm-3 text-center col-form-label">Adresse</label>
                     <div class="col-lg-8">
-                        <input type="text"  class="form-control" id="Adresse" value="">
+                        <input type="text"  class="form-control"  id="Adresse" value="{{this.user.adresse}}">
                     </div>
                 </div>
                 <div class="form-group row my-2">
                   <label for="Email" class="col-sm-3 text-center col-form-label">Email</label>
                   <div class="col-lg-8">
-                    <input type="email"  class="form-control" id="Email" value="">
+                    <input type="email"  class="form-control"  id="Email" value="">
                   </div>
                 </div>
-                
+                <div class="row text-center">
+                    <div class="col-2"></div>
+                    <div class="col-4">
+                        <button type="button" (click)=modifInfoUser() class="btn btn-lg btn-outline-secondary mt-4">Envoyer</button>
+                    </div>
+                    
+                    <div class="col-4">
+                        <button type="button" (click)=modifInfoUser() class="btn btn-lg btn-outline-secondary mt-4">Annuler</button>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
             </form>
+            <ng-template #unModifInfo>
+                <form class="my-3 ">
+                    <div class="form-group row my-2">
+                    <label for="Nom" class="col-sm-3 text-center col-form-label">Nom</label>
+                    <div class="col-lg-8">
+                        <input type="text"  class="form-control" disabled id="Nom" value="{{this.user.nom}}">
+                    </div>
+                    </div>
+                    <div class="form-group row my-2">
+                    <label for="Prenom" class="col-sm-3 text-center col-form-label">Prenom</label>
+                    <div class="col-lg-8">
+                        <input type="text"  class="form-control" disabled id="Prenom" value="{{this.user.prenom}}">
+                    </div>
+                    </div>
+                    <div class="form-group row my-2">
+                        <label for="Adresse" class="col-sm-3 text-center col-form-label">Adresse</label>
+                        <div class="col-lg-8">
+                            <input type="text"  class="form-control" disabled id="Adresse" value="{{this.user.adresse}}">
+                        </div>
+                    </div>
+                    <div class="form-group row my-2">
+                    <label for="Email" class="col-sm-3 text-center col-form-label">Email</label>
+                    <div class="col-lg-8">
+                        <input type="email"  class="form-control" disabled id="Email" value="">
+                    </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" (click)=modifInfoUser() class="btn btn-lg btn-outline-secondary mt-4">Modifier</button>
+                    </div>
+                </form>
+            </ng-template>
+            
         </div>  
      
         <hr class="hrPerso">
 
         <div class="row my-5 border rounded-3">
-            <form class="my-3">
+            <form *ngIf="modifPass ; else unModifPass" class="my-3">
                 <div class="form-group row my-2">
                 <label for="Pseudonyme" class="col-sm-3 text-center col-form-label">Pseudonyme</label>
                 <div class="col-lg-8">
-                    <input type="text"  class="form-control" id="Pseudonyme" value="">
+                    <input type="text"  class="form-control" id="Pseudonyme" value="{{this.user.pseudonyme}}">
                 </div>
                 </div>
                 <div class="form-group row my-2">
                 <label for="Password" class="col-sm-3 text-center col-form-label">Mot de Passe</label>
                 <div class="col-lg-8">
-                    <input type="text"  class="form-control" id="Password" value="">
+                    <input type="password"  class="form-control" id="Password" value="{{this.user.motDePasse}}">
                 </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-2"></div>
+                    <div class="col-4">
+                        <button type="button" (click)=modifInfoPass() class="btn btn-lg btn-outline-secondary mt-4">Envoyer</button>
+                    </div>
+                    
+                    <div class="col-4">
+                        <button type="button" (click)=modifInfoPass() class="btn btn-lg btn-outline-secondary mt-4">Annuler</button>
+                    </div>
+                    <div class="col-2"></div>
                 </div>
 
             </form>
+            <ng-template #unModifPass>
+                <form class="my-3">
+                    <div class="form-group row my-2">
+                    <label for="Pseudonyme" class="col-sm-3 text-center col-form-label">Pseudonyme</label>
+                    <div class="col-lg-8">
+                        <input type="text"  class="form-control" id="Pseudonyme" disabled value="{{this.user.pseudonyme}}">
+                    </div>
+                    </div>
+                    <div class="form-group row my-2">
+                    <label for="Password" class="col-sm-3 text-center col-form-label">Mot de Passe</label>
+                    <div class="col-lg-8">
+                        <input type="password"  class="form-control" id="Password" disabled value="{{this.user.motDePasse}}">
+                    </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" (click)=modifInfoPass() class="btn btn-lg btn-outline-secondary mt-4">Modifier</button>
+                    </div>
+
+                </form>
+            </ng-template>
         </div>
 
 
@@ -64,8 +137,37 @@
         <div class="col-6">
             <div class="col-12 subheader"> Mes Locations </div>
             <hr class="hrSubPerso">
-        </div>
 
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <span class="text-center w-100 customCollapse"> Locations en cours </span>
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                    
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <span class="text-center w-100 customCollapse">Mes anciennes locations</span>
+                    </button>
+                  </h2>
+                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+        </div>
     </div>
 
 
