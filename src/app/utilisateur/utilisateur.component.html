@@ -13,19 +13,19 @@
                 <div class="form-group row my-2">
                 <label for="Nom" class="col-sm-3 text-center col-form-label">Nom</label>
                 <div class="col-lg-8">
-                    <input type="text"  class="form-control"  id="Nom" value="{{this.user.nom}}">
+                    <input type="text"  class="form-control" #Nom id="Nom" value="{{this.user.nom}}">
                 </div>
                 </div>
                 <div class="form-group row my-2">
                 <label for="Prenom" class="col-sm-3 text-center col-form-label">Prenom</label>
                 <div class="col-lg-8">
-                    <input type="text"  class="form-control"  id="Prenom" value="{{this.user.prenom}}">
+                    <input type="text"  class="form-control" #Prenom id="Prenom" value="{{this.user.prenom}}">
                 </div>
                 </div>
                 <div class="form-group row my-2">
                     <label for="Adresse" class="col-sm-3 text-center col-form-label">Adresse</label>
                     <div class="col-lg-8">
-                        <input type="text"  class="form-control"  id="Adresse" value="{{this.user.adresse}}">
+                        <input type="text" class="form-control" #Adresse id="Adresse" value="{{this.user.adresse}}">
                     </div>
                 </div>
                 <div class="form-group row my-2">
@@ -37,7 +37,7 @@
                 <div class="row text-center">
                     <div class="col-2"></div>
                     <div class="col-4">
-                        <button type="button" (click)=modifInfoUser() class="btn btn-lg btn-outline-secondary mt-4">Envoyer</button>
+                        <button type="button" (click)="sendInfoUser(Adresse.value, Nom.value, Prenom.value)" class="btn btn-lg btn-outline-secondary mt-4">Envoyer</button>
                     </div>
                     
                     <div class="col-4">
@@ -45,6 +45,14 @@
                     </div>
                     <div class="col-2"></div>
                 </div>
+                
+                <div *ngIf="cannotSend;then error"></div>
+                <ng-template #error>
+                    <div class="alert alert-danger alert-dismissible fade show">
+                        <strong>Error!</strong> {{this.errorMessage}}
+                    </div>
+                </ng-template>
+
             </form>
             <ng-template #unModifInfo>
                 <form class="my-3 ">
@@ -87,19 +95,19 @@
                 <div class="form-group row my-2">
                 <label for="Pseudonyme" class="col-sm-3 text-center col-form-label">Pseudonyme</label>
                 <div class="col-lg-8">
-                    <input type="text"  class="form-control" id="Pseudonyme" value="{{this.user.pseudonyme}}">
+                    <input type="text"  class="form-control" #Pseudo id="Pseudonyme" value="{{this.user.pseudonyme}}">
                 </div>
                 </div>
                 <div class="form-group row my-2">
                 <label for="Password" class="col-sm-3 text-center col-form-label">Mot de Passe</label>
                 <div class="col-lg-8">
-                    <input type="password"  class="form-control" id="Password" value="{{this.user.motDePasse}}">
+                    <input type="password"  class="form-control" #Pass id="Password" value="{{this.user.motDePasse}}">
                 </div>
                 </div>
                 <div class="row text-center">
                     <div class="col-2"></div>
                     <div class="col-4">
-                        <button type="button" (click)=modifInfoPass() class="btn btn-lg btn-outline-secondary mt-4">Envoyer</button>
+                        <button type="button" (click)="sendInfoPass(Pseudo.value,Pass.value)" class="btn btn-lg btn-outline-secondary mt-4">Envoyer</button>
                     </div>
                     
                     <div class="col-4">

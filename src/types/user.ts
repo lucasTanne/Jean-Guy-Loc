@@ -5,3 +5,15 @@ export interface userProfil {
     nom: string,
     prenom: string
 }
+
+export interface putUserInfo {
+    adresse:string,
+    nom: string,
+    prenom: string
+}
+
+export interface putUserPass {
+    pseudonyme: string,
+    motDePasse: string,
+}
+
