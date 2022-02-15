@@ -9,32 +9,27 @@
         <button type="button" *ngFor="let film of films; let j = index" data-bs-target="#recipeCarousel" [ngClass]="{'active' : j == 0}" [attr.aria-current]="j == 0 ? true : false" [attr.data-bs-slide-to]="j" [attr.aria-label]="j" ></button>
       </div> -->
         <div class="carousel-inner" role="listbox">
-
-
           <div *ngFor="let film of films; let i = index" class="carousel-item" [ngClass]="{'active' : i == 0}">
             <div class="col-md-2">
               <div class="card">
                   <div class="card-img">
-                      <img [src]="film.lienImage" class="img-fluid">
-                      <div class="card-img-overlay">
-                        <div class="titreFilm">
-                        {{film.titre}}
+                      <a routerLink="/films/voirFilm/{{film.idFilm}}"  routerLinkActive="active">
+                        <img [src]="film.lienImage" class="img-fluid">
+                        <div class="card-img-overlay">
+                          <div class="titreFilm">
+                          {{film.titre}}
+                          </div>
                         </div>
-                      </div>
-                  </div>
-                  
+                      </a>
+                  </div>                  
               </div>
             </div>
           </div>
-          
-
-
         </div>
         <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="prev">
           <div class = "bg">
             <span class=" prev carousel-control-prev-icon" aria-hidden="true"></span>
-          </div>  
-         
+          </div>        
         </a>
         <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next">
           <div class = "bg">  
