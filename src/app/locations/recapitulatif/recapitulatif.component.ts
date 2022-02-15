@@ -41,7 +41,7 @@ export class RecapitulatifComponent implements OnInit {
     idUtilisateur: -1
   }
   public dateFin: string = ""
-  private idFilm: string | null = "-1"
+  public idFilm: string | null = "-1"
   public nbStarGold: number = 0
   public nbStarBlack: number = 5
   public errorMessage: string = ""
