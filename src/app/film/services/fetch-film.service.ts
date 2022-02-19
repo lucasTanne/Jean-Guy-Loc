@@ -67,9 +67,10 @@ export class FetchFilmService {
     })
   }
 
-  getFilmCommentaires(idFilm: number): Promise<any> {
-    let url = "http://localhost:3000/film/commentaires/{idFilm}"
+  getFilmCommentaires(idFilm: number, idUtilisateur: string): Promise<any> {
+    let url = "http://localhost:3000/film/commentaires/{idFilm}/{idUtilisateur}"
     url = url.replace("{idFilm}", idFilm.toString())
+    url = url.replace("{idUtilisateur}", idUtilisateur)
     return this.http.get<ListCommentaireInfo>(url)
     .toPromise()
     .then((res: ListCommentaireInfo) => {

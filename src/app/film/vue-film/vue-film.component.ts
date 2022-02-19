@@ -49,6 +49,7 @@ export class VueFilmComponent implements OnInit {
     nbCommentaires: -1,
     nbNotes: -1
   }
+  public idUtilisateur: string = "-1"
   public idFilm: string | null = ""
   public nbStarGold: number = 0
   public nbStarBlack: number = 5
@@ -69,6 +70,8 @@ export class VueFilmComponent implements OnInit {
     this.printMenuService.setPrintMenu(true)
     this.activatedRoute.paramMap.subscribe(param => {
       this.idFilm = param.get('id')
+      let idUtil = this.cookieService.get('UserID')
+      this.idUtilisateur = idUtil === "" ? "-1" : idUtil
       if(this.idFilm != null){
         this.fetchFilmService.getFilm(this.idFilm).then((res: FilmItem) => {
           this.film = res
@@ -78,7 +81,7 @@ export class VueFilmComponent implements OnInit {
             this.nbStarBlack = res[0]
             this.nbStarGold = res[1]
           })
-          this.fetchFilmService.getFilmCommentaires(this.film.idFilm).then((commentaires: ListCommentaireInfo) => {
+          this.fetchFilmService.getFilmCommentaires(this.film.idFilm, this.idUtilisateur).then((commentaires: ListCommentaireInfo) => {
             commentaires.infosCommentaires.forEach((com) => {
               let res = this.starsService.starsNumber(com.valeurNote)
               com.nbStarBlack = res[0]
