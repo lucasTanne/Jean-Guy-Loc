@@ -85,7 +85,7 @@
             </div>
         </div>
     </div>
-    <div *ngIf="this.cannotLocated || this.locationSuccess;then messageBlock"></div>
+    <div *ngIf="this.cannotLocated || this.printSuccess;then messageBlock"></div>
     <ng-template #messageBlock>
         <div class="row">
             <div class="col-2"></div>
@@ -94,11 +94,9 @@
                 <ng-template #error>
                     <app-error-template class="message" [printError]="cannotLocated" [errorConnexion]="false" [errorMessage]="errorMessage"></app-error-template>
                 </ng-template>
-                <div *ngIf="this.locationSuccess;then success"></div>
-                <ng-template #success>
-                    <div class="alert alert-success mossage" role="alert">
-                        La location à bien été enregistrer. Retour au menu dans {{this.timeLeft}} secondes.
-                    </div>
+                <div *ngIf="this.printSuccess;then successLoc"></div>
+                <ng-template #successLoc>
+                    <app-success-template class="message" [printSuccess]="printSuccess" [messageSuccess]="messageSuccess"></app-success-template>
                 </ng-template>
             </div>
             <div class="col-3"></div>

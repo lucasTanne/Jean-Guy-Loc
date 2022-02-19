@@ -58,7 +58,8 @@ export class VueFilmComponent implements OnInit {
   public errorConnexion: boolean = false
   public errorMessage: string = ""
   public cannotLocate: boolean = false
-  public located: boolean = false
+  public printSuccess: boolean = false
+  public messageSuccess: string = ""
 
   constructor(private printMenuService: PrintMenuService,
       private router: Router,
@@ -179,7 +180,8 @@ export class VueFilmComponent implements OnInit {
         idUtilisateur: parseInt(idUtilisateur)
       }
       this.fetchFilmService.createStreamingLocation(locationPayload).then((res) => {
-        this.located = true
+        this.messageSuccess = "La location à bien été enregistrer."
+        this.printSuccess = true
       }).catch((e) => {
         this.errorConnexion = false
         this.errorMessage = "Erreur lors de la location en streaming de ce film."

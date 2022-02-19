@@ -46,7 +46,8 @@ export class RecapitulatifComponent implements OnInit {
   public nbStarBlack: number = 5
   public errorMessage: string = ""
   public cannotLocated: boolean = false
-  public locationSuccess: boolean = false
+  public printSuccess: boolean = false
+  public messageSuccess: string = ""
   public timeLeft: number = 3
 
   constructor(private printMenuService: PrintMenuService, private activatedRoute: ActivatedRoute, private fetchFilmService: FetchFilmService, private cookieService: CookieService, private disponibiliteService: FetchDisponibilitesService, private router: Router, private starsService: StarsService) { 
@@ -93,7 +94,8 @@ export class RecapitulatifComponent implements OnInit {
 
   public createLocation(): void{
     this.disponibiliteService.createPhysicalLocation(this.locationPayload).then((res) => {
-      this.locationSuccess = true
+      this.messageSuccess = "La location à bien été enregistrer. Retour au menu dans " + this.timeLeft + " secondes."
+      this.printSuccess = true
       setTimeout(() => {
         this.router.navigate(['films'])
       }, this.timeLeft * 1000)

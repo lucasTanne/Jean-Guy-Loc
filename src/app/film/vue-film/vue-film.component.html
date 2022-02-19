@@ -64,11 +64,9 @@
                     <ng-template #errorLoc>
                         <app-error-template class="loc" [printError]="cannotLocate" [errorConnexion]="errorConnexion" [errorMessage]="errorMessage"></app-error-template>
                     </ng-template>
-                    <div *ngIf="this.located;then successLoc"></div>
+                    <div *ngIf="this.printSuccess;then successLoc"></div>
                     <ng-template #successLoc>
-                        <div class="alert alert-success loc" role="alert">
-                            La location à bien été enregistrer.
-                        </div>
+                        <app-success-template class="loc" [printSuccess]="printSuccess" [messageSuccess]="messageSuccess"></app-success-template>
                     </ng-template>
                 </div>
             </div>

@@ -1,0 +1,6 @@
+<div *ngIf="this.printSuccess;then successTemplate"></div>
+<ng-template #successTemplate>
+    <div class="alert alert-success" role="alert">
+        {{this.messageSuccess}}
+    </div>
+</ng-template>
