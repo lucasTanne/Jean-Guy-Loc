@@ -41,14 +41,14 @@
                     </div>
                     
                     <div class="col-4">
-                        <button type="button" (click)=modifInfoUser() class="btn btn-lg btn-outline-secondary mt-4">Annuler</button>
+                        <button type="button" (click)="modifInfoUser()" class="btn btn-lg btn-outline-secondary mt-4">Annuler</button>
                     </div>
                     <div class="col-2"></div>
                 </div>
                 
                 <div *ngIf="cannotSend;then error"></div>
                 <ng-template #error>
-                    <div class="alert alert-danger alert-dismissible fade show">
+                    <div class="alert alert-danger alert-dismissible fade show mx-5 mt-4">
                         <strong>Error!</strong> {{this.errorMessage}}
                     </div>
                 </ng-template>
@@ -81,8 +81,14 @@
                     </div>
                     </div>
                     <div class="text-center">
-                        <button type="button" (click)=modifInfoUser() class="btn btn-lg btn-outline-secondary mt-4">Modifier</button>
+                        <button type="button" (click)="modifInfoUser()" class="btn btn-lg btn-outline-secondary mt-4">Modifier</button>
                     </div>
+                    <div *ngIf="cannotSend;then error"></div>
+                    <ng-template #error>
+                        <div class="alert alert-danger alert-dismissible fade show mx-5 mt-4">
+                            <strong>Error!</strong> {{this.errorMessage}}
+                        </div>
+                    </ng-template>
                 </form>
             </ng-template>
             
@@ -111,10 +117,16 @@
                     </div>
                     
                     <div class="col-4">
-                        <button type="button" (click)=modifInfoPass() class="btn btn-lg btn-outline-secondary mt-4">Annuler</button>
+                        <button type="button" (click)="modifInfoPass()" class="btn btn-lg btn-outline-secondary mt-4">Annuler</button>
                     </div>
                     <div class="col-2"></div>
                 </div>
+                <div *ngIf="cannotSendPass;then errorPass"></div>
+                <ng-template #errorPass>
+                    <div class="alert alert-danger alert-dismissible fade show mx-5 mt-4">
+                        <strong>Error!</strong> {{this.errorMessagePass}}
+                    </div>
+                </ng-template>
 
             </form>
             <ng-template #unModifPass>
@@ -132,8 +144,14 @@
                     </div>
                     </div>
                     <div class="text-center">
-                        <button type="button" (click)=modifInfoPass() class="btn btn-lg btn-outline-secondary mt-4">Modifier</button>
+                        <button type="button" (click)="modifInfoPass()" class="btn btn-lg btn-outline-secondary mt-4">Modifier</button>
                     </div>
+                    <div *ngIf="cannotSendPass;then errorPass"></div>
+                    <ng-template #errorPass>
+                        <div class="alert alert-danger alert-dismissible fade show mx-5 mt-4">
+                            <strong>Error!</strong> {{this.errorMessagePass}}
+                        </div>
+                    </ng-template>
 
                 </form>
             </ng-template>
@@ -146,28 +164,295 @@
             <div class="col-12 subheader"> Mes Locations </div>
             <hr class="hrSubPerso">
 
-            <div class="accordion" id="accordionExample">
+            <div class="accordion mb-3" id="accordionExample">
                 <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <h2 class="accordion-header" id="headingOne">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <span class="text-center w-100 customCollapse"> Locations à venir </span>
+                      </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+
+
+
+                        <div class="accordion" id="accordionExampleOne">
+                            <div class="accordion-item">
+                              <h2 class="accordion-header" id="headingOneOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOneOne" aria-expanded="true" aria-controls="collapseOneOne">
+                                  Locations physique
+                                </button>
+                              </h2>
+                              <div id="collapseOneOne" class="accordion-collapse collapse " aria-labelledby="headingOneOne" data-bs-parent="#accordionExampleOne">
+                                <div class="accordion-body overflow-auto location">
+                                  <div *ngIf="films.filmsPhysique.LocPhysiqueCome.length != 0; else elseOneOne">
+                                    <div *ngFor="let film of films.filmsPhysique.LocPhysiqueCome" class="row">
+                                        <div class="col-4">
+                                          <img class="img-thumbnail" src="{{film.affiche}}">
+                                        </div>
+                                        <div class="col-8 my-3 align-self-center">
+                                            <div class="row my-2">
+                                              <div class ="col fw-bolder fst-italic">
+                                                {{film.titre}}
+                                              </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                              <div class="col-5 fw-bolder" >
+                                                Date de location
+                                              </div>
+                                              <div class="col-7">
+                                                {{film.dateDeLocation}}
+                                              </div>
+                                            </div>
+                                            <div class="row my-2">
+                                              <div class="col-5 fw-bolder">
+                                                Film rendu
+                                              </div>
+                                              <div class="col-7">
+                                                {{film.estRendu ? "Oui" : "Non"}}
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  </div>
+                                  <ng-template #elseOneOne>
+                                    <div class="text-center">Aucune location</div>
+                                  </ng-template>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="accordion-item">
+                              <h2 class="accordion-header" id="headingTwoOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwoOne" aria-expanded="false" aria-controls="collapseTwoOne">
+                                  Locations streaming
+                                </button>
+                              </h2>
+                              <div id="collapseTwoOne" class="accordion-collapse collapse" aria-labelledby="headingTwoOne" data-bs-parent="#accordionExampleOne">
+                                <div class="accordion-body overflow-auto location">
+                                  <div *ngIf="films.filmsStreaming.LocStreamingCome.length != 0; else elseOneTwo">
+                                    <div *ngFor="let film of films.filmsStreaming.LocStreamingCome" class="row">
+                                        <div class="col-4">
+                                          <img class="img-thumbnail" src="{{film.affiche}}">
+                                        </div>
+                                        <div class="col-8 my-3 align-self-center">
+                                          <div class="row my-2">
+                                            <div class ="col fw-bolder fst-italic">
+                                              {{film.titre}}
+                                            </div>
+                                          </div>
+                                          <div class="row mt-2">
+                                            <div class="col-5 fw-bolder" >
+                                              Date de location
+                                            </div>
+                                            <div class="col-7">
+                                              {{film.dateDeLocation}}
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div>
+                                  </div>
+                                    <ng-template #elseOneTwo>
+                                      <div class="text-center">Aucune location</div>
+                                    </ng-template>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        
+                      </div>
+                    </div>
+                  </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                       <span class="text-center w-100 customCollapse"> Locations en cours </span>
                     </button>
                   </h2>
-                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                  <div id="collapseTwo" class="accordion-collapse collapse " aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                     
+                      <div class="accordion" id="accordionExampleOne">
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingTwoOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwoOne" aria-expanded="true" aria-controls="collapseTwoOne">
+                              Locations physique
+                            </button>
+                          </h2>
+                          <div id="collapseTwoOne" class="accordion-collapse collapse " aria-labelledby="headingTwoOne" data-bs-parent="#accordionExampleOne">
+                            <div class="accordion-body overflow-auto location">
+                                <div *ngIf="films.filmsPhysique.LocPhysiqueNow.length != 0; else elseTwoOne">
+                                  <div *ngFor="let film of films.filmsPhysique.LocPhysiqueNow" class="row">
+                                    <div class="col-4">
+                                      <img class="img-thumbnail" src="{{film.affiche}}">
+                                    </div>
+                                    <div class="col-8 my-3 align-self-center">
+                                      <div class="row my-2">
+                                        <div class ="col fw-bolder fst-italic">
+                                          {{film.titre}}
+                                        </div>
+                                      </div>
+                                      <div class="row mt-2">
+                                        <div class="col-5 fw-bolder" >
+                                          Date de location
+                                        </div>
+                                        <div class="col-7">
+                                          {{film.dateDeLocation}}
+                                        </div>
+                                      </div>
+                                      <div class="row my-2">
+                                        <div class="col-5 fw-bolder">
+                                          Film rendu
+                                        </div>
+                                        <div class="col-7">
+                                          {{film.estRendu ? "Oui" : "Non"}}
+                                        </div>
+                                      </div>
+                                  </div>
+                                  </div>
+                                </div>
+                              <ng-template #elseTwoOne>
+                                <div class="text-center">Aucune location</div>
+                              </ng-template>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingTwoTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwoTwo" aria-expanded="false" aria-controls="collapseTwoTwo">
+                              Locations streaming
+                            </button>
+                          </h2>
+                          <div id="collapseTwoTwo" class="accordion-collapse collapse" aria-labelledby="headingTwoTwo" data-bs-parent="#accordionExampleOne">
+                            <div class="accordion-body overflow-auto location">
+                              <div *ngIf="films.filmsStreaming.LocStreamingNow.length != 0; else elseTwoTwo">
+                                <div *ngFor="let film of films.filmsStreaming.LocStreamingNow" class="row">
+                                    <div class="col-4">
+                                      <img class="img-thumbnail" src="{{film.affiche}}">
+                                    </div>
+                                    <div class="col-8 my-3 align-self-center">
+                                      <div class="row my-2">
+                                        <div class ="col fw-bolder fst-italic">
+                                          {{film.titre}}
+                                        </div>
+                                      </div>
+                                      <div class="row mt-2">
+                                        <div class="col-5 fw-bolder" >
+                                          Date de location
+                                        </div>
+                                        <div class="col-7">
+                                          {{film.dateDeLocation}}
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+                              </div>
+                                <ng-template #elseTwoTwo>
+                                  <div class="text-center">Aucune location</div>
+                                </ng-template>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
                     </div>
                   </div>
                 </div>
                 <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingTwo">
-                    <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                         <span class="text-center w-100 customCollapse">Mes anciennes locations</span>
                     </button>
                   </h2>
-                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                       
+                      <div class="accordion" id="accordionExampleOne">
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingThreeOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThreeOne" aria-expanded="true" aria-controls="collapseThreeOne">
+                              Locations physique
+                            </button>
+                          </h2>
+                          <div id="collapseThreeOne" class="accordion-collapse collapse " aria-labelledby="headingThreeOne" data-bs-parent="#accordionExampleOne">
+                            <div class="accordion-body overflow-auto location">
+                              <div *ngIf="films.filmsPhysique.LocPhysiqueOlder.length != 0; else elseThreeOne">
+                              <div *ngFor="let film of films.filmsPhysique.LocPhysiqueOlder" class="row">
+                                  <div class="col-4">
+                                    <img class="img-thumbnail" src="{{film.affiche}}">
+                                  </div>
+                                  <div class="col-8 my-3 align-self-center">
+                                    <div class="row my-2">
+                                      <div class ="col fw-bolder fst-italic">
+                                        {{film.titre}}
+                                      </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                      <div class="col-5 fw-bolder" >
+                                        Date de location
+                                      </div>
+                                      <div class="col-7">
+                                        {{film.dateDeLocation}}
+                                      </div>
+                                    </div>
+                                    <div class="row my-2">
+                                      <div class="col-5 fw-bolder">
+                                        Film rendu
+                                      </div>
+                                      <div class="col-7">
+                                        {{film.estRendu ? "Oui" : "Non"}}
+                                      </div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                              <ng-template #elseThreeOne>
+                                <div class="text-center">Aucune location</div>
+                              </ng-template>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingThreeTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThreeTwo" aria-expanded="false" aria-controls="collapseThreeTwo">
+                              Locations streaming
+                            </button>
+                          </h2>
+                          <div id="collapseThreeTwo" class="accordion-collapse collapse" aria-labelledby="headingThreeTwo" data-bs-parent="#accordionExampleOne">
+                            <div class="accordion-body overflow-auto location">
+                              <div *ngIf="films.filmsStreaming.LocStreamingOlder.length != 0; else elseThreeTwo">  
+                              <div *ngFor="let film of films.filmsStreaming.LocStreamingOlder" class="row">
+                                    <div class="col-4">
+                                      <img class="img-thumbnail" src="{{film.affiche}}">
+                                    </div>
+                                    <div class="col-8 my-3 align-self-center">
+                                      <div class="row my-2">
+                                        <div class ="col fw-bolder fst-italic">
+                                          {{film.titre}}
+                                        </div>
+                                      </div>
+                                      <div class="row mt-2">
+                                        <div class="col-5 fw-bolder" >
+                                          Date de location
+                                        </div>
+                                        <div class="col-7">
+                                          {{film.dateDeLocation}}
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+                              </div>
+                                <ng-template #elseThreeTwo>
+                                  <div class="text-center">Aucune location</div>
+                                </ng-template>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
                     </div>
                   </div>
                 </div>

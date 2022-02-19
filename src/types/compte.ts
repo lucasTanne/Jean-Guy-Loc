@@ -7,3 +7,8 @@ export interface UserPayload {
     access_token: string,
     idUtilisateur: string
 }
+
+export interface UserPayload {
+    access_token: string,
+    idUtilisateur: string
+}

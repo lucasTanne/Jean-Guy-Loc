@@ -26,7 +26,7 @@ export class ConnexionComponent implements OnInit {
   connexion(login: string, password: string): void {
     let comptePayload: ComptePayload = {
       username: login,
-      password: login
+      password: password
     }
     this.compteService.connexion(comptePayload).then((result: any) => {
       if(result != undefined) {

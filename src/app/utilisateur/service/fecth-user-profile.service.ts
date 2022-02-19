@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { putUserInfo, putUserPass, userProfil } from 'src/types/user';
+import { FilmsSPLoue, putUserInfo, putUserPass, userProfil } from 'src/types/user';
 
 @Injectable({
   providedIn: 'root'
@@ -62,6 +62,20 @@ export class FecthUserProfileService {
       console.log("catch")
       console.log(e)
       return -1
+    })
+  }
+
+  getFilmsLoue(idUser :number): Promise<any>{
+    let url = "http://localhost:3000/utilisateur/profil/getFilmsByUser/{id}"
+    url = url.replace("{id}", idUser.toString());
+    return this.http.get<FilmsSPLoue>(url)
+    .toPromise()
+    .then((res: FilmsSPLoue) => {
+      return res;
+    }).catch((e) => {
+      console.log("catch")
+      console.log(e)
+      return undefined
     })
   }
 
