@@ -54,10 +54,10 @@ export class VueFilmComponent implements OnInit {
   public nbStarGold: number = 0
   public nbStarBlack: number = 5
   public noteComment: number = -1  
-  public cannotSend: boolean = false
+  public printError: boolean = false
+  public errorConnexion: boolean = false
   public errorMessage: string = ""
   public cannotLocate: boolean = false
-  public errorLocation: string = ""
   public located: boolean = false
 
   constructor(private printMenuService: PrintMenuService,
@@ -116,14 +116,17 @@ export class VueFilmComponent implements OnInit {
 
   public sendComment(comment: string){
     let idUtilisateur = this.cookieService.get('UserID')
-    console.log(idUtilisateur)
     if(idUtilisateur == undefined || idUtilisateur == "") {
+      this.errorConnexion = true
       this.errorMessage = "Pour envoyer un commentaire vous devez être connecté !"
-      this.cannotSend = true
+      this.printError = true
       return
     }
     if(this.noteComment != -1 && comment != "" && this.idFilm != null) {
-      this.cannotSend = false;
+      this.errorConnexion = false
+      this.errorMessage = ""
+      this.printError = false
+
       let userID = idUtilisateur
       let noteToSend: NoteToSend = {
         idFilm: parseInt(this.idFilm),
@@ -149,19 +152,23 @@ export class VueFilmComponent implements OnInit {
         console.log("Cannot create note")
       })
     } else {
+      this.errorConnexion = false
       this.errorMessage = "Pour envoyer votre commentaire, vous devez écrire un message et selectionner une note !"
-      this.cannotSend = true
+      this.printError = true
     }
   }
 
   public streamingLocation(): void{
     let idUtilisateur = this.cookieService.get('UserID')
     if(idUtilisateur == undefined || idUtilisateur == "") {
-      this.errorLocation = "Pour Louer ce film vous devez être connecté !"
+      this.errorConnexion = true
+      this.errorMessage = "Pour Louer ce film vous devez être connecté !"
       this.cannotLocate = true
       return
     }
-    this.cannotLocate = false
+    this.errorConnexion = false
+    this.errorMessage = ""
+    this.printError = false
     if(this.idFilm != null) {
       let date = new Date()
       let currentDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
@@ -174,8 +181,9 @@ export class VueFilmComponent implements OnInit {
       this.fetchFilmService.createStreamingLocation(locationPayload).then((res) => {
         this.located = true
       }).catch((e) => {
-        this.errorLocation = "Erreur lors de la location en streaming de ce film."
-        this.cannotLocate = true
+        this.errorConnexion = false
+        this.errorMessage = "Erreur lors de la location en streaming de ce film."
+        this.printError = true
       })
     }
   }

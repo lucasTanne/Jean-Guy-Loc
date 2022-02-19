@@ -14,11 +14,9 @@
             </ng-container>
         </tbody>
     </table>
-    <div *ngIf="this.alreadyReserved;then error"></div>
+    <div *ngIf="this.printError;then error"></div>
     <ng-template #error>
-        <div class="alert alert-danger alert-dismissible fade show">
-            <strong>Error!</strong> {{this.errorMessage}}
-        </div>
+        <app-error-template [printError]="printError" [errorConnexion]="errorConnexion" [errorMessage]="errorMessage"></app-error-template>
     </ng-template>
 </div>
 

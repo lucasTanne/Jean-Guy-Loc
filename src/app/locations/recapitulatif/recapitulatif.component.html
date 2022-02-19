@@ -92,9 +92,7 @@
             <div class="col">
                 <div *ngIf="this.cannotLocated;then error"></div>
                 <ng-template #error>
-                    <div class="alert alert-danger alert-dismissible fade show message">
-                        <strong>Error!</strong> {{this.errorMessage}}
-                    </div>
+                    <app-error-template class="message" [printError]="cannotLocated" [errorConnexion]="false" [errorMessage]="errorMessage"></app-error-template>
                 </ng-template>
                 <div *ngIf="this.locationSuccess;then success"></div>
                 <ng-template #success>

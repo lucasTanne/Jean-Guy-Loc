@@ -48,9 +48,7 @@
                 
                 <div *ngIf="cannotSend;then error"></div>
                 <ng-template #error>
-                    <div class="alert alert-danger alert-dismissible fade show mx-5 mt-4">
-                        <strong>Error!</strong> {{this.errorMessage}}
-                    </div>
+                    <app-error-template [printError]="cannotSend" [errorConnexion]="errorConnexion" [errorMessage]="errorMessage"></app-error-template>
                 </ng-template>
 
             </form>
@@ -85,9 +83,7 @@
                     </div>
                     <div *ngIf="cannotSend;then error"></div>
                     <ng-template #error>
-                        <div class="alert alert-danger alert-dismissible fade show mx-5 mt-4">
-                            <strong>Error!</strong> {{this.errorMessage}}
-                        </div>
+                      <app-error-template [printError]="cannotSend" [errorConnexion]="errorConnexion" [errorMessage]="errorMessage"></app-error-template>
                     </ng-template>
                 </form>
             </ng-template>
@@ -123,9 +119,7 @@
                 </div>
                 <div *ngIf="cannotSendPass;then errorPass"></div>
                 <ng-template #errorPass>
-                    <div class="alert alert-danger alert-dismissible fade show mx-5 mt-4">
-                        <strong>Error!</strong> {{this.errorMessagePass}}
-                    </div>
+                    <app-error-template [printError]="cannotSendPass" [errorConnexion]="errorConnexion" [errorMessage]="errorMessage"></app-error-template>
                 </ng-template>
 
             </form>
@@ -148,9 +142,7 @@
                     </div>
                     <div *ngIf="cannotSendPass;then errorPass"></div>
                     <ng-template #errorPass>
-                        <div class="alert alert-danger alert-dismissible fade show mx-5 mt-4">
-                            <strong>Error!</strong> {{this.errorMessagePass}}
-                        </div>
+                        <app-error-template [printError]="cannotSendPass" [errorConnexion]="errorConnexion" [errorMessage]="errorMessage"></app-error-template>
                     </ng-template>
 
                 </form>

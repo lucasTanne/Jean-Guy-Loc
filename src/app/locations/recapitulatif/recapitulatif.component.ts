@@ -94,14 +94,12 @@ export class RecapitulatifComponent implements OnInit {
   public createLocation(): void{
     this.disponibiliteService.createPhysicalLocation(this.locationPayload).then((res) => {
       this.locationSuccess = true
-      console.log(this.cannotLocated)
-      console.log(this.locationSuccess)
       setTimeout(() => {
         this.router.navigate(['films'])
       }, this.timeLeft * 1000)
     }).catch((e) => {
-      this.cannotLocated = true
       this.errorMessage = "An error was occured when creating the location, retry later..."
+      this.cannotLocated = true
     })
   }
 

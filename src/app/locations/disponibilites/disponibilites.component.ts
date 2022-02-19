@@ -20,10 +20,17 @@ export class DisponibilitesComponent {
     end: new Date(1970, 1, 1),
     dispo: false
   }]
-  public alreadyReserved: boolean = false
-  public errorMessage: string = "Error: This film is already reserved at this date, choose another date."
+  public errorConnexion: boolean = false
+  public printError: boolean = false
+  public errorMessage: string = ""
 
-  constructor(private printMenuService: PrintMenuService, private activatedRoute: ActivatedRoute, private fetchFilmService: FetchFilmService, private fetchDisponibiliteService: FetchDisponibilitesService, private cookieService: CookieService, private router: Router) {
+  constructor(private printMenuService: PrintMenuService,
+    private activatedRoute: ActivatedRoute,
+    private fetchFilmService: FetchFilmService,
+    private fetchDisponibiliteService: FetchDisponibilitesService,
+    private cookieService: CookieService,
+    private router: Router
+  ) {
     this.printMenuService.setPrintMenu(true)
     this.activatedRoute.paramMap.subscribe(param => {
       this.idFilm = param.get('idFilm')
@@ -40,13 +47,19 @@ export class DisponibilitesComponent {
 
   public selectLocationDate(disponibilite: Disponibilite): void{
     if(!disponibilite.dispo){
-      this.alreadyReserved = true
+      this.errorConnexion = false
+      this.errorMessage = "Error: This film is already reserved at this date, choose another date."
+      this.printError = true
       return
     }
-    this.alreadyReserved = false
+    this.errorMessage = ""
+    this.printError = false
     let idUtilisateur: string = this.cookieService.get('UserID')
     if(idUtilisateur === ""){
-      // error message with link to connexion
+      this.errorConnexion = true
+      this.errorMessage = "Pour envoyer un commentaire vous devez être connecté !"
+      this.printError = true
+      return
     }
     let newLocation: NewLocation = {
       dateDeLocation: disponibilite.start,

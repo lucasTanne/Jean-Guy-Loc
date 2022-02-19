@@ -9,6 +9,8 @@ import { FetchFilmService } from './services/fetch-film.service';
 import { FilterGenreComponent } from './filter/filter-genre/filter-genre.component';
 import { FilterNoteComponent } from './filter/filter-note/filter-note.component';
 import { FilterDateComponent } from './filter/filter-date/filter-date.component';
+import { ComponentTemplateModule } from '../component-template/component-template.module';
+import { ErrorTemplateComponent } from '../component-template/error-template/error-template.component';
 
 export const FilmsRouteList: Routes = [
   { path: '', component: ListeFilmsComponent },
@@ -26,7 +28,8 @@ export const FilmsRouteList: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(FilmsRouteList)
+    RouterModule.forChild(FilmsRouteList),
+    ComponentTemplateModule
   ],
   providers: [
     FetchFilmService

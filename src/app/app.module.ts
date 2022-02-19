@@ -12,6 +12,7 @@ import { AccueilModule } from './accueil/accueil.module';
 import { LocationsModule } from './locations/locations.module';
 import { ContactComponent } from './contact/contact/contact.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
+import { ComponentTemplateModule } from './component-template/component-template.module';
 
 
 
@@ -30,7 +31,8 @@ import { UtilisateurComponent } from './utilisateur/utilisateur.component';
     CompteModule,
     FontAwesomeModule,
     AccueilModule,
-    LocationsModule
+    LocationsModule,
+    ComponentTemplateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

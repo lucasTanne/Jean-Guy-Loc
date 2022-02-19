@@ -62,9 +62,7 @@
                     </div>
                     <div *ngIf="this.cannotLocate;then errorLoc"></div>
                     <ng-template #errorLoc>
-                        <div class="alert alert-danger alert-dismissible fade show loc">
-                            <strong>Error!</strong> {{this.errorLocation}}
-                        </div>
+                        <app-error-template class="loc" [printError]="cannotLocate" [errorConnexion]="errorConnexion" [errorMessage]="errorMessage"></app-error-template>
                     </ng-template>
                     <div *ngIf="this.located;then successLoc"></div>
                     <ng-template #successLoc>
@@ -146,11 +144,9 @@
                 <h3 class="section">Votre Commentaire: </h3>
                 <textarea #comment></textarea>
                 <button type="button" class="btn btn-outline-dark btn-lg btnCom" (click)="sendComment(comment.value)">Valider</button>
-                <div *ngIf="cannotSend;then error"></div>
+                <div *ngIf="printError;then error"></div>
                 <ng-template #error>
-                    <div class="alert alert-danger alert-dismissible fade show">
-                        <strong>Error!</strong> {{this.errorMessage}}
-                    </div>
+                    <app-error-template [printError]="printError" [errorConnexion]="errorConnexion" [errorMessage]="errorMessage"></app-error-template>
                 </ng-template>
             </div>
         </div>

@@ -1,0 +1,10 @@
+<div *ngIf="printError;then errorTemplate"></div>
+<ng-template #errorTemplate>
+    <div class="alert alert-danger alert-dismissible fade show">
+        <strong>Error!</strong> {{this.errorMessage}}
+        <div *ngIf="errorConnexion;then connexionTemplate"></div>
+        <ng-template #connexionTemplate>
+            <a routerLink="/connexion"  routerLinkActive="active">Cliquez ici pour vous connecter !</a>
+        </ng-template>
+    </div>
+</ng-template>

@@ -14,8 +14,9 @@ export class UtilisateurComponent implements OnInit {
 
   public cannotSend: boolean = false
   public cannotSendPass: boolean = false
+  public errorConnexion: boolean = false
   public errorMessage: string = ""
-  public errorMessagePass: string = ""
+  // public errorMessagePass: string = ""
   
   public user: userProfil= {
     pseudonyme: "",
@@ -58,11 +59,6 @@ export class UtilisateurComponent implements OnInit {
         LocStreamingCome : this.filmStreaming
     }
   }
-
- 
-
-
-
   modifInfo = false;
   modifPass = false;
 
@@ -84,11 +80,6 @@ export class UtilisateurComponent implements OnInit {
       }
     }).catch((a:any) => {
     })
-
-
-
-
-
   }
 
   ngOnInit(): void {
@@ -99,13 +90,11 @@ export class UtilisateurComponent implements OnInit {
     let idUtilisateur = this.cookieService.get('UserID')
     console.log(idUtilisateur)
     if(idUtilisateur == undefined || idUtilisateur == ""|| idUtilisateur == null) {
-
+      this.errorConnexion = true
       this.errorMessage = "Pour envoyer un commentaire vous devez être connecté !"
       this.cannotSend = true
       return
     }
-
-
     if(this.modifInfo){
       this.modifInfo = false;
     } else {
@@ -118,7 +107,8 @@ export class UtilisateurComponent implements OnInit {
     let idUtilisateur = this.cookieService.get('UserID')
     console.log(idUtilisateur)
     if(idUtilisateur == undefined || idUtilisateur == "") {
-      this.errorMessage = "Vous n'êtes pas connecté !"
+      this.errorConnexion = true
+      this.errorMessage = "Pour envoyer un commentaire vous devez être connecté !"
       this.cannotSend = true
       return
     }
@@ -139,8 +129,8 @@ export class UtilisateurComponent implements OnInit {
     let idUtilisateur = this.cookieService.get('UserID')
     console.log(idUtilisateur)
     if(idUtilisateur == undefined || idUtilisateur == ""|| idUtilisateur == null) {
-
-      this.errorMessagePass = "Vous n'êtes pas connecté !"
+      this.errorConnexion = true
+      this.errorMessage = "Pour envoyer un commentaire vous devez être connecté !"
       this.cannotSendPass = true
       return
     }
@@ -155,7 +145,8 @@ export class UtilisateurComponent implements OnInit {
     let idUtilisateur = this.cookieService.get('UserID')
     console.log(idUtilisateur)
     if(idUtilisateur == undefined || idUtilisateur == "") {
-      this.errorMessage = "Vous n'êtes pas connecté !"
+      this.errorConnexion = true
+      this.errorMessage = "Pour envoyer un commentaire vous devez être connecté !"
       this.cannotSend = true
       return
     }
@@ -170,8 +161,4 @@ export class UtilisateurComponent implements OnInit {
       console.log("Cannot create comment")
     })
   }
-
-  
-
-
 }
