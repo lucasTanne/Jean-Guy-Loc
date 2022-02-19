@@ -6,12 +6,13 @@
     <nav class="nav nav-pills nav-justified">
         <a routerLink="/films"  routerLinkActive="active" class=" menuItem nav-item nav-link">Nos films</a>
         <a routerLink="/liste-films/films-a-venir" class="menuItem nav-item nav-link">Films à venir</a>
-        <a routerLink="/nous/renseignements" class="menuItem nav-item nav-link">Renseignements</a>
+        <a routerLink="/contact" class="menuItem nav-item nav-link">Renseignements</a>
         <div *ngIf="this.connected;then deconnexion; else connexion"></div>
         <ng-template #connexion>
-            <a routerLink="/connexion" class="menuItem nav-item nav-link">Se connecter</a>
+            <a routerLink="/compte" class="menuItem nav-item nav-link"  (click)="printMenu()">Se connecter</a>
         </ng-template>
         <ng-template #deconnexion>
+            <a routerLink="/profil" class="menuItem nav-item nav-link" >Profil</a>
             <a routerLink="#" class="menuItem nav-item nav-link" (click)="userDeconnexion()">Se déconnecter</a>
         </ng-template>
     </nav>

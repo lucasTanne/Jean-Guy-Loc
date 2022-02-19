@@ -4,8 +4,9 @@ import { DisponibilitesComponent } from './disponibilites/disponibilites.compone
 import { RouterModule, Routes } from '@angular/router';
 import { RecapitulatifComponent } from './recapitulatif/recapitulatif.component';
 
+
 export const FilmsRouteList: Routes = [
-  { path: '', component: DisponibilitesComponent },
+  { path: '', component: DisponibilitesComponent},
   { path: 'recapitulatif/:idFilm', component: RecapitulatifComponent }
 ]
 
