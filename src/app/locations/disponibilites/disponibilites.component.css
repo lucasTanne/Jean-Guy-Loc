@@ -15,19 +15,55 @@
 .titre {
     font-family: "BalooTamma" ;
     font-size : 3rem;
-    margin-bottom: 0rem;
-    margin-top: 2%;
-    margin-bottom: 1%;
+
 }
 
 .phrase {
     font-family: "BalooTamma" ;
     font-size : 2rem;
-    margin-bottom: 5%;
+
 }
 
 td{
     text-align: center;
     font-size: 1.2rem;
     cursor: pointer;
+    padding: 1.20rem 0.5rem;
 }
+
+tr td:hover{
+    --bs-table-accent-bg: rgba(233, 233, 233, 0.671) !important ;
+}
+
+.table-hover > tbody > tr:hover>*  {
+    --bs-table-accent-bg: none;
+}
+
+
+.notDispo{
+    color :#bbbbbbad !important
+}
+
+.hrPerso {
+    width: 100px;
+    margin: 0 auto 1.5rem auto;
+    color: #e6ae44;
+    height: 3px;
+    opacity: 1;
+  }
+
+  .header {
+    height : 3rem;
+    font-weight: bold;
+    font-family: "BalooTamma";
+    font-size : 2rem;
+    margin-top: 1.25rem;
+  }
+
+  tbody > tr {
+      background-color: white !important;
+      --bs-table-striped-bg: white;
+      border: 1px solid rgb(234, 234, 234);
+  }
+
+ 

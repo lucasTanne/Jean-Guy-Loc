@@ -55,6 +55,6 @@ export class DisponibilitesComponent {
       idUtilisateur: parseInt(idUtilisateur)
     }
     this.cookieService.set('locationPayload', JSON.stringify(newLocation))
-    this.router.navigate(['recapitulatif/' + this.idFilm]);
+    this.router.navigate(['/recapitulatif/' + this.idFilm]);
   }
 }

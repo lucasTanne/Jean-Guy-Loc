@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'profil', component: UtilisateurComponent, canActivate: [ AuthGuard ]},
   { path: '', loadChildren: () => import('src/app/accueil/accueil.module').then((m) => m.AccueilModule)},
   { path: 'location/:idFilm', loadChildren: () => import('src/app/locations/locations.module').then((m) => m.LocationsModule), canActivate: [ AuthGuard ]},
-  { path: '**', redirectTo: ''}
+  //{ path: '**', redirectTo: ''}
 ]
 
 @NgModule({
