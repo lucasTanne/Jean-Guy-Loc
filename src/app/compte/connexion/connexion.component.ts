@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PrintMenuService } from 'src/app/services/print-menu.service';
-import { CompteService } from '../services/compte.service';
-import { CookieService } from 'ngx-cookie-service';
 import { ComptePayload } from 'src/types/compte';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-connexion',
@@ -13,30 +12,27 @@ import { ComptePayload } from 'src/types/compte';
 export class ConnexionComponent implements OnInit {
 
   constructor(private printMenuService: PrintMenuService, 
-      private compteService: CompteService, 
-      private route: ActivatedRoute, 
-      private router: Router,
-      private cookieService: CookieService) {
-    this.printMenuService.setPrintMenu(false)
+      private authService : AuthService,
+      private router: Router) {
+    
   }
 
   ngOnInit(): void {
+    if (this.authService.estAuthentifie()){
+      this.router.navigate(['']);
+    }
+    
   }
 
-  connexion(login: string, password: string): void {
+  ngAfterViewInit(){
+    this.printMenuService.setPrintMenu(false)
+  }
+
+  async connexion(login: string, password: string): Promise<void> {
     let comptePayload: ComptePayload = {
       username: login,
       password: password
     }
-    this.compteService.connexion(comptePayload).then((result: any) => {
-      if(result != undefined) {
-        this.printMenuService.setConnected(true)
-        this.router.navigate(['/accueil'])
-      } else {
-        this.printMenuService.setConnected(false)
-        //error message
-      }
-    })
+    await this.authService.connexion(comptePayload);
   }
-
 }
