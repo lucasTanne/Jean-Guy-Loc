@@ -6,6 +6,7 @@ import { ConnexionComponent } from './connexion/connexion.component';
 import { PrintMenuService } from '../services/print-menu.service';
 import { CompteService } from './services/compte.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ComponentTemplateModule } from '../component-template/component-template.module';
 
 export const CompteRouteList: Routes = [
   { path: '', redirectTo: 'connexion', pathMatch: 'full' },
@@ -21,7 +22,8 @@ export const CompteRouteList: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(CompteRouteList),
-    HttpClientModule
+    HttpClientModule,
+    ComponentTemplateModule 
   ],
   providers: [
     PrintMenuService,

@@ -51,3 +51,8 @@ export interface FilmLoueStreaming{
     titre : string
 }
 
+export interface UserPseudonyme{
+    pseudonyme: string 
+}
+
+

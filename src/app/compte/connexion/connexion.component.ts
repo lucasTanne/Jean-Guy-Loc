@@ -17,6 +17,10 @@ export class ConnexionComponent implements OnInit {
     
   }
 
+  public cannotConnect: boolean = false
+  public errorConnexion: boolean = false
+  public errorMessage: string = ""
+
   ngOnInit(): void {
     if (this.authService.estAuthentifie()){
       this.router.navigate(['']);
@@ -29,6 +33,13 @@ export class ConnexionComponent implements OnInit {
   }
 
   async connexion(login: string, password: string): Promise<void> {
+    
+    if(login == "" || password == ""){
+      this.errorConnexion = false
+      this.errorMessage = "Impossible de se connecter"
+      this.cannotConnect = true
+    }
+
     let comptePayload: ComptePayload = {
       username: login,
       password: password

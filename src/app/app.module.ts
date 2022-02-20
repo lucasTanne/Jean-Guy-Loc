@@ -13,6 +13,7 @@ import { LocationsModule } from './locations/locations.module';
 import { ContactComponent } from './contact/contact/contact.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { ComponentTemplateModule } from './component-template/component-template.module';
+import { CommentaireUtilisateurComponent } from './commentaire-utilisateur/commentaire-utilisateur.component';
 
 
 
@@ -22,7 +23,8 @@ import { ComponentTemplateModule } from './component-template/component-template
     TopPageComponent,
     BottomPageComponent,
     ContactComponent,
-    UtilisateurComponent 
+    UtilisateurComponent,
+    CommentaireUtilisateurComponent 
   ],
   imports: [
     BrowserModule,

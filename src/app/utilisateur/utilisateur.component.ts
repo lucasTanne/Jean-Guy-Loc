@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { faSleigh } from '@fortawesome/free-solid-svg-icons';
 import { CookieService } from 'ngx-cookie-service';
 import { FilmsSPLoue, FilmLouePhysique, FilmLoueStreaming,putUserInfo, putUserPass, userProfil } from 'src/types/user';
 import { PrintMenuService } from '../services/print-menu.service';
@@ -16,6 +15,7 @@ export class UtilisateurComponent implements OnInit {
   public cannotSendPass: boolean = false
   public errorConnexion: boolean = false
   public errorMessage: string = ""
+  public dateFinLoc = new Date(1970, 1, 1)
   // public errorMessagePass: string = ""
   
   public user: userProfil= {

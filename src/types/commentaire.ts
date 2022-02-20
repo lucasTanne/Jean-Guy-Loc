@@ -27,3 +27,14 @@ export interface CommentToSend {
     dateCommentaire: string,
     contenu: string
 }
+
+export interface CommentaireUser {
+    note: number,
+    commentaire: string,
+    date: Date,
+    idFilm: number,
+    nomFilm: string,
+    lienImage: string,
+    gold : number,
+    black : number
+}

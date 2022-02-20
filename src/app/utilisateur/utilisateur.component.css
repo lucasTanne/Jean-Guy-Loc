@@ -60,3 +60,33 @@
   .location {
     max-height: 425px;
   }
+
+  .btnProfil:hover{
+    color: white;
+    background-color: #ebc47a;
+    border: #ebc47a 1px solid;
+  }
+
+  .btnProfil{
+    font-family:  "BalooTamma";
+    font-weight: 600;
+    font-size : 1.2rem;
+    padding-top: 0.6rem;
+    border: #ebc47a 1px solid;
+    color :#cea760
+  }
+
+.btnRegarder {
+  font-family: "BalooTamma";
+  font-weight: 600;
+  font-size: 1rem;
+  padding-bottom: 0.3rem;
+  border: #ebc47a 1px solid;
+  color :#cea760
+}
+
+.btnRegarder:hover{
+  color: white;
+  background-color: #ebc47a;
+  border: #ebc47a 1px solid;
+}

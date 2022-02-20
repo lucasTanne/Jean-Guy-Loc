@@ -37,11 +37,11 @@
                 <div class="row text-center">
                     <div class="col-2"></div>
                     <div class="col-4">
-                        <button type="button" (click)="sendInfoUser(Adresse.value, Nom.value, Prenom.value)" class="btn btn-lg btn-outline-secondary mt-4">Envoyer</button>
+                        <button type="button" (click)="sendInfoUser(Adresse.value, Nom.value, Prenom.value)" class="btn btn-lg btn-outline-secondary mt-4 btnProfil">Envoyer</button>
                     </div>
                     
                     <div class="col-4">
-                        <button type="button" (click)="modifInfoUser()" class="btn btn-lg btn-outline-secondary mt-4">Annuler</button>
+                        <button type="button" (click)="modifInfoUser()" class="btn btn-lg btn-outline-secondary mt-4 btnProfil">Annuler</button>
                     </div>
                     <div class="col-2"></div>
                 </div>
@@ -79,7 +79,7 @@
                     </div>
                     </div>
                     <div class="text-center">
-                        <button type="button" (click)="modifInfoUser()" class="btn btn-lg btn-outline-secondary mt-4">Modifier</button>
+                        <button type="button" (click)="modifInfoUser()" class="btn btn-lg btn-outline-secondary mt-4 btnProfil">Modifier</button>
                     </div>
                     <div *ngIf="cannotSend;then error"></div>
                     <ng-template #error>
@@ -109,11 +109,11 @@
                 <div class="row text-center">
                     <div class="col-2"></div>
                     <div class="col-4">
-                        <button type="button" (click)="sendInfoPass(Pseudo.value,Pass.value)" class="btn btn-lg btn-outline-secondary mt-4">Envoyer</button>
+                        <button type="button" (click)="sendInfoPass(Pseudo.value,Pass.value)" class="btn btn-lg btn-outline-secondary mt-4 btnProfil">Envoyer</button>
                     </div>
                     
                     <div class="col-4">
-                        <button type="button" (click)="modifInfoPass()" class="btn btn-lg btn-outline-secondary mt-4">Annuler</button>
+                        <button type="button" (click)="modifInfoPass()" class="btn btn-lg btn-outline-secondary mt-4 btnProfil">Annuler</button>
                     </div>
                     <div class="col-2"></div>
                 </div>
@@ -138,7 +138,7 @@
                     </div>
                     </div>
                     <div class="text-center">
-                        <button type="button" (click)="modifInfoPass()" class="btn btn-lg btn-outline-secondary mt-4">Modifier</button>
+                        <button type="button" (click)="modifInfoPass()" class="btn btn-lg btn-outline-secondary mt-4 btnProfil">Modifier</button>
                     </div>
                     <div *ngIf="cannotSendPass;then errorPass"></div>
                     <ng-template #errorPass>
@@ -214,42 +214,6 @@
                               </div>
                             </div>
 
-                            <div class="accordion-item">
-                              <h2 class="accordion-header" id="headingTwoOne">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwoOne" aria-expanded="false" aria-controls="collapseTwoOne">
-                                  Locations streaming
-                                </button>
-                              </h2>
-                              <div id="collapseTwoOne" class="accordion-collapse collapse" aria-labelledby="headingTwoOne" data-bs-parent="#accordionExampleOne">
-                                <div class="accordion-body overflow-auto location">
-                                  <div *ngIf="films.filmsStreaming.LocStreamingCome.length != 0; else elseOneTwo">
-                                    <div *ngFor="let film of films.filmsStreaming.LocStreamingCome" class="row">
-                                        <div class="col-4">
-                                          <img class="img-thumbnail" src="{{film.affiche}}">
-                                        </div>
-                                        <div class="col-8 my-3 align-self-center">
-                                          <div class="row my-2">
-                                            <div class ="col fw-bolder fst-italic">
-                                              {{film.titre}}
-                                            </div>
-                                          </div>
-                                          <div class="row mt-2">
-                                            <div class="col-5 fw-bolder" >
-                                              Date de location
-                                            </div>
-                                            <div class="col-7">
-                                              {{film.dateDeLocation}}
-                                            </div>
-                                          </div>
-                                        </div>
-                                    </div>
-                                  </div>
-                                    <ng-template #elseOneTwo>
-                                      <div class="text-center">Aucune location</div>
-                                    </ng-template>
-                                </div>
-                              </div>
-                            </div>
                           </div>
 
                         
@@ -331,11 +295,24 @@
                                         </div>
                                       </div>
                                       <div class="row mt-2">
-                                        <div class="col-5 fw-bolder" >
+                                        <div class="col-6 fw-bolder" >
                                           Date de location
                                         </div>
-                                        <div class="col-7">
+                                        <div class="col-6">
                                           {{film.dateDeLocation}}
+                                        </div>
+                                      </div>
+                                      <div class="row mt-2">
+                                        <div class="col-6 fw-bolder" >
+                                          Durée de location
+                                        </div>
+                                        <div class="col-6">
+                                          {{film.duree}}
+                                        </div>
+                                      </div>
+                                      <div class="row my-2">
+                                        <div class ="col text-center">
+                                          <button type="button" (click)="modifInfoPass()" class="btn btn-lg btn-outline-secondary mt-3 btnRegarder">Regarder</button>
                                         </div>
                                       </div>
                                     </div>

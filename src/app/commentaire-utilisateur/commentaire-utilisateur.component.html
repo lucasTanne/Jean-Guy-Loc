@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="row mx-0 text-center mb-3">
+        <div class="col-12 header"> Commentaires  </div>
+        <hr class="hrPerso">
+    </div>
+
+    <div class="row my-3">
+        <div class="col-4"></div>
+        <div class="col-1">
+            <img src="assets/cpt.png" class="img-thumbnail border-0" />
+        </div>
+        <div class="col-3 align-self-center">
+            <div class="row text-center ">
+                <div class="col-12 subTitle">
+                    {{this.pseudonyme.pseudonyme}}
+                </div>
+                <div class="col-12 ">
+                    {{this.commentaires.length}} commentaires
+                </div>
+            </div>
+        </div>
+        <div class="col-5"></div>
+    </div>
+    <div class="row my-1">
+        <div *ngIf="this.commentaires.length != 0; else none">
+            <div *ngFor="let commentaire of this.commentaires.slice().reverse(); let isLast  = last;" [ngClass]="{'border-bottom': isLast != true }" class="row my-2">
+                <div class="col-2 mb-2">
+
+                  <img class="img-thumbnail" src="{{commentaire.lienImage}}">
+                </div>
+                <div class="col-10 my-3 align-self-center">
+                    <div class="row my-2" >
+                        
+                        <img class="star_img mx-0 px-0" *ngFor="let n of [].constructor(commentaires.gold); let i = index" src="../../assets/star.png" />
+                        <img class="star_img mx-0 px-0" *ngFor="let n of [].constructor(commentaires.black); let i = index" src="../../assets/star_black.png" />
+                    </div>
+
+                    <div class="row my-2">
+                      <div class ="col fw-bolder fst-italic">
+                        {{commentaire.nomFilm}}
+                      </div>
+                    </div>
+                    <div class="row mt-2">
+                      <div class="col-2 fw-bolder" >
+                        Date 
+                      </div>
+                      <div class="col-10">
+                        {{commentaire.date}}
+                      </div>
+                    </div>
+                    <div class="row my-2">
+                      <div class="col-2 fw-bolder">
+                        Commentaire
+                      </div>
+                      <div class="col-10">
+                        {{commentaire.commentaire}}
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <ng-template #none>
+            <div class="text-center">Aucune location</div>
+          </ng-template>
+    </div>
+
+</div>

@@ -1,0 +1,28 @@
+.hrPerso {
+    width: 100px;
+    margin: 0 auto 1.25rem auto;
+    color: #e6ae44;
+    height: 3px;
+    opacity: 1;
+  }
+
+  .header {
+    height : 3rem;
+    font-weight: bold;
+    font-family: "BalooTamma";
+    font-size : 2rem;
+    margin-top: 1.25rem;
+  }
+
+  .subTitle {
+    height : 2rem;
+    font-weight: normal;
+    font-family: "BalooTamma";
+    font-size : 2rem;
+
+  }
+
+img.star_img {
+    height: 1.5rem;
+    width: 1.5rem;
+}
