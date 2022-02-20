@@ -20,7 +20,13 @@ export interface FilmToList {
     titre: string,
     lienImage: string,
     synopsis: string,
-    moyenne: number
+    moyenne: number,
+    categories: number[],
+    type: number
+}
+
+export interface SliceFilmToList {
+    objFilm: FilmToList
 }
 export interface FilmCaroussel {
     idFilm: number,

@@ -2,8 +2,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { ChangeCommentary, CommentaireInfo, CommentToSend, ListCommentaireInfo } from 'src/types/commentaire';
+import { Category } from 'src/types/categories';
 import { NewLocation, NewLocationStreaming } from 'src/types/disponibilites';
-import { FilmItem, FilmToList } from 'src/types/film-item';
+import { FilmItem, FilmToList, SliceFilmToList } from 'src/types/film-item';
 import { Note, Notes, NoteToSend } from 'src/types/note';
 
 @Injectable({
@@ -28,9 +29,9 @@ export class FetchFilmService {
 
   getListFilmsWithAverage(): Promise<any> {
     let url = "http://localhost:3000/film/listeFilms/getFilmsWithNote"
-    return this.http.get<FilmToList[]>(url)
+    return this.http.get<SliceFilmToList[]>(url)
     .toPromise()
-    .then((res: FilmToList[]) => {
+    .then((res: SliceFilmToList[]) => {
       return res
     }).catch((e) => {
       console.log("catch get films with average")
@@ -162,6 +163,19 @@ export class FetchFilmService {
       console.log(res)
       return res
     }).catch((e: any) => {
+      console.log("catch")
+      console.log(e)
+      return undefined
+    })
+  }
+
+  getListCategories(): Promise<any> {
+    let url = "http://localhost:3000/categorie/"
+    return this.http.get<Category[]>(url)
+    .toPromise()
+    .then((res) => {
+      return res
+    }).catch((e) => {
       console.log("catch")
       console.log(e)
       return undefined

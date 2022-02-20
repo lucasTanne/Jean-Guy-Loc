@@ -9,11 +9,11 @@
 </div>
 <div class="row">
     <div class="col-2">
-        <app-filter></app-filter>
+        <app-filter (filterGenre)="filterGenre($event)" (filterNote)="filterNote($event)"></app-filter>
     </div>
     <div class="col">
         <div class="container">
-            <div *ngFor="let film of listeFilms">
+            <div *ngFor="let film of listFilmsToPrint">
                 <div class="row">
                     <div class="col-2">
                         <div class="row">

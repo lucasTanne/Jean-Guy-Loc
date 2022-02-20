@@ -8,3 +8,7 @@ button {
 input[id^="Genre"] {
     margin-right: 5%;
 }
+
+.genre {
+    max-height: 425px;
+}

@@ -1,8 +1,8 @@
 <div class="filter">
-  <app-filter-genre></app-filter-genre>
+  <app-filter-genre (filtreGenre)="addFilterGenre($event)"></app-filter-genre>
 </div>
 <div class="filter">
-  <app-filter-note></app-filter-note>
+  <app-filter-note (filtreNote)="addFilterNote($event)"></app-filter-note>
 </div>
 <div class="filter">
   <app-filter-date></app-filter-date>
