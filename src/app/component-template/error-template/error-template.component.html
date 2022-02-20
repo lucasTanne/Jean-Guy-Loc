@@ -4,7 +4,7 @@
         <strong>Error!</strong> {{this.errorMessage}}
         <div *ngIf="errorConnexion;then connexionTemplate"></div>
         <ng-template #connexionTemplate>
-            <a routerLink="/connexion"  routerLinkActive="active">Cliquez ici pour vous connecter !</a>
+            <a routerLink="/connexion"  routerLinkActive="active" (click)="redirectionPage()">Cliquez ici pour vous connecter !</a>
         </ng-template>
     </div>
 </ng-template>

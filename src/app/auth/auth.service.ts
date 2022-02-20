@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { ComptePayload } from 'src/types/compte';
+import { LastPagePayload } from 'src/types/page';
 import { CompteService } from '../compte/services/compte.service';
 import { PrintMenuService } from '../services/print-menu.service';
 
@@ -31,7 +32,14 @@ export class AuthService {
       console.log(result)
       if(result != undefined) {
         this.printMenuService.setConnected(true)
-        this.route.navigate([''])
+        let payload: string = this.cookieService.get('lastPage')
+        if(payload != "") {
+          let redirectionPage: LastPagePayload = JSON.parse(payload)
+          this.cookieService.delete('lastPage')
+          this.route.navigate([redirectionPage.url])
+        } else {
+          this.route.navigate([''])
+        }
       } else {
         this.printMenuService.setConnected(false)
         //error message

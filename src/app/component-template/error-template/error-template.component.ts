@@ -1,4 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { LastPagePayload } from 'src/types/page';
 
 @Component({
   selector: 'app-error-template',
@@ -10,8 +13,13 @@ export class ErrorTemplateComponent {
   @Input() errorConnexion: boolean = false
   @Input() errorMessage: string = ""
 
-  constructor() {
+  constructor(private router: Router, private cookieService: CookieService) {
   }
 
-
+  public redirectionPage(): void {
+    let payload: LastPagePayload = {
+      url: this.router.url
+    }
+    this.cookieService.set("lastPage", JSON.stringify(payload))
+  }
 }
