@@ -42,14 +42,16 @@ export class CommentaireUtilisateurComponent implements OnInit {
         this.fecthCommUser.getPseudonyme(+this.idUser).then((pseudo: UserPseudonyme) => {
           this.pseudonyme = pseudo;
         })
-        this.fecthCommUser.getComm(+this.idUser).then((res: CommentaireUser[]) => {
-          this.commentaires = res;
-          for (const CommentaireUser of res ) {
-            let tab = this.starService.starsNumber(CommentaireUser.note);
-            CommentaireUser.black = tab [0];
-            CommentaireUser.gold = tab [0];
-          }
-        })
+          this.fecthCommUser.getComm(+this.idUser).then((res: CommentaireUser[]) => {
+            res.forEach((com: CommentaireUser) => {
+              let tab = this.starService.starsNumber(com.note)
+              com.black = tab[0]
+              com.gold = tab[1]
+              console.log(tab)
+            })
+            this.commentaires = res
+           console.log(this.commentaires)
+          })
       }
     })
     
