@@ -14,6 +14,7 @@ import { ContactComponent } from './contact/contact/contact.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { ComponentTemplateModule } from './component-template/component-template.module';
 import { CommentaireUtilisateurComponent } from './commentaire-utilisateur/commentaire-utilisateur.component';
+import { VisuFilmComponent } from './visu-film/visu-film.component';
 
 
 
@@ -24,7 +25,8 @@ import { CommentaireUtilisateurComponent } from './commentaire-utilisateur/comme
     BottomPageComponent,
     ContactComponent,
     UtilisateurComponent,
-    CommentaireUtilisateurComponent 
+    CommentaireUtilisateurComponent,
+    VisuFilmComponent 
   ],
   imports: [
     BrowserModule,
