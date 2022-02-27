@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: '', loadChildren: () => import('src/app/accueil/accueil.module').then((m) => m.AccueilModule)},
   { path: 'location/:idFilm', loadChildren: () => import('src/app/locations/locations.module').then((m) => m.LocationsModule), canActivate: [ AuthGuard ]},
   { path: 'streaming', component: VisuFilmComponent},
+  { path : 'admin', loadChildren: () => import('src/app/admin/admin.module').then((m) => m.AdminModule) }
   //{ path: '**', redirectTo: ''}
 ]
 
