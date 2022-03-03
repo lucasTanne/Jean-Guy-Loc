@@ -148,7 +148,7 @@ export class VueFilmComponent implements OnInit {
           contenu: comment
         }
         this.fetchFilmService.createComment(commentToSend).then((res: any) => {
-          // window.location.reload()
+          window.location.reload()
           console.log(res)
         }).catch((e) => {
           console.log("Cannot create comment")
