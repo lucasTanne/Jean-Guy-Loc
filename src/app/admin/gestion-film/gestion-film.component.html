@@ -25,7 +25,7 @@
                 <div class="form-group row my-2">
                     <label for="Adresse" class="col-sm-3 text-center col-form-label">Duree</label>
                     <div class="col-lg-8">
-                        <input type="text" class="form-control" #Adresse id="Duree" value="">
+                        <input type="number" pattern="[0-9]+" class="form-control" #Duree id="Duree" value="">
                     </div>
                 </div>
                 <div class="form-group row my-2">
@@ -43,20 +43,25 @@
                 <div class="form-group row my-2">
                 <label for="Email" class="col-sm-3 text-center col-form-label">Date de sortie</label>
                 <div class="col-lg-8">
-                    <input type="text"  class="form-control"  #Date id="Date" value="">
+                    <input type="date"  class="form-control"  #Date id="Date" value="">
                 </div>
+                
                 </div>
                 <div class="form-group row my-2">
                 <label for="Email" class="col-sm-3 text-center col-form-label">Synopsis</label>
                 <div class="col-lg-8">
                     <textarea maxlength="2048"  class="form-control" #Synopsis id="Synopsis" value=""></textarea>
                 </div>
+                <div *ngIf="cannotSend;then error"></div>
+                <ng-template #error>
+                    <app-error-template [printError]="cannotSend" [errorConnexion]="errorConnexion" [errorMessage]="errorMessage"></app-error-template>
+                </ng-template>
 
                 </div>
                 <div class="row text-center">
                     <div class="col-2"></div>
                     <div class="col-4">
-                        <button type="button"  class="btn btn-lg btn-outline-secondary mt-4 btnProfil">Envoyer</button>
+                        <button type="button" (click)="sendCreateFilm(Titre.value, Select.value, +Duree.value, Image.value, Bande.value, Date.value, Synopsis.value)" class="btn btn-lg btn-outline-secondary mt-4 btnProfil">Envoyer</button>
                     </div>
                     <div class="col-2"></div>
                 </div>

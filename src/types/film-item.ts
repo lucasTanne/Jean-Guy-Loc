@@ -33,3 +33,13 @@ export interface TypeFilm {
     nomType: string
 }
 
+
+export interface Film {
+    idTypeFilm : number 
+    titre : string
+    lienImage : string
+    lienBandeAnnonce : string
+    synopsis : string
+    duree : number
+    dateSortie : string
+}
