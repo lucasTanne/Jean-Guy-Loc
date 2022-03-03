@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { TypeFilm } from 'src/types/film-item';
+import { Film, TypeFilm } from 'src/types/film-item';
 
 @Injectable({
   providedIn: 'root'
@@ -21,4 +21,20 @@ export class FetchGestionFilmService {
       return undefined
     })
   }
+
+  sendFilm(film: Film): Promise<any> {
+    let url = "http://localhost:3000/film"
+    return this.http.post<Film>(url, film)
+    .toPromise()
+    .then((res: Film) => {
+      return res
+    }).catch((e) => {
+      console.log("catch")
+      console.log(e)
+      return undefined
+    })
+  }
+
+
+
 }

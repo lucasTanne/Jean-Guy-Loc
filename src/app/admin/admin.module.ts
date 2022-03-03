@@ -5,6 +5,7 @@ import { GestionFilmComponent } from './gestion-film/gestion-film.component';
 import { RenduFilmComponent } from './rendu-film/rendu-film.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ListeFilmAdminComponent } from './liste-film-admin/liste-film-admin.component';
+import { ComponentTemplateModule } from '../component-template/component-template.module';
 
 export const CompteRouteList: Routes = [
   { path: '', component: AccueilAdminComponent, pathMatch: 'full'  },
@@ -23,6 +24,7 @@ export const CompteRouteList: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(CompteRouteList),
+    ComponentTemplateModule
   ]
 })
 export class AdminModule { }

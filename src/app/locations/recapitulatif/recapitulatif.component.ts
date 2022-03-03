@@ -94,6 +94,7 @@ export class RecapitulatifComponent implements OnInit {
   }
 
   public createLocation(): void{
+    console.log(this.locationPayload.dateDeLocation)
     this.disponibiliteService.createPhysicalLocation(this.locationPayload).then((res) => {
       this.messageSuccess = "La location à bien été enregistrer. Retour au menu dans " + this.timeLeft + " secondes."
       this.printSuccess = true
