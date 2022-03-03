@@ -76,6 +76,11 @@ textarea {
   margin-top: 2%;
 }
 
+.titleComment {
+  font-size: 1.5em;
+  margin-bottom: 10%;
+}
+
 
 @font-face {
   font-family: "font-icon";

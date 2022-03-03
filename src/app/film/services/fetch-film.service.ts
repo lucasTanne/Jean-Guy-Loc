@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { CommentaireInfo, CommentToSend, ListCommentaireInfo } from 'src/types/commentaire';
+import { ChangeCommentary, CommentaireInfo, CommentToSend, ListCommentaireInfo } from 'src/types/commentaire';
 import { NewLocation, NewLocationStreaming } from 'src/types/disponibilites';
 import { FilmItem, FilmToList } from 'src/types/film-item';
 import { Note, Notes, NoteToSend } from 'src/types/note';
@@ -142,6 +142,21 @@ export class FetchFilmService {
       'Authorization': `Bearer ${token}`
     })
     return this.http.post<NewLocationStreaming>(url, loc, {headers: headers})
+    .toPromise()
+    .then((res: any) => {
+      console.log(res)
+      return res
+    }).catch((e: any) => {
+      console.log("catch")
+      console.log(e)
+      return undefined
+    })
+  }
+
+  modifyCommentary(idCommentaire: number, payload: ChangeCommentary): Promise<any> {
+    let url = "http://localhost:3000/commentaire/{idCommentaire}"
+    url = url.replace("{idCommentaire}", idCommentaire.toString())
+    return this.http.put<any>(url, payload)
     .toPromise()
     .then((res: any) => {
       console.log(res)

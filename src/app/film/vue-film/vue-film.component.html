@@ -140,8 +140,14 @@
         <div class="collapse" id="collapseCommentaire">
             <div class="card card-body">
                 <h3 class="section">Votre Commentaire: </h3>
-                <textarea #comment></textarea>
-                <button type="button" class="btn btn-outline-dark btn-lg btnCom" (click)="sendComment(comment.value)">Valider</button>
+                <textarea #comment>{{this.firstCommentaire.textCom}}</textarea>
+                <div *ngIf="this.firstCommentaire.idCom === -1;then btnValide else btnModifier"></div>
+                <ng-template #btnValide>
+                    <button type="button" class="btn btn-outline-dark btn-lg btnCom" (click)="sendComment(comment.value)">Valider</button>
+                </ng-template>
+                <ng-template #btnModifier>
+                    <button type="button" class="btn btn-outline-dark btn-lg btnCom" (click)="sendComment(comment.value)">Modifier</button>
+                </ng-template>
                 <div *ngIf="printError;then error"></div>
                 <ng-template #error>
                     <app-error-template [printError]="printError" [errorConnexion]="errorConnexion" [errorMessage]="errorMessage"></app-error-template>
@@ -164,6 +170,54 @@
             <div class="row comment-title">
                 <h3>Commentaires</h3>
             </div>
+            <div *ngIf="this.firstCommentaire.idUtil !== -1;then FirstCommentaire"></div>
+            <ng-template #FirstCommentaire>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col">
+                        <h2 class="titleComment">Votre commentaire</h2>
+                    </div>
+                    <div class="col"></div>
+                </div>
+                <div class="row commentaire">
+                    <div class="col-3">
+                        <div class="row">
+                            <div class="col-6">
+                                <img src="assets/cpt.png" class="img-thumbnail" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <p>{{this.firstCommentaire.username}}</p>
+                        </div>
+                        <div class="row">
+                            <a href="/commentaire/{{this.firstCommentaire.idUtil}}">Voir les autres commentaires</a>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <img class="star_img" *ngFor="let n of [].constructor(this.firstCommentaire.nbStarGold); let i = index" src="assets/star.png" />
+                                        <img class="star_img" *ngFor="let n of [].constructor(this.firstCommentaire.nbStarBlack); let i = index" src="assets/star_black.png" />
+                                    </div>
+                                    <div class="col-2">
+                                        <p>{{this.firstCommentaire.valeurNote}}</p>
+                                    </div>
+                                    <div class="col">
+                                        <p>Publié le {{this.firstCommentaire.dateCom}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col"></div>
+                        </div>
+                        <div class="row">
+                            <p>{{this.firstCommentaire.textCom}}</p>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <hr/>
             <div class="row commentaire" *ngFor="let commentaire of commentaires.infosCommentaires">
                 <div class="col-3">
                     <div class="row">

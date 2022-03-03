@@ -8,7 +8,9 @@ export interface Commentaire {
 export interface ListCommentaireInfo {
     infosCommentaires: CommentaireInfo[],
     nbNotes: number,
-    nbCommentaires: number
+    nbCommentaires: number,
+    idCommUtilisateur: number,
+    idNoteUtilisateur: number
 }
 
 export interface CommentaireInfo {
@@ -37,4 +39,11 @@ export interface CommentaireUser {
     lienImage: string,
     gold : number,
     black : number
+}
+
+export interface ChangeCommentary {
+    idNote: string,
+    dateCommentaire: string,
+    contenu: string,
+    valeurNote: number
 }
