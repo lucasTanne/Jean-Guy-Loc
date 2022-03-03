@@ -138,14 +138,18 @@ export class VueFilmComponent implements OnInit {
       this.fetchFilmService.createNote(noteToSend).then((idNote: number) => {
         console.log(idNote)
         let date = new Date()
-        let dateCom = date.getFullYear() + "-" + date.getMonth()+1 + "-" + date.getDate()
+        let month: number = date.getMonth() + 1
+        let m: string = month.toString().length === 2 ? month.toString() : "0" + month.toString()
+        let d: string = date.getDate().toString().length === 2 ? date.getDate().toString() : "0" + date.getDate().toString()
+        let dateCom = date.getFullYear() + "-" + m + "-" + d
         let commentToSend: CommentToSend = {
           idNote: idNote,
           dateCommentaire: dateCom,
           contenu: comment
         }
         this.fetchFilmService.createComment(commentToSend).then((res: any) => {
-          window.location.reload()
+          // window.location.reload()
+          console.log(res)
         }).catch((e) => {
           console.log("Cannot create comment")
         })
@@ -172,7 +176,10 @@ export class VueFilmComponent implements OnInit {
     this.printError = false
     if(this.idFilm != null) {
       let date = new Date()
-      let currentDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
+      let month: number = date.getMonth() + 1
+      let m: string = month.toString().length === 2 ? month.toString() : "0" + month.toString()
+      let d: string = date.getDate().toString().length === 2 ? date.getDate().toString() : "0" + date.getDate().toString()
+      let currentDate = date.getFullYear() + "-" + m + "-" + d
       let locationPayload : NewLocationStreaming = {
         dateDeLocation: currentDate,
         duree: 7,

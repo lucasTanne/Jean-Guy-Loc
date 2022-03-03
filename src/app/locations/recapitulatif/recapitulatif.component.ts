@@ -73,7 +73,8 @@ export class RecapitulatifComponent implements OnInit {
       date.setDate(date.getDate() + this.locationPayload.duree)
       let m: number = date.getMonth() + 1
       let month: string = m.toString().length === 2 ? m.toString() : "0" + m
-      this.dateFin = date.getFullYear() + "-" + month + "-" + date.getDate()
+      let d: string = date.getDate().toString().length === 2 ? date.getDate().toString() : "0" + date.getDate().toString()
+      this.dateFin = date.getFullYear() + "-" + month + "-" + d
     }
   }
 
