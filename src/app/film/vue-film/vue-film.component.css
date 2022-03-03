@@ -81,6 +81,14 @@ textarea {
   margin-bottom: 10%;
 }
 
+.titleNoComments {
+  font-size: 1.5em;
+}
+
+hr {
+  height: 3px;
+  margin-bottom: 5%;
+}
 
 @font-face {
   font-family: "font-icon";
