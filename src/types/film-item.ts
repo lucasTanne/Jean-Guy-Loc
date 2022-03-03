@@ -27,3 +27,9 @@ export interface FilmCaroussel {
     titre: string,
     lienImage: string
 }
+
+export interface TypeFilm {
+    idType: number,
+    nomType: string
+}
+

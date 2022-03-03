@@ -1,1 +1,63 @@
-<p>rendu-film works!</p>
+<div class="container mb-5">
+    <div class="row mx-0 text-center ">
+        <div class="col-12 header"> Rendu de films</div>
+        <hr class="hrPerso">
+    </div>
+
+    <div class="row my-3 text-center ">
+        <div class="col-3 "> </div>
+        <div class="col-6 mb-3"> 
+            <select id="select" class="form-select" aria-label="Default select example">            
+                    <option *ngFor="let user of lesUsers"  value="{{user.idUtilisateur}}" (click)="searchFilmRent(user.idUtilisateur)">{{user.nom}} {{user.prenom}}</option>
+            </select>
+        </div>
+        <div class="col-3 "> </div>
+    </div>
+    <div class="row my-5">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div *ngIf="lesFilms.length != 0 && valueSelect != -1; else elseNo">
+                <div *ngFor="let film of lesFilms" class="row">
+                    <div class="col-4">
+                    <img class="img-thumbnail" src="{{film.affiche}}">
+                    </div>
+                    <div class="col-8 my-3 align-self-center">
+                        <div class="row my-2">
+                        <div class ="col fw-bolder fst-italic">
+                            {{film.titre}}
+                        </div>
+                        </div>
+                        <div class="row mt-2">
+                        <div class="col-5 fw-bolder" >
+                            Date de location
+                        </div>
+                        <div class="col-7">
+                            {{film.dateDeLocation}}
+                        </div>
+                        </div>
+                        <div class="row my-2">
+                            <div class ="col text-center">
+                              <button type="button" (click)="updateFilmRent(film.idLocationFilm)" class="btn btn-lg btn-outline-secondary mt-3 btnRegarder">Est rendu</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template #elseNo>
+                <div *ngIf="valueSelect != -1; then elseNoLoc else elseVide"></div>
+               
+                <ng-template #elseNoLoc>
+                    <div class="my-5">
+                        <p class="text-center">Aucune location</p>
+                    </div>
+                </ng-template>
+                <ng-template #elseVide>
+                    <div class="my-5">
+                     <p class="text-center">Veuillez choisir un utilisateur</p>
+                    </div>
+                </ng-template>
+            </ng-template>
+        </div>
+        <div class="col-3 mb-5"></div>
+    </div>
+</div>

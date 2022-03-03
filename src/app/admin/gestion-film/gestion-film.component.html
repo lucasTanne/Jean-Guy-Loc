@@ -1,1 +1,69 @@
-<p>gestion-film works!</p>
+<div class="container mb-5">
+    <div class="row mx-0 text-center ">
+        <div class="col-12 header"> Creation film</div>
+        <hr class="hrPerso">
+    </div>
+
+    <form class="my-3 ">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <div class="form-group row my-2">
+                <label for="Nom" class="col-sm-3 text-center col-form-label">Titre</label>
+                <div class="col-lg-8">
+                    <input type="text"  class="form-control" #Titre id="Titre" value="">
+                </div>
+                </div>
+                <div class="form-group row my-2">
+                <label for="Prenom" class="col-sm-3 text-center col-form-label">Type de film</label>
+                <div class="col-lg-8">
+                    <select id="select" #Select class="form-select" aria-label="Default select example">            
+                        <option *ngFor="let type of typeFilm"  value="{{type.idType}}"> {{type.nomType}}</option>
+                    </select>
+                </div>
+                </div>
+                <div class="form-group row my-2">
+                    <label for="Adresse" class="col-sm-3 text-center col-form-label">Duree</label>
+                    <div class="col-lg-8">
+                        <input type="text" class="form-control" #Adresse id="Duree" value="">
+                    </div>
+                </div>
+                <div class="form-group row my-2">
+                <label for="Email" class="col-sm-3 text-center col-form-label">Image</label>
+                <div class="col-lg-8">
+                    <input type="text"  class="form-control" #Image id="Image" value="">
+                </div>
+                </div>
+                <div class="form-group row my-2">
+                <label for="Email" class="col-sm-3 text-center col-form-label">Bande annonce</label>
+                <div class="col-lg-8">
+                    <input type="text"  class="form-control" #Bande id="Bande" value="">
+                </div>
+                </div>
+                <div class="form-group row my-2">
+                <label for="Email" class="col-sm-3 text-center col-form-label">Date de sortie</label>
+                <div class="col-lg-8">
+                    <input type="text"  class="form-control"  #Date id="Date" value="">
+                </div>
+                </div>
+                <div class="form-group row my-2">
+                <label for="Email" class="col-sm-3 text-center col-form-label">Synopsis</label>
+                <div class="col-lg-8">
+                    <textarea maxlength="2048"  class="form-control" #Synopsis id="Synopsis" value=""></textarea>
+                </div>
+
+                </div>
+                <div class="row text-center">
+                    <div class="col-2"></div>
+                    <div class="col-4">
+                        <button type="button"  class="btn btn-lg btn-outline-secondary mt-4 btnProfil">Envoyer</button>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </form>
+
+
+</div>
