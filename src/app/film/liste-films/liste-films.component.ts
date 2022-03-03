@@ -16,7 +16,6 @@ export class ListeFilmsComponent {
   public listFilmsToPrint: FilmToList[] = []
 
   private listeFilter: number[] = []
-  private listFilmFilterGenre: SliceFilmToList[] = []
   
   private noteFilter: number = -1
 
@@ -90,16 +89,20 @@ export class ListeFilmsComponent {
     } else {
       this.listeFilter.push(idCategorie)
     }
-    if(this.listeFilter.length === 0) {
-      this.listFilmFilterGenre = []
-    }
     this.filters()
   }
 
   fGenre(): void {
     console.log("fgenre")
     let add: boolean = true
-    this.listeFilms.forEach((film: SliceFilmToList) => {
+    let sliceTemp: SliceFilmToList[]
+    if(this.mapListFilmToPrint.size !== 0){
+      sliceTemp = Array.from(this.mapListFilmToPrint.values())
+    } else {
+      sliceTemp = this.listeFilms
+    }
+
+    sliceTemp.forEach((film: SliceFilmToList) => {
       if(this.mapListFilmToPrint.size === 0) {
         for(let i = 0; i < this.listeFilter.length; i++) {
           let idCategorie: number = this.listeFilter[i]
@@ -140,7 +143,7 @@ export class ListeFilmsComponent {
     if(this.noteFilter === value) {
       this.noteFilter = -1
     } else {
-      this.noteFilter = value
+      this.noteFilter = Math.round(value)
     }
 
     this.filters()
@@ -152,7 +155,14 @@ export class ListeFilmsComponent {
       return
     }
     let add: boolean = true
-    this.listeFilms.forEach((film: SliceFilmToList) => {
+    let sliceTemp: SliceFilmToList[]
+    if(this.mapListFilmToPrint.size !== 0){
+      sliceTemp = Array.from(this.mapListFilmToPrint.values())
+    } else {
+      sliceTemp = this.listeFilms
+    }
+
+    sliceTemp.forEach((film: SliceFilmToList) => {
       if(this.mapListFilmToPrint.size === 0) {
         if(film.objFilm.moyenne !== this.noteFilter) {
           console.log("nop: " + film.objFilm)
