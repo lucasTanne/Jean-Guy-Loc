@@ -45,21 +45,21 @@ export class ListeFilmsComponent {
   //OK pour map empty
   createSliceToPrint(): void {
     console.log("createSliceToPrint")
+    console.log(this.mapListFilmToPrint)
     if(this.mapListFilmToPrint.size === 0) {
       console.log("map empty")
       this.getFilmList().then((res: SliceFilmToList[]) => {
         this.listeFilms = res
+        console.log("Total films: " + res.length)
       })
     } else {
       console.log("map not empty")
       let newSLice: FilmToList[] = [];
       ((): Promise<any> => {
         return new Promise<any>((resolve) => {
-          const ite = this.mapListFilmToPrint.entries()
-          let obj = ite.next()
-          let key = obj.value[0]
-          let value = obj.value[1] as SliceFilmToList
-          newSLice.push(value.objFilm)
+          this.mapListFilmToPrint.forEach((value: SliceFilmToList) => {
+            newSLice.push(value.objFilm)
+          })
           resolve(null)
         })
       })().then(() => {
@@ -108,7 +108,15 @@ export class ListeFilmsComponent {
   // addFilterGenre(idCategorie: number): void {
     filterGenre(idCategorie: number): void {
     console.log("received: " + idCategorie)
-    this.listeFilter.push(idCategorie)
+    let i: number = this.listeFilter.indexOf(idCategorie)
+    if(i !== -1) {
+      this.listeFilter.splice(i, 1)
+    } else {
+      this.listeFilter.push(idCategorie)
+    }
+    if(this.listeFilter.length === 0) {
+      this.mapListFilmToPrint = new Map()
+    }
     this.filters()
   }
 
@@ -122,6 +130,7 @@ export class ListeFilmsComponent {
         for(let i = 0; i < this.listeFilter.length; i++) {
           let idCategorie: number = this.listeFilter[i]
           if(film.objFilm.categories.indexOf(idCategorie) === -1) {
+            console.log("nop: " + film.objFilm)
             add = false
           }
         }
@@ -131,17 +140,20 @@ export class ListeFilmsComponent {
         let objFilm = f.objFilm
         this.listeFilter.forEach((idCategorie: number) => {
           if(objFilm.categories.indexOf(idCategorie) === -1) {
+            console.log("deleted: " + objFilm)
             this.mapListFilmToPrint.delete(objFilm.idFilm.toString())
           }
         })
       } else {
         this.listeFilter.forEach((idCategorie: number) => {
           if(film.objFilm.categories.indexOf(idCategorie) === -1) {
+            console.log("nop: " + film.objFilm)
             add = false
           }
         })
       }
       if(add) {
+        console.log("add: " + film.objFilm)
         this.mapListFilmToPrint.set(film.objFilm.idFilm.toString(), film)
       }
       add = true
