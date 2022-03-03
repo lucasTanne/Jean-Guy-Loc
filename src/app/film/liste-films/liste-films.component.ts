@@ -16,33 +16,24 @@ export class ListeFilmsComponent {
   public listFilmsToPrint: FilmToList[] = []
 
   private listeFilter: number[] = []
-  private listFilmFilterGenre: SliceFilmToList[] = [] 
+  private listFilmFilterGenre: SliceFilmToList[] = []
   
   private noteFilter: number = -1
-  private listFilmFilterNote: SliceFilmToList[] = []
 
-
-  //Théorie
   private mapListFilmToPrint: Map<String, SliceFilmToList> = new Map()
-
-
 
   constructor(private printMenuService: PrintMenuService, private fetchFilmService: FetchFilmService, private starsService: StarsService, private printerService: PrinterService) {
     this.printMenuService.setPrintMenu(true)
     this.createSliceToPrint()
   }
 
-  //WIP
   filters(): void {
-    console.log("filters")
-    // this.filterGenre()
     this.fGenre()
+    this.fNote()
 
-    //ending method
     this.createSliceToPrint()
   }
 
-  //OK pour map empty
   createSliceToPrint(): void {
     console.log("createSliceToPrint")
     console.log(this.mapListFilmToPrint)
@@ -65,11 +56,11 @@ export class ListeFilmsComponent {
       })().then(() => {
         console.log(newSLice)
         this.listFilmsToPrint = newSLice
+        this.mapListFilmToPrint = new Map()
       })
     }
   }
 
-  //OK
   getFilmList(): Promise<any> {
     return new Promise((resolve) => {
       this.fetchFilmService.getListFilmsWithAverage().then((res: SliceFilmToList[]) => {
@@ -91,22 +82,7 @@ export class ListeFilmsComponent {
     })
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // call by html @output
-  // addFilterGenre(idCategorie: number): void {
-    filterGenre(idCategorie: number): void {
+  filterGenre(idCategorie: number): void {
     console.log("received: " + idCategorie)
     let i: number = this.listeFilter.indexOf(idCategorie)
     if(i !== -1) {
@@ -115,13 +91,11 @@ export class ListeFilmsComponent {
       this.listeFilter.push(idCategorie)
     }
     if(this.listeFilter.length === 0) {
-      this.mapListFilmToPrint = new Map()
+      this.listFilmFilterGenre = []
     }
     this.filters()
   }
 
-  //Call by filters
-  // filterGenre() {
   fGenre(): void {
     console.log("fgenre")
     let add: boolean = true
@@ -142,6 +116,7 @@ export class ListeFilmsComponent {
           if(objFilm.categories.indexOf(idCategorie) === -1) {
             console.log("deleted: " + objFilm)
             this.mapListFilmToPrint.delete(objFilm.idFilm.toString())
+            add = false
           }
         })
       } else {
@@ -160,170 +135,49 @@ export class ListeFilmsComponent {
     })
   }
 
-
-  // public filterGenre(idCategorie: number): void {
-  //   console.log("received: " + idCategorie)
-  //   this.updateListFilters(idCategorie).then(() => {
-  //     this.updateListFilm().then(() => {
-  //       console.log(this.listFilmsToPrint)
-  //       // this.filteredFilmsToPrintList()
-  //     })
-  //   })
-  // }
-
-  // updateListFilters(idCategorie: number): Promise<any> {
-  //   return new Promise<any>((resolve) => {
-  //     let newSlice: number[] = []
-  //     if(!this.sliceFilterContainsCat(idCategorie)) {
-  //       if(this.listeFilter.length === 0){
-  //         this.listeFilter.push(idCategorie)
-  //       } else {
-  //         this.listeFilter.forEach((filter) => {
-  //           newSlice.push(filter)
-  //         })
-  //         newSlice.push(idCategorie)
-  //         this.listeFilter = newSlice
-  //       }
-  //     } else {
-  //       this.listeFilter.forEach((filter) => {
-  //         if(filter !== idCategorie) {
-  //           newSlice.push(filter)
-  //         }
-  //       })
-  //       this.listeFilter = newSlice
-  //     }
-  //     console.log(this.listeFilter)
-  //     resolve(null)
-  //   })
-  // }
-
-  sliceFilterContainsCat(idCategorie: number): boolean {
-    for(let i = 0; i < this.listeFilter.length; i++) {
-      if(this.listeFilter[i] === idCategorie){
-        return true
-      }
-    }
-    return false
-  }
-
-  updateListFilm(): Promise<any> {
-    return new Promise<any>((resolve) => {
-      this.listFilmFilterGenre = []
-      let add: boolean = false
-      this.listeFilms.forEach((film: SliceFilmToList) => {
-        add = true
-        this.listeFilter.forEach((filter: number) => {
-          if(film.objFilm.categories.indexOf(filter) === -1) {
-            add = false
-          }
-        })
-        if(add) {
-          this.listFilmFilterGenre.push(film)
-        }
-      })
-      resolve(null)
-    })
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   public filterNote(value: number): void {
     console.log("received: " + value)
-    this.doingfilterNote(value).then(() => {
-      console.log(this.listFilmFilterNote)
-      // this.filteredFilmsToPrintList()
-    })
+    if(this.noteFilter === value) {
+      this.noteFilter = -1
+    } else {
+      this.noteFilter = value
+    }
+
+    this.filters()
   }
 
-  doingfilterNote(value: number): Promise<any> {
-    return new Promise<any>((resolve) => {
-      let note = Math.round(value)
-      let newSlice: SliceFilmToList[] = []
-      if(this.noteFilter === -1){
-        this.noteFilter = note
-        this.listFilmFilterNote = this.appendListFilmToSlice(this.noteFilter)
-      } else {
-        if(this.noteFilter === note){
-          this.listFilmFilterNote = this.appendListFilmToSlice(-1)
-        } else {
-          let firstSlice: SliceFilmToList[] = this.appendListFilmToSlice(note)
-          this.listFilmFilterNote = this.appendListFilmFilteredToSlice(newSlice, firstSlice, note)
+  fNote(): void {
+    console.log("fnote")
+    if(this.noteFilter === -1) {
+      return
+    }
+    let add: boolean = true
+    this.listeFilms.forEach((film: SliceFilmToList) => {
+      if(this.mapListFilmToPrint.size === 0) {
+        if(film.objFilm.moyenne !== this.noteFilter) {
+          console.log("nop: " + film.objFilm)
+          add = false
         }
       }
-      resolve(null)
-    })
-  }
-
-  appendListFilmToSlice(note: number): SliceFilmToList[]{
-    if(note === -1){
-      return this.listeFilms
-    }
-    let newSlice: SliceFilmToList[] = []
-    this.listeFilms.forEach((film: SliceFilmToList) => {
-      if(film.objFilm.moyenne === note) {
-        newSlice.push(film)
+      let f = this.mapListFilmToPrint.get(film.objFilm.idFilm.toString())
+      if (f !== undefined) {
+        let objFilm = f.objFilm
+        if(objFilm.moyenne !== this.noteFilter) {
+          console.log("deleted: " + objFilm)
+          this.mapListFilmToPrint.delete(objFilm.idFilm.toString())
+          add = false
+        }
+      } else {
+        if(film.objFilm.moyenne !== this.noteFilter) {
+          console.log("nop: " + film.objFilm)
+          add = false
+        }
       }
-    })
-    return newSlice
-  }
-
-  appendListFilmFilteredToSlice(newSlice: SliceFilmToList[], actualSlice: SliceFilmToList[], note: number): SliceFilmToList[]{
-    actualSlice.forEach((film: SliceFilmToList) => {
-      if(film.objFilm.moyenne === note) {
-        newSlice.push(film)
+      if(add) {
+        console.log("add: " + film.objFilm)
+        this.mapListFilmToPrint.set(film.objFilm.idFilm.toString(), film)
       }
-    })
-    return newSlice
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  listFilmFilterGenreToPrint(): void {
-    this.listFilmFilterGenre.forEach((film: SliceFilmToList) => {
-      this.listFilmsToPrint.push(film.objFilm)
-    })
-  }
-
-  listFilmFilterNoteToPrint(): void {
-    this.listFilmFilterNote.forEach((film: SliceFilmToList) => {
-      this.listFilmsToPrint.push(film.objFilm)
+      add = true
     })
   }
 }
