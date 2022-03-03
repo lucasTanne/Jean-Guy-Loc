@@ -62,7 +62,7 @@ export class UtilisateurComponent implements OnInit {
   modifInfo = false;
   modifPass = false;
 
-  constructor(private printMenuService : PrintMenuService, private FetchUserProfilService : FecthUserProfileService, private cookieService: CookieService,) { 
+  constructor(private printMenuService : PrintMenuService, private FetchUserProfilService : FecthUserProfileService, private cookieService: CookieService) { 
     this.printMenuService.setPrintMenu(true);
 
     let idUtilisateur = this.cookieService.get('UserID')

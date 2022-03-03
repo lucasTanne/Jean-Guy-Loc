@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+import { TypeFilm } from 'src/types/film-item';
+import { FetchGestionFilmService } from './service/fetch-gestion-film.service';
 
 @Component({
   selector: 'app-gestion-film',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GestionFilmComponent implements OnInit {
 
-  constructor() { }
+
+  public typeFilm: TypeFilm[] = []; 
+
+  constructor(private fetchGestionFilm : FetchGestionFilmService,private cookieService: CookieService) {
+    
+    this.fetchGestionFilm.getType().then((res: TypeFilm[]) => {
+      this.typeFilm = res
+    })
+
+
+   }
 
   ngOnInit(): void {
   }
+
+
+  sendCreateFilm(Titre : string, Type : string, duree :number, Image: string, Bande : string, Date : Date, Synopsis: string){
+
+  }
+
 
 }

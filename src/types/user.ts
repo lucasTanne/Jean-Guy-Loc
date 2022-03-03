@@ -41,6 +41,16 @@ export interface FilmLouePhysique {
     titre : string
 }
 
+export interface FilmLoueRendu {
+    dateDeLocation: Date,
+    duree:number,
+    idUtilisateur:number ,
+    idFilm: number,
+    estRendu : boolean,
+}
+
+
+
 export interface FilmLoueStreaming{
     idLocationStreaming:number ,
     dateDeLocation: Date ,
@@ -54,5 +64,12 @@ export interface FilmLoueStreaming{
 export interface UserPseudonyme{
     pseudonyme: string 
 }
+
+export interface UserList {
+    idUtilisateur : number,
+    nom : string,
+    prenom : string
+}
+
 
 
