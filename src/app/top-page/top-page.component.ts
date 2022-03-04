@@ -11,7 +11,7 @@ import { PrintMenuService } from '../services/print-menu.service';
 })
 export class TopPageComponent {
   public connected: boolean = false
-
+  public admin: boolean = false
   constructor(private route: ActivatedRoute, private router: Router, private printMenuService: PrintMenuService, private cookieService: CookieService, private authService : AuthService) { }
   
   goMenu(): void {
@@ -23,8 +23,13 @@ export class TopPageComponent {
     return this.printMenuService.getPrintMenu()
   }
 
+  isAdmin():boolean {
+    return this.printMenuService.getAdmin();
+  }
+
   public userDeconnexion(): void {
     this.authService.deconnexion();
     this.printMenuService.setConnected(false)
+    this.printMenuService.setAdmin(false)
   }
 }

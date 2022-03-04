@@ -15,6 +15,10 @@
             <a routerLink="/profil" class="menuItem nav-item nav-link" >Profil</a>
             <a routerLink="#" class="menuItem nav-item nav-link" (click)="userDeconnexion()">Se déconnecter</a>
         </ng-template>
+        <div *ngIf="isAdmin();then adminNav"></div>
+        <ng-template #adminNav>
+            <a routerLink="/admin" class="menuItem nav-item nav-link">Administration</a>
+        </ng-template>
     </nav>
 </div>
 <div *ngIf="!printMenu()">

@@ -42,6 +42,9 @@ export class AuthService {
       if(result != undefined) {
         this.printMenuService.setConnected(true)
         let payload: string = this.cookieService.get('lastPage')
+        if(result){
+          this.printMenuService.setAdmin(true);
+        }
         if(payload != "") {
           let redirectionPage: LastPagePayload = JSON.parse(payload)
           this.cookieService.delete('lastPage')

@@ -1,11 +1,11 @@
 <button type="button" class="btn btn-lg" data-bs-toggle="collapse" data-bs-target="#collapseGenre" role="button" aria-expanded="false">
     Genre
 </button>
-<div class="collapse show overflow-auto genre" id="collapseGenre">
+<div class="collapse show overflow-auto genre py-3" id="collapseGenre">
     <div class="card card-body" *ngFor="let categorie of listeCategories">
         <div>
             <input type="checkbox" id="{{categorie.idCategorie}}" name="scales" (click)="selectGenre(categorie)">
-            <label for="{{categorie.idCategorie}}">{{categorie.nomCategorie}}</label>
+            <label class="mx-2" for="{{categorie.idCategorie}}">{{categorie.nomCategorie}}</label>
         </div>
     </div>
 </div>

@@ -7,14 +7,14 @@
         <a routerLink="#" class="menuItem nav-item nav-link">Films en téléchargement</a>
     </nav>
 </div>
-<div class="row">
+<div class="row mx-auto">
     <div class="col-2">
         <app-filter (filterGenre)="filterGenre($event)" (filterNote)="filterNote($event)"></app-filter>
     </div>
-    <div class="col">
+    <div class="col mt-5">
         <div class="container">
             <div *ngFor="let film of listFilmsToPrint">
-                <div class="row">
+                <div class="row mt-4">
                     <div class="col-2">
                         <div class="row">
                             <div class="col">
@@ -32,23 +32,24 @@
                     </div>
                     <div class="col">
                         <div class="row h-25">
-                            <p>{{film.titre}}</p>
+                            <p class="titreFilm">{{film.titre}}</p>
                         </div>
                         <div class="row h-75">
-                            <div class="col">
+                            <div class="col-6">
                                 <p>{{film.synopsis}}</p>
                             </div>
-                            <div class="col">
-                                <div class="row h-50">
+                            <div class="col-1"></div>
+                            <div class="col-5">
+                                <div class="row h-75 py-4">
                                     <a routerLink="/films/voirFilm/{{film.idFilm}}">
-                                        <button type="button" class="btn btn-outline-dark btn-lg btnco">Voir</button> 
+                                        <button type="button" class="btn btn-outline-dark btn-lg btnco px-5">Voir</button> 
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <hr>
+                <hr class="me-5 mx-5 my-3">
             </div>
         </div>
     </div>

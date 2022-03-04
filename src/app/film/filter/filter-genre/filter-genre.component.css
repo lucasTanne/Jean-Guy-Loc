@@ -11,4 +11,19 @@ input[id^="Genre"] {
 
 .genre {
     max-height: 425px;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+.text{
+    font-family: "BalooTamma";
+    font-size : 1.2rem;
+}
+
+.card {
+    border :none !important;
+}
+
+.card-body{
+    padding: 0.2rem 1rem;
 }
