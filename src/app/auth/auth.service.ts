@@ -27,6 +27,15 @@ export class AuthService {
     return false;
   }
 
+  estAuthentifieEtAdmin(){
+    const admin = JSON.parse(this.cookieService.get('admin'));
+    if (this.cookieService.get('token') != undefined && this.cookieService.get('token') != '' && admin.admin){
+      this.printMenuService.setConnected(true);
+      return true;
+    } 
+    return false;
+  }
+
   async connexion(compte:ComptePayload): Promise<any> {
     this.compteService.connexion(compte).then((result: any) => {
       console.log(result)
@@ -51,6 +60,7 @@ export class AuthService {
   async deconnexion() {
     this.cookieService.delete('token');
     this.cookieService.delete('UserID');
+    this.cookieService.delete('admin');
     this.route.navigate(['']);
 
   }
