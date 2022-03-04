@@ -10,6 +10,7 @@ import { StarsService } from '../services/stars.service';
 import { NewLocation, NewLocationStreaming } from 'src/types/disponibilites';
 import { Acteur, Realisateur } from 'src/types/info';
 import { resolveProjectReferencePath } from 'typescript';
+import { Category } from 'src/types/categories';
 
 
 @Component({
@@ -71,10 +72,13 @@ export class VueFilmComponent implements OnInit {
   }
   public infoActors: string = ""
   public infoRealisators: string = ""
+  public infoCategories: string = ""
   private listAllActors: Map<String, Acteur> = new Map()
   private listAllRealisators: Map<String, Realisateur> = new Map()
+  private listAllCategories: Map<String, Category> = new Map()
   public listActors: string[] = []
   public listRealisators: string[] = []
+  public listCategories: string[] = []
   public idUtilisateur: string = "-1"
   public idFilm: string | null = ""
   public nbStarGold: number = 0
@@ -127,18 +131,29 @@ export class VueFilmComponent implements OnInit {
               res.forEach((a: Acteur) => {
                 this.listAllActors.set(a.idActeur.toString(), a)
               })
+              this.checkInfoActors().then(() => {
+                this.listActors.forEach((actor: string) => {
+                  this.infoActors += actor + " "
+                })
+              })
               this.fetchFilmService.getAllRealisator().then((res: Realisateur[]) => {
                 res.forEach((r: Realisateur) => {
                   this.listAllRealisators.set(r.idRealisateur.toString(), r)
                 })
-                this.checkInfoActors().then(() => {
-                  this.listActors.forEach((actor: string) => {
-                    this.infoActors += actor + " "
+                this.checkInfoRealisators().then(() => {
+                  this.listRealisators.forEach((realisator: string) => {
+                    this.infoRealisators += realisator + " "
                   })
-                  this.checkInfoRealisators().then(() => {
-                    this.listRealisators.forEach((realisator: string) => {
-                      this.infoRealisators += realisator
-                    })
+                })
+              })
+              this.fetchFilmService.getListCategories().then((res: Category[]) => {
+                console.log(res)
+                res.forEach((cat: Category) => {
+                  this.listAllCategories.set(cat.idCategorie.toString(), cat)
+                })
+                this.checkInfoCategories().then(() => {
+                  this.listCategories.forEach((category: string) => {
+                    this.infoCategories += category + " "
                   })
                 })
               })
@@ -164,11 +179,23 @@ export class VueFilmComponent implements OnInit {
   checkInfoRealisators(): Promise<any> {
     return new Promise<any>((resolve) => {
       this.infoFilm.realisateurs.forEach((idRealisateur: number) => {
-        console.log(idRealisateur)
         let realisateur = this.listAllRealisators.get(idRealisateur.toString())
-        console.log(realisateur)
         if(realisateur !== undefined) {
           this.listRealisators.push(realisateur.prenom + " " + realisateur.nom)
+        }
+      })
+      resolve(null)
+    })
+  }
+
+  checkInfoCategories(): Promise<any> {
+    return new Promise<any>((resolve) => {
+      this.infoFilm.categories.forEach((idCategorie: number) => {
+        console.log(idCategorie)
+        let category = this.listAllCategories.get(idCategorie.toString())
+        console.log(category)
+        if(category !== undefined) {
+          this.listCategories.push(category.nomCategorie)
         }
       })
       resolve(null)
