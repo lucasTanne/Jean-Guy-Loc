@@ -3,11 +3,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { PrintMenuService } from 'src/app/services/print-menu.service';
 import { ChangeCommentary, CommentaireInfo, CommentToSend, ListCommentaireInfo } from 'src/types/commentaire';
-import { FilmItem } from 'src/types/film-item';
+import { FilmItem, InfoFilm } from 'src/types/film-item';
 import { Note, NoteToSend } from 'src/types/note';
 import { FetchFilmService } from '../services/fetch-film.service';
 import { StarsService } from '../services/stars.service';
 import { NewLocation, NewLocationStreaming } from 'src/types/disponibilites';
+import { Acteur, Realisateur } from 'src/types/info';
+import { resolveProjectReferencePath } from 'typescript';
 
 
 @Component({
@@ -61,6 +63,18 @@ export class VueFilmComponent implements OnInit {
     nbStarBlack: 5,
     nbStarGold: 0
   }
+  public infoFilm: InfoFilm = {
+    idFilm: -1,
+    acteurs: [],
+    categories: [],
+    realisateurs: []
+  }
+  public infoActors: string = ""
+  public infoRealisators: string = ""
+  private listAllActors: Map<String, Acteur> = new Map()
+  private listAllRealisators: Map<String, Realisateur> = new Map()
+  public listActors: string[] = []
+  public listRealisators: string[] = []
   public idUtilisateur: string = "-1"
   public idFilm: string | null = ""
   public nbStarGold: number = 0
@@ -107,8 +121,57 @@ export class VueFilmComponent implements OnInit {
               console.log(this.firstCommentaire)
             })
           })
+          this.fetchFilmService.getInfoFilm(this.film.idFilm).then((res: InfoFilm) => {
+            this.infoFilm = res
+            this.fetchFilmService.getAllActors().then((res: Acteur[]) => {
+              res.forEach((a: Acteur) => {
+                this.listAllActors.set(a.idActeur.toString(), a)
+              })
+              this.fetchFilmService.getAllRealisator().then((res: Realisateur[]) => {
+                res.forEach((r: Realisateur) => {
+                  this.listAllRealisators.set(r.idRealisateur.toString(), r)
+                })
+                this.checkInfoActors().then(() => {
+                  this.listActors.forEach((actor: string) => {
+                    this.infoActors += actor + " "
+                  })
+                  this.checkInfoRealisators().then(() => {
+                    this.listRealisators.forEach((realisator: string) => {
+                      this.infoRealisators += realisator
+                    })
+                  })
+                })
+              })
+            })
+          })
         })
       }
+    })
+  }
+
+  checkInfoActors(): Promise<any> {
+    return new Promise<any>((resolve) => {
+      this.infoFilm.acteurs.forEach((idActor: number) => {
+        let actor = this.listAllActors.get(idActor.toString())
+        if(actor !== undefined) {
+          this.listActors.push(actor.prenom + " " + actor.nom)
+        }
+      })
+      resolve(null)
+    })
+  }
+
+  checkInfoRealisators(): Promise<any> {
+    return new Promise<any>((resolve) => {
+      this.infoFilm.realisateurs.forEach((idRealisateur: number) => {
+        console.log(idRealisateur)
+        let realisateur = this.listAllRealisators.get(idRealisateur.toString())
+        console.log(realisateur)
+        if(realisateur !== undefined) {
+          this.listRealisators.push(realisateur.prenom + " " + realisateur.nom)
+        }
+      })
+      resolve(null)
     })
   }
 

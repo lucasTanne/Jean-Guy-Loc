@@ -4,8 +4,9 @@ import { CookieService } from 'ngx-cookie-service';
 import { ChangeCommentary, CommentaireInfo, CommentToSend, ListCommentaireInfo } from 'src/types/commentaire';
 import { Category } from 'src/types/categories';
 import { NewLocation, NewLocationStreaming } from 'src/types/disponibilites';
-import { FilmItem, FilmToList, SliceFilmToList } from 'src/types/film-item';
+import { FilmItem, FilmToList, InfoFilm, SliceFilmToList } from 'src/types/film-item';
 import { Note, Notes, NoteToSend } from 'src/types/note';
+import { Acteur, Realisateur } from 'src/types/info';
 
 @Injectable({
   providedIn: 'root'
@@ -172,6 +173,46 @@ export class FetchFilmService {
   getListCategories(): Promise<any> {
     let url = "http://localhost:3000/categorie/"
     return this.http.get<Category[]>(url)
+    .toPromise()
+    .then((res) => {
+      return res
+    }).catch((e) => {
+      console.log("catch")
+      console.log(e)
+      return undefined
+    })
+  }
+
+  getInfoFilm(idFilm: number): Promise<any> {
+    let url = "http://localhost:3000/film/getInfos/{idFilm}"
+    url = url.replace("{idFilm}", idFilm.toString())
+    return this.http.get<InfoFilm>(url)
+    .toPromise()
+    .then((res) => {
+      return res
+    }).catch((e) => {
+      console.log("catch")
+      console.log(e)
+      return undefined
+    })
+  }
+
+  getAllActors(): Promise<any> {
+    let url = "http://localhost:3000/acteur"
+    return this.http.get<Acteur[]>(url)
+    .toPromise()
+    .then((res) => {
+      return res
+    }).catch((e) => {
+      console.log("catch")
+      console.log(e)
+      return undefined
+    })
+  }
+
+  getAllRealisator(): Promise<any> {
+    let url = "http://localhost:3000/realisateur"
+    return this.http.get<Realisateur[]>(url)
     .toPromise()
     .then((res) => {
       return res

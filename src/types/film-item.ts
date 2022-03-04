@@ -49,3 +49,9 @@ export interface Film {
     duree : number
     dateSortie : string
 }
+export interface InfoFilm {
+    idFilm: number,
+    categories: number[],
+    realisateurs: number[],
+    acteurs: number[]
+}
