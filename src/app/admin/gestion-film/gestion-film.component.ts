@@ -18,7 +18,7 @@ export class GestionFilmComponent implements OnInit {
   public cannotConnect: boolean = false
   public errorConnexion: boolean = false
   public errorMessage: string = ""
-   
+  public timeLeft: number = 3
 
   constructor(private fetchGestionFilm : FetchGestionFilmService,private cookieService: CookieService) {
     
@@ -79,8 +79,11 @@ export class GestionFilmComponent implements OnInit {
       res.synopsis = Synopsis;
       console.log(res)
       this.fetchGestionFilm.sendFilm(res).then((res: TypeFilm[]) => {
-        console.log(res)
-        window.location.reload()
+      
+        setTimeout(() => {
+          window.location.reload()
+        }, this.timeLeft * 1000)
+       
       })
     
     }
