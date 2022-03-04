@@ -70,9 +70,7 @@ export class VueFilmComponent implements OnInit {
     categories: [],
     realisateurs: []
   }
-  public infoActors: string = ""
-  public infoRealisators: string = ""
-  public infoCategories: string = ""
+
   private listAllActors: Map<String, Acteur> = new Map()
   private listAllRealisators: Map<String, Realisateur> = new Map()
   private listAllCategories: Map<String, Category> = new Map()
@@ -132,8 +130,9 @@ export class VueFilmComponent implements OnInit {
                 this.listAllActors.set(a.idActeur.toString(), a)
               })
               this.checkInfoActors().then(() => {
+                this.film.acteurs = []
                 this.listActors.forEach((actor: string) => {
-                  this.infoActors += actor + " "
+                  this.film.acteurs.push(actor)
                 })
               })
               this.fetchFilmService.getAllRealisator().then((res: Realisateur[]) => {
@@ -141,8 +140,9 @@ export class VueFilmComponent implements OnInit {
                   this.listAllRealisators.set(r.idRealisateur.toString(), r)
                 })
                 this.checkInfoRealisators().then(() => {
+                  this.film.realisateurs = []
                   this.listRealisators.forEach((realisator: string) => {
-                    this.infoRealisators += realisator + " "
+                    this.film.realisateurs.push(realisator)
                   })
                 })
               })
@@ -152,8 +152,9 @@ export class VueFilmComponent implements OnInit {
                   this.listAllCategories.set(cat.idCategorie.toString(), cat)
                 })
                 this.checkInfoCategories().then(() => {
+                  this.film.categories = []
                   this.listCategories.forEach((category: string) => {
-                    this.infoCategories += category + " "
+                    this.film.categories.push(category)
                   })
                 })
               })
