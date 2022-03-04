@@ -45,7 +45,7 @@ export class GestionFilmComponent implements OnInit {
       duree: 0,
       dateSortie: new Date(1970, 1, 1).toDateString()
     };
-    if(Titre == "" || Type == "-1" || duree == -1 || Image == "" || Bande == "" || dateSortie == "" || Synopsis == ""){
+    if(Titre.trim() == "" || Type == "-1" || duree == -1 || Image.trim() == "" || Bande.trim() == "" || dateSortie.trim() == "" || Synopsis.trim() == ""){
       this.errorConnexion = false
       this.errorMessage = "Champ(s) vide"
       this.cannotSend= true

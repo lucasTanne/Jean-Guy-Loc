@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminGuard } from './auth/admin.guard';
 import { AuthGuard } from './auth/auth.guard';
 import { CommentaireUtilisateurComponent } from './commentaire-utilisateur/commentaire-utilisateur.component';
 import { ContactComponent } from './contact/contact/contact.component';
@@ -16,7 +17,7 @@ const routes: Routes = [
   { path: '', loadChildren: () => import('src/app/accueil/accueil.module').then((m) => m.AccueilModule)},
   { path: 'location/:idFilm', loadChildren: () => import('src/app/locations/locations.module').then((m) => m.LocationsModule), canActivate: [ AuthGuard ]},
   { path: 'streaming', component: VisuFilmComponent},
-  { path : 'admin', loadChildren: () => import('src/app/admin/admin.module').then((m) => m.AdminModule) }
+  { path : 'admin', loadChildren: () => import('src/app/admin/admin.module').then((m) => m.AdminModule), canActivate: [ AdminGuard ]}
   //{ path: '**', redirectTo: ''}
 ]
 

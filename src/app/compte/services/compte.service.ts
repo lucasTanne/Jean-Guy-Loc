@@ -17,6 +17,7 @@ export class CompteService {
     .then((res: UserPayload) => {
       this.cookieService.set('UserID', res.idUtilisateur)
       this.cookieService.set('token', res.access_token)
+      this.cookieService.set('admin', JSON.stringify({admin : res.admin}))
       return res.idUtilisateur
     }).catch((e) => {
       console.log("catch")
