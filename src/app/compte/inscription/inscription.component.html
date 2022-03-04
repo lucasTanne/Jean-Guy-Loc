@@ -1,29 +1,64 @@
-<form id="inscription-block">
+<div id="inscription-block" class="container">
     <div id="title-form">
-        <h2 class="text-center">Inscrivez-vous</h2>
+        <h2 class="text-center mt-3">Inscrivez-vous</h2>
     </div>
-    <div id="form-elem">
-        <div class="form-group">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Email">
-            </div>
+    <form class="my-3 ">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <div class="form-group row my-2">
+                <label for="Nom" class="col-sm-3 text-center col-form-label">Nom</label>
+                <div class="col-lg-8">
+                    <input type="text"  class="form-control" #Nom id="Nom" value="">
+                </div>
+                </div>
+                <div class="form-group row my-2">
+                <label for="Prenom" class="col-sm-3 text-center col-form-label">Prenom</label>
+                <div class="col-lg-8">
+                    <input type="text" class="form-control" #Prenom id="Prenom" value="">
+                </div>
+                </div>
+                <div class="form-group row my-2">
+                    <label for="Adresse" class="col-sm-3 text-center col-form-label">Adresse</label>
+                    <div class="col-lg-8">
+                        <input type="text" pattern="[0-9]+" class="form-control" #Adresse id="Adresse" value="">
+                    </div>
+                </div>
+                <div class="form-group row my-2">
+                <label for="Pseudonyme" class="col-sm-3 text-center col-form-label">Pseudonyme</label>
+                <div class="col-lg-8">
+                    <input type="text"  class="form-control" #Pseudonyme id="Pseudonyme" value="">
+                </div>
+                </div>
+                <div class="form-group row my-2">
+                <label for="Mdp" class="col-sm-3 text-center col-form-label">Mot de passe</label>
+                <div class="col-lg-8">
+                    <input type="password"  class="form-control" #Mdp id="Mdp" value="">
+                </div>
+                </div>
+                
+                <div *ngIf="cannotSend;then error"></div>
+                <ng-template #error>
+                    <app-error-template [printError]="cannotSend" [errorConnexion]="errorConnexion" [errorMessage]="errorMessage"></app-error-template>
+                </ng-template>
+
+                </div>
+                <div class="row my-3 text-center">
+                    <div class="col-2"></div>
+                    <div class="col-8 text-center">
+                        <button type="button" class="btn btn-outline-dark btn-lg btninsc" (click)="inscription(Pseudonyme.value, Mdp.value, Adresse.value, Nom.value, Prenom.value)">Inscription</button>
+                        <p class="font-weight-light mt-3">
+                            En continuant, vous confirmez que vous acceptez les 
+                            <a routerLink="#"  routerLinkActive="active">Politiques de confidentialités</a>
+                        </p>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+            
+            <div class="col-3"></div>
         </div>
-        <div class="form-group">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Nom d'utilisateur">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="input-group mb-3">
-                <input type="password" class="form-control" placeholder="Mot de passe">
-            </div>
-        </div>
-    </div>
+    </form>
     <div class="form-group text-center">
-        <button type="button" class="btn btn-outline-dark btn-lg btninsc">Inscription</button>
-        <p class="font-weight-light">
-            En continuant, vous confirmez que vous acceptez les 
-            <a routerLink="#"  routerLinkActive="active">Politiques de confidentialités</a>
-        </p>
+        
     </div>
-</form>
+</div>

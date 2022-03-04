@@ -1,19 +1,2 @@
-#inscription-block {
-    margin-top: 3%;
-    padding-left: 35%;
-    padding-right: 35%;
-    height: calc(100vh - 22.7rem) !important;
-}
 
-#title-form {
-    margin-bottom: 10%;
-}
 
-#form-elem {
-    margin-bottom: 8%;
-}
-
-.btninsc {
-    border-radius:25px;
-    width: 40%;
-}

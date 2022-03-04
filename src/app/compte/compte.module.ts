@@ -23,7 +23,7 @@ export const CompteRouteList: Routes = [
     CommonModule,
     RouterModule.forChild(CompteRouteList),
     HttpClientModule,
-    ComponentTemplateModule 
+    ComponentTemplateModule
   ],
   providers: [
     PrintMenuService,

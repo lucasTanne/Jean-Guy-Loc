@@ -7,3 +7,22 @@ export interface UserPayload {
     idUtilisateur: string, 
     admin : boolean
 }
+
+export interface newUser {
+    pseudonyme: string,
+    motDePasse: string,
+    adresse: string,
+    nom: string,
+    prenom: string,
+    estAdmin: boolean
+}
+
+export interface InscriptionResult {
+    pseudonyme: string,
+    motDePasse: string,
+    adresse: string,
+    nom: string,
+    prenom: string,
+    estAdmin: boolean,
+    idUtilisateur: number
+}

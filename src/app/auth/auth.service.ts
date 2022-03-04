@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { ComptePayload } from 'src/types/compte';
+import { ComptePayload, InscriptionResult, newUser } from 'src/types/compte';
 import { LastPagePayload } from 'src/types/page';
 import { CompteService } from '../compte/services/compte.service';
 import { PrintMenuService } from '../services/print-menu.service';
@@ -66,5 +66,18 @@ export class AuthService {
     this.cookieService.delete('admin');
     this.route.navigate(['']);
 
+  }
+
+  inscription(payload: newUser): Promise<any> {
+    let url = "http://localhost:3000/utilisateur"
+    return this.http.post<InscriptionResult>(url, payload)
+    .toPromise()
+    .then((res: InscriptionResult) => {
+      return res
+    }).catch((e) => {
+      console.log("catch")
+      console.log(e)
+      return undefined
+    })
   }
 }
